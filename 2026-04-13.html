@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>트위터 여론 분석 보고서 — 2026-04-13</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a2e;
+    --accent: #2563eb;
+    --border: #e2e8f0;
+    --quote-bg: #f8fafc;
+    --quote-border: #3b82f6;
+    --table-header: #1e293b;
+    --table-header-text: #ffffff;
+    --table-stripe: #f1f5f9;
+    --tag-support: #dcfce7;
+    --tag-critical: #fee2e2;
+    --tag-neutral: #e0f2fe;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --accent: #60a5fa;
+      --border: #334155;
+      --quote-bg: #1e293b;
+      --quote-border: #3b82f6;
+      --table-header: #334155;
+      --table-header-text: #f1f5f9;
+      --table-stripe: #1e293b;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 20px 16px;
+  }
+
+  h1 {
+    font-size: 1.6em;
+    font-weight: 800;
+    margin: 32px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid var(--accent);
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin: 28px 0 10px;
+    padding: 8px 0 6px;
+    border-bottom: 1px solid var(--border);
+    color: var(--accent);
+  }
+
+  h3 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 20px 0 8px;
+  }
+
+  p {
+    margin: 8px 0;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  blockquote {
+    background: var(--quote-bg);
+    border-left: 4px solid var(--quote-border);
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.93em;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  blockquote p {
+    margin: 4px 0;
+  }
+
+  /* 테이블 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.88em;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  thead th {
+    background: var(--table-header);
+    color: var(--table-header-text);
+    padding: 10px 8px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+
+  tbody td {
+    padding: 8px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:nth-child(even) {
+    background: var(--table-stripe);
+  }
+
+  /* 리스트 */
+  ul, ol {
+    padding-left: 20px;
+    margin: 8px 0;
+  }
+
+  li {
+    margin: 4px 0;
+  }
+
+  /* 구분선 */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 24px 0;
+  }
+
+  /* 모바일 최적화 */
+  @media (max-width: 600px) {
+    body {
+      font-size: 14px;
+    }
+    .container {
+      padding: 12px;
+    }
+    h1 {
+      font-size: 1.4em;
+    }
+    h2 {
+      font-size: 1.15em;
+    }
+    table {
+      font-size: 0.82em;
+    }
+    thead th, tbody td {
+      padding: 6px 4px;
+    }
+    blockquote {
+      padding: 10px 12px;
+      font-size: 0.9em;
+    }
+  }
+
+  /* 인쇄 */
+  @media print {
+    body {
+      font-size: 11pt;
+    }
+    .container {
+      max-width: 100%;
+    }
+    table {
+      display: table;
+    }
+    blockquote {
+      border-left: 2px solid #333;
+      background: #f5f5f5;
+    }
+  }
+
+  /* 푸터 */
+  .footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85em;
+    color: #64748b;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>트위터 여론 분석 보고서: 이재명 대통령 이스라엘 비판 트윗 해외 반응</h1>
+<p><strong>작성일:</strong> 2026-04-13<br />
+<strong>분석 대상:</strong> 비한국어 수집 트윗 703건<br />
+<strong>수집 기간:</strong> 2026-04-12 17:00 KST 이후 ~ 2026-04-13 06:27 KST (약 13시간)<br />
+<strong>수집 시각 (UTC):</strong> 2026-04-13T06:20:02</p>
+<hr />
+<h2>1. 수집 개요</h2>
+<h3>토픽별 수집 건수</h3>
+<table>
+<thead>
+<tr>
+<th>토픽</th>
+<th>수집 건수</th>
+<th>성격</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>키워드_통합검색</td>
+<td>411건</td>
+<td>OR 묶음 다국어 키워드 검색</td>
+</tr>
+<tr>
+<td>주요계정_멘션</td>
+<td>86건</td>
+<td>@Jaemyung_Lee, @IsraelinKorea, @IsraelMFA 멘션</td>
+</tr>
+<tr>
+<td>답글_04/10 첫 번째 트윗</td>
+<td>48건</td>
+<td>트윗① 직접 답글</td>
+</tr>
+<tr>
+<td>인용_04/10 첫 번째 트윗</td>
+<td>1건</td>
+<td>트윗① 인용</td>
+</tr>
+<tr>
+<td>답글_04/10 두 번째 트윗</td>
+<td>4건</td>
+<td>트윗② 직접 답글</td>
+</tr>
+<tr>
+<td>인용_04/10 두 번째 트윗</td>
+<td>0건</td>
+<td>—</td>
+</tr>
+<tr>
+<td>답글_04/11 세 번째 트윗</td>
+<td>32건</td>
+<td>트윗③ 직접 답글</td>
+</tr>
+<tr>
+<td>인용_04/11 세 번째 트윗</td>
+<td>0건</td>
+<td>—</td>
+</tr>
+<tr>
+<td>답글_04/12 네 번째 트윗</td>
+<td>41건</td>
+<td>트윗④ 직접 답글</td>
+</tr>
+<tr>
+<td>인용_04/12 네 번째 트윗</td>
+<td>3건</td>
+<td>트윗④ 인용</td>
+</tr>
+<tr>
+<td>답글_sahelbrut3_트윗</td>
+<td>56건</td>
+<td>@sahelbrut3 트윗 답글</td>
+</tr>
+<tr>
+<td>인용_sahelbrut3_트윗</td>
+<td>21건</td>
+<td>@sahelbrut3 트윗 인용</td>
+</tr>
+<tr>
+<td><strong>합계 (중복 제거 후)</strong></td>
+<td><strong>703건</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>언어별 분포</h3>
+<table>
+<thead>
+<tr>
+<th>언어</th>
+<th>건수</th>
+<th>비율</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>영어 (en)</td>
+<td>299</td>
+<td>42.5%</td>
+<td>최다. 미국·영국·호주·인도 등 다수</td>
+</tr>
+<tr>
+<td>일본어 (ja)</td>
+<td>199</td>
+<td>28.3%</td>
+<td>영어 다음으로 많음</td>
+</tr>
+<tr>
+<td>qme (미디어 임베드)</td>
+<td>45</td>
+<td>6.4%</td>
+<td>이미지/영상 첨부 트윗 (언어 불명)</td>
+</tr>
+<tr>
+<td>중국어 (zh)</td>
+<td>43</td>
+<td>6.1%</td>
+<td></td>
+</tr>
+<tr>
+<td>스페인어 (es)</td>
+<td>25</td>
+<td>3.6%</td>
+<td>중남미·스페인</td>
+</tr>
+<tr>
+<td>프랑스어 (fr)</td>
+<td>23</td>
+<td>3.3%</td>
+<td>sahelbrut3 효과 포함</td>
+</tr>
+<tr>
+<td>아랍어 (ar)</td>
+<td>23</td>
+<td>3.3%</td>
+<td>알아라비야 등 주요 미디어 포함</td>
+</tr>
+<tr>
+<td>포르투갈어 (pt)</td>
+<td>8</td>
+<td>1.1%</td>
+<td>브라질 중심</td>
+</tr>
+<tr>
+<td>터키어 (tr)</td>
+<td>5</td>
+<td>0.7%</td>
+<td>주목 — 팔로워 75만 계정 포함</td>
+</tr>
+<tr>
+<td>히브리어 (iw)</td>
+<td>4</td>
+<td>0.6%</td>
+<td></td>
+</tr>
+<tr>
+<td>이탈리아어 (it)</td>
+<td>4</td>
+<td>0.6%</td>
+<td></td>
+</tr>
+<tr>
+<td>인도네시아어 (in)</td>
+<td>4</td>
+<td>0.6%</td>
+<td></td>
+</tr>
+<tr>
+<td>독일어 (de)</td>
+<td>3</td>
+<td>0.4%</td>
+<td></td>
+</tr>
+<tr>
+<td>카탈루냐어 (ca)</td>
+<td>3</td>
+<td>0.4%</td>
+<td></td>
+</tr>
+<tr>
+<td>기타 (폴란드어·에스토니아어·바스크어·베트남어·타갈로그어 등)</td>
+<td>14</td>
+<td>2.0%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>주:</strong> qme는 Twitter 자체 언어 코드로 미디어 첨부 트윗에 부여됨. 실질 언어 확인 불가하여 별도 표기.</p>
+<hr />
+<h2>2. 파급력 분석</h2>
+<h3>상위 10개 트윗 (좋아요+RT 기준)</h3>
+<table>
+<thead>
+<tr>
+<th>순위</th>
+<th>계정</th>
+<th>팔로워</th>
+<th>트윗 요약 (한국어)</th>
+<th>언어</th>
+<th>좋아요</th>
+<th>RT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>@ww3mediaa (3. Dünya Savaşı)</td>
+<td>75.1만</td>
+<td>"한국 대통령: IDF가 아이를 학대한 뒤 지붕에서 던진 영상은 일본의 전시 성노예나 홀로코스트와 다르지 않다"</td>
+<td>tr</td>
+<td>962</td>
+<td>428</td>
+</tr>
+<tr>
+<td>2</td>
+<td>@officielsoral (Alain Soral Officiel)</td>
+<td>7.1만</td>
+<td>"이스라엘과 그 신학적-인종적 이데올로기를 인류의 추방자 목록에 올릴 때가 됐다" [@sahelbrut3 답글]</td>
+<td>fr</td>
+<td>1,201</td>
+<td>145</td>
+</tr>
+<tr>
+<td>3</td>
+<td>@Daishi_hundred (大師100)</td>
+<td>4,000</td>
+<td>"위안부 문제를 홀로코스트와 동일시하는 이재명 대통령. 일본 정부는 제재하라."</td>
+<td>ja</td>
+<td>761</td>
+<td>200</td>
+</tr>
+<tr>
+<td>4</td>
+<td>@nypost (New York Post)</td>
+<td>373.7만</td>
+<td>"이스라엘, '용납 불가' 홀로코스트 발언으로 한국 대통령 비난"</td>
+<td>en</td>
+<td>796</td>
+<td>154</td>
+</tr>
+<tr>
+<td>5</td>
+<td>@Byanu (Byanu)</td>
+<td>7.4만</td>
+<td>"한국 대통령이 룰라 발언('이스라엘 대통령은 학살을 저지르고 있다')을 공유하고 있다. 상황이 심각하다"</td>
+<td>pt</td>
+<td>718</td>
+<td>151</td>
+</tr>
+<tr>
+<td>6</td>
+<td>@DuttShekhar (Shekhar Dutt)</td>
+<td>5.1만</td>
+<td>"이란과 협상 실패는 세계에 나쁜 소식. 동맹들이 서로에게 등을 돌리고 있다. 한국이 장기 동맹 이스라엘에 충분하다고 선언"</td>
+<td>en</td>
+<td>505</td>
+<td>74</td>
+</tr>
+<tr>
+<td>7</td>
+<td>@bob_hoffman_jp (非国民おじさん)</td>
+<td>7,792</td>
+<td>"상식적인 말을 하는 것은 원래 당연한 일이었는데, 지금 세계에선 그것이 큰 용기가 필요한 일이 됐다. 이재명이나 멜로니처럼 멋있는 지도자를 우리도 갖자" [@sahelbrut3 인용]</td>
+<td>ja</td>
+<td>445</td>
+<td>105</td>
+</tr>
+<tr>
+<td>8</td>
+<td>@sopjap (Sopo Japaridze)</td>
+<td>2.7만</td>
+<td>"잠깐 한국 트위터를 훑어보니 정치적으로 끔찍한 계정들이 많다 — 하지만 서방과 똑같은 역학 구도를 따라간다"</td>
+<td>en</td>
+<td>340</td>
+<td>45</td>
+</tr>
+<tr>
+<td>9</td>
+<td>@MiddleEastMnt (Middle East Monitor)</td>
+<td>35.3만</td>
+<td>"한국 대통령 이재명, 이스라엘과의 온라인 외교 공방 속에 보편적 인권 존중 입장 재확인"</td>
+<td>en</td>
+<td>250</td>
+<td>94</td>
+</tr>
+<tr>
+<td>10</td>
+<td>@WillBarclayPCBG (William Barclay)</td>
+<td>5,022</td>
+<td>"중요: @Jaemyung_Lee와 그의 반유대주의는 한국의 표준이 전혀 아니다. 내가 만난 모든 한국인은 이스라엘을 열렬히 지지했다"</td>
+<td>en</td>
+<td>247</td>
+<td>66</td>
+</tr>
+</tbody>
+</table>
+<p><strong>주:</strong> @CapitalsPR(Washington Capitals 하키팀)의 경기 참가국 목록 트윗(좋아요 238)이 키워드에 걸렸으나 무관 트윗이므로 제외.</p>
+<p><strong>주:</strong> Grok(@grok, X 공식 AI 챗봇)은 여론 분석에서 제외. 수집 시점 기준 수치이며 이후 변동 미반영.</p>
+<h3>파급력 구조 변화 (전일 대비)</h3>
+<p>이번 수집(703건)에서는 <strong>단일 트윗의 압도적 파급력 집중 현상이 완화</strong>되고, 여러 계정에 고르게 분산되는 양상을 보인다. 전일 수집분 최고 파급력 트윗(@RnaudBertrand, 좋아요 23,135)에 비해 이번 최고값(좋아요 1,201)은 크게 낮다. 이는 이번 수집 기간(약 13시간)에 해당 인플루언서급 인용 트윗이 새로 발생하지 않았음을 반영한다.</p>
+<p><strong>주목할 신규 진입:</strong>
+- <strong>터키어 계정(@ww3mediaa, 3. Dünya Savaşı, 팔로워 75.1만)</strong>: 좋아요 962 + RT 428 = 1,390으로 이번 수집분 1위. 이 사건 관련 터키어 최고 파급력 계정.
+- <strong>@nypost (New York Post, 팔로워 373.7만)</strong>: 영어권 주류 보수 미디어로서 "이스라엘이 한국 대통령을 비난"하는 프레임으로 보도. 좋아요 796, RT 154. 이로 인해 이스라엘 지지 성향 반응이 대규모로 달렸을 가능성.
+- <strong>@AlArabiya (العربية, 팔로워 1,508.9만)</strong>: 좋아요 187, RT 48. 전일에도 @AlarabyTV가 확산했으나, 알아라비야(더 큰 미디어) 신규 보도는 아랍어권 확산 지속을 보여줌.</p>
+<hr />
+<h2>3. 내러티브 분류</h2>
+<h3>프레임 1: 도덕적 지지 (인권·피해자 연대)</h3>
+<p><strong>주 언어권:</strong> 영어, 아랍어, 프랑스어, 포르투갈어<br />
+<strong>비중:</strong> 전체의 약 25%  </p>
+<p><strong>대표 트윗:</strong></p>
+<blockquote>
+<p>"South Korea just said what most world leaders are whispering behind closed doors. A country that survived occupation, massacre and erasure looked at that video and said we recognise this. Not as politics. As memory. Israel called it unacceptable."<br />
+번역: "한국은 지금 대부분의 세계 지도자들이 밀실에서 속삭이는 것을 공개적으로 말했다. 점령과 학살과 지우기를 견뎌낸 나라가 그 영상을 보고 '우리는 이것을 안다'고 말했다. 정치로서가 아니라, 기억으로서. 이스라엘은 '용납할 수 없다'고 했다." — @anderson_testos (Christian Anderson, 팔로워 174)</p>
+<p>"@Jaemyung_Lee Full support to the South Korea leader the country and its brave people. israel army is evil #netanyahu &amp; #trump is complicit"<br />
+번역: "@Jaemyung_Lee 한국 지도자와 국민에게 완전한 지지를 보낸다. 이스라엘 군대는 악하다. 네타냐후와 트럼프는 공범이다." — @shirywarrior (Rafa, 팔로워 48) — 이 대통령 직접 멘션</p>
+</blockquote>
+<hr />
+<h3>프레임 2: 지정학적 지지 (미국 동맹 균열, 이스라엘 고립화)</h3>
+<p><strong>주 언어권:</strong> 영어, 스페인어, 중국어<br />
+<strong>비중:</strong> 전체의 약 20%  </p>
+<p><strong>대표 트윗:</strong></p>
+<blockquote>
+<p>"Turkey, South Korea, France, the U.K., Spain, etc... have all come out against Israel. Trump will side with Israel against all of our other allies. That's how you know he's controlled."<br />
+번역: "터키, 한국, 프랑스, 영국, 스페인 등이 모두 이스라엘에 반대 입장을 냈다. 트럼프는 다른 모든 동맹에 대항해 이스라엘 편을 들 것이다. 그래서 그가 조종당하고 있다는 것을 알 수 있다." — @UltraMagaLarry (Ultra MASSIE Larry, 팔로워 266)</p>
+<p>"Problemas con Rusia, China, Brasil, España, Noruega, Corea del Sur, Pakistán, el Vaticano, Corea del Norte, Sudáfrica, Italia, Irán, el Líbano, Yemen y ahora Turquía. Israel nunca fue tan confrontada internacionalmente."<br />
+번역: "러시아, 중국, 브라질, 스페인, 노르웨이, 한국, 파키스탄, 바티칸, 북한, 남아공, 이탈리아, 이란, 레바논, 예멘, 그리고 이제 터키와 갈등. 이스라엘이 이렇게 국제적으로 많은 나라와 대립한 적은 없었다." — @Derechoalavida (Pro-Vida, 팔로워 5,959) — 좋아요 6, RT 3</p>
+</blockquote>
+<hr />
+<h3>프레임 3: 허위정보 비판 (영상 출처 문제)</h3>
+<p><strong>주 언어권:</strong> 영어, 일본어<br />
+<strong>비중:</strong> 전체의 약 12%  </p>
+<p><strong>대표 트윗:</strong></p>
+<blockquote>
+<p>"This is who the South Korean President decided to boost on Twitter today... Lee Jaemyung is the most stupid ass hole among the 3."<br />
+번역: "이 사람이 한국 대통령이 오늘 트위터에서 부스트하기로 결정한 인물이다... 이재명은 셋 중 가장 멍청한 개새끼다." — @bong8242co (One of 8B dudes, 팔로워 35,182)</p>
+<p>일본어: "@sahelbrut3 イスラエルに関するデマを流して、イスラエルに怒られて、開き直って、韓国人に謝れないのかって笑われてる文章なんだけど"<br />
+번역: "이스라엘 관련 허위정보를 퍼뜨리고, 이스라엘에게 혼나고, 뻔뻔하게 굴고, 한국인들에게 사과도 못 한다며 웃음거리가 된 내용인데." — @crazy00lapin (팔로워 77)</p>
+</blockquote>
+<hr />
+<h3>프레임 4: 위안부 연계 비판 (일본 반응)</h3>
+<p><strong>주 언어권:</strong> 일본어 (거의 독점)<br />
+<strong>비중:</strong> 전체의 약 10%  </p>
+<p><strong>대표 트윗:</strong></p>
+<blockquote>
+<p>"慰安婦問題をホロコーストと同一視する李在明大統領。日本政府は制裁せよ。"<br />
+번역: "위안부 문제를 홀로코스트와 동일시하는 이재명 대통령. 일본 정부는 제재하라." — @Daishi_hundred (大師100, 팔로워 3,978) — 좋아요 761, RT 200 (이번 수집 일본어권 최고 파급력)</p>
+<p>"慰安婦問題は韓国の捏造。また持ち出す韓国大統領は慰安婦ビジネスを再開か？お金がないの？そしてイスラエルに八つ当たり？"<br />
+번역: "위안부 문제는 한국의 날조. 또 꺼내는 한국 대통령, 위안부 비즈니스 재개인가? 돈이 없나? 이스라엘에게 화풀이하나?" — @fujimi19032 (杉山富士美, 팔로워 432)</p>
+<p>"イスラエルの現在のジェノサイドに、80年以上前の慰安婦絡ませるか？韓国のベトナム戦争参戦こそ反省すべきですよ"<br />
+번역: "지금의 이스라엘 제노사이드에 80년 이상 전 위안부를 끼워넣나? 한국의 베트남전 참전이야말로 반성해야 할 것이다." — @horikawah (ほりかわクン2.0, 팔로워 165) — 베트남전 한국군 문제를 새롭게 연계</p>
+</blockquote>
+<hr />
+<h3>프레임 5: 선택적 인권 비판 (이란·북한 대비)</h3>
+<p><strong>주 언어권:</strong> 영어, 일본어, 히브리어<br />
+<strong>비중:</strong> 전체의 약 8%  </p>
+<p><strong>대표 트윗:</strong></p>
+<blockquote>
+<p>"Important to remember that @Jaemyung_Lee and his Jew-hatred are not at all the norm in SKorea. Every SKorean I've met has been a passionate supporter of the state of Israel and the Jewish people."<br />
+번역: "중요한 점: @Jaemyung_Lee와 그의 반유대주의는 한국의 표준이 전혀 아니다. 내가 만난 모든 한국인은 이스라엘과 유대인의 열렬한 지지자였다." — @WillBarclayPCBG (William Barclay, 팔로워 5,022) — 좋아요 247, RT 66</p>
+<p>"Fuck this South Korea deflationist! He should be excommunicated from Christianity at all."<br />
+번역: "이 한국 디플레이셔니스트 새끼! 기독교에서 파문시켜야 한다." — @pivotclearr (팔로워 149)</p>
+</blockquote>
+<hr />
+<h3>프레임 6: 에너지·안보 이해관계 분석 (호르무즈 + THAAD 이전)</h3>
+<p><strong>주 언어권:</strong> 영어, 일본어, 중국어<br />
+<strong>비중:</strong> 전체의 약 12%  </p>
+<p>호르무즈 해협 봉쇄로 인한 에너지 위기와, 미국이 한국 방어용 THAAD·패트리어트 시스템을 이스라엘로 이전했다는 주장이 결합되어 "한국이 미국 동맹의 희생양이 됐고, 이재명의 이스라엘 비판은 이에 대한 정당한 반응"이라는 내러티브를 형성하고 있다.</p>
+<p><strong>대표 트윗:</strong></p>
+<blockquote>
+<p>"⚡️Japan gets 93% of their oil through Hormuz, South Korea roughly 45%, but neither country has really helped us. I asked them if they'll help us? 45,000 U.S troops in Japan, 50,000 in South Korea. We protect them But when we ask for some help, they don't." -Trump"<br />
+번역: "일본은 석유의 93%를 호르무즈를 통해 얻고, 한국은 약 45%인데 두 나라 모두 우리를 진짜로 도운 적이 없다. 도움을 요청했더니 안 도와준다. — 트럼프" — @Newsforyou1771 (팔로워 3)</p>
+<p>"South Korea lost a huge amount of trade with China accepting US THAAD launchers that Trump pulled for Israel. Now they have an energy and materials crisis because of this blockade. Japan and SK have been valuable US allies for generations and this is how they are repaid?"<br />
+번역: "한국은 미국의 THAAD를 받아들여 중국과의 교역에서 막대한 손실을 봤고, 그 THAAD를 트럼프가 이스라엘을 위해 가져갔다. 이제 봉쇄로 에너지·자원 위기까지 겪고 있다. 수세대에 걸쳐 미국의 소중한 동맹이었던 한국에 이것이 보답인가?" — @kaosblatte (팔로워 829)</p>
+<p>"We took the THAAD &amp; Patriot systems away from South Korea and moved them to protect Israel. What is he even talking about?"<br />
+번역: "우리는 THAAD와 패트리어트 시스템을 한국에서 가져다가 이스라엘 보호에 쓰고 있다. 저 사람은 뭔 소리를 하는 건가?" — @Lori107416667 (팔로워 654)</p>
+</blockquote>
+<hr />
+<h3>프레임 7: 내부 정치 연결 (윤석열, 매국노)</h3>
+<p><strong>주 언어권:</strong> 영어 (한국계 계정으로 추정)<br />
+<strong>비중:</strong> 전체의 약 5%  </p>
+<p><strong>대표 트윗:</strong></p>
+<blockquote>
+<p>"Time to take Lee Jaemyung, pro China, communist party. He is sitting there with the biggest election fraud in South Korea. Israel can do much stronger to bring the issue."<br />
+번역: "친중 공산당 이재명을 끌어내릴 때다. 그는 한국 역사상 최대의 선거 부정으로 그 자리에 앉아 있다. 이스라엘은 이 문제를 훨씬 강하게 부각시킬 수 있다." — @bong8242co (팔로워 35,182)</p>
+<p>"Don't judge an entire country based on a few clips. South Korea does not support Iran, nor does it support terrorist actions. We value our alliances in the free world and stand with the United States and Israel."<br />
+번역: "영상 몇 개로 나라 전체를 판단하지 마라. 한국은 이란을 지지하지 않으며 테러 행위도 지지하지 않는다. 우리는 자유세계와의 동맹을 소중히 하며 미국과 이스라엘과 함께 선다." — @yooon53484 (팔로워 729) — 한국계 계정으로 추정, 이 대통령 입장에 반대</p>
+</blockquote>
+<hr />
+<h3>프레임 8: 반이스라엘 국제 연대 확산 (신규)</h3>
+<p><strong>주 언어권:</strong> 영어, 포르투갈어, 스페인어, 아랍어<br />
+<strong>비중:</strong> 전체의 약 8%  </p>
+<p>한국의 이스라엘 비판을 터키·스페인·프랑스·브라질·남아공 등과 묶어 "이스라엘에 반대하는 국제 연대가 형성되고 있다"는 내러티브. 기존 프레임 2(지정학적 지지/미국 동맹 균열)와 구별되는 점은, 동맹 관계 분석이 아니라 <strong>이스라엘의 국제적 고립을 하나의 흐름으로 선언</strong>하는 성격이라는 것.</p>
+<p><strong>대표 트윗:</strong></p>
+<blockquote>
+<p>"The whole global south is in outright rebellion now. This is bigger than you can imagine: when vassal states of the west do these things in public it means something big"
+번역: "글로벌 사우스 전체가 지금 공개적으로 반란을 일으키고 있다. 당신이 상상하는 것보다 크다. 서방의 속국들이 이런 일을 공개적으로 할 때는 뭔가 큰 의미가 있다." — @raythewarchief (팔로워 미상) — 좋아요 52, RT 7</p>
+<p>"Mano, o Presidente da Coreia do Sul estava compartilhando as falas do Lula 'O Presidente Israel está cometendo um genocídio.'"
+번역: "한국 대통령이 룰라의 발언('이스라엘 대통령은 학살을 저지르고 있다')을 공유하고 있다." — @Byanu (팔로워 74,352, 포르투갈어) — 좋아요 718, RT 151. 브라질에서 이재명-룰라 연대 프레임 형성.</p>
+<p>"Problemas con Rusia, China, Brasil, España, Noruega, Corea del Sur, Pakistán, el Vaticano... Israel nunca fue tan confrontada internacionalmente."
+번역: "러시아, 중국, 브라질, 스페인, 노르웨이, 한국, 파키스탄, 바티칸과 갈등. 이스라엘이 이렇게 국제적으로 대립한 적은 없었다." — @Derechoalavida (팔로워 5,959, 스페인어)</p>
+</blockquote>
+<hr />
+<hr />
+<h2>4. 언어권별 핵심 반응</h2>
+<h3>영어권</h3>
+<p><strong>전체 반응 방향:</strong> 혼재. 지지(약 40%)·비판(약 35%)·중립 보도(약 25%).  </p>
+<p><strong>전일 대비 변화:</strong> @nypost (뉴욕포스트) 보도가 영어권에 큰 파급을 일으켰다. 보수 성향 독자들의 이 대통령 비판 반응이 크게 늘었고, 동시에 팔레스타인 지지 성향 계정들의 지지 표명도 이어진다.</p>
+<p><strong>주목할 트윗:</strong></p>
+<blockquote>
+<p>"South Korea specifically is a very plausible candidate, they have directly negotiated with the Iranians on tolls and such already, and have broken with the U.S. publicly on support of Israel. Either way, this further delegitimizes the US's war and makes us look worse"<br />
+번역: "한국은 구체적으로 유력한 후보다. 이미 이란과 직접 통행료 협상 등을 진행했고, 이스라엘 지지 문제에서 미국과 공개적으로 결별했다. 어쨌든 이것은 미국의 전쟁을 더 정당성 없어 보이게 하고 우리를 더 나쁘게 보이게 한다." — @haylen630 (팔로워 613) — 좋아요 21</p>
+<p>"@MiddleEastMnt (Middle East Monitor, 팔로워 35.3만): "South Korean President Lee Jae Myung on Sunday reiterated his stance on respecting universal human rights..." — 좋아요 250, RT 94 — 중동·아랍권에 영향력 있는 영어 미디어</p>
+</blockquote>
+<hr />
+<h3>일본어권</h3>
+<p><strong>전체 반응 방향:</strong> 비판·회의 우세(약 55%), 지지(약 25%), 중립 보도(약 20%).  </p>
+<p><strong>전일 대비 변화:</strong> 이번 수집에서 일본어 트윗이 199건으로 영어(299건) 다음으로 많다. 비율로는 28.3%로 전일(약 18%) 대비 크게 높아졌다. 보수 성향 계정들의 위안부 연계 비판이 계속되는 한편, "일본은 왜 이재명처럼 말 못 하나"는 자성적 목소리도 다수 확인된다.</p>
+<p><strong>주목할 트윗:</strong></p>
+<blockquote>
+<p>"慰安婦問題をホロコーストと同一視する李在明大統領。日本政府は制裁せよ。" — @Daishi_hundred (大師100, 팔로워 3,978) — 좋아요 761, RT 200 (이번 수집 일본어권 최고 파급력)<br />
+번역: "위안부 문제를 홀로코스트와 동일시하는 이재명 대통령. 일본 정부는 제재하라."</p>
+<p>"お隣韓国の官僚は車通勤をやめて電車通勤。国民生活を守るため、韓国政府は一人最大6万円給付。全員で深刻なエネルギー不足を乗り切ろうとしている。李在明大統領は、堂々とイスラエルを非難。かたや日本のトップは歌って踊って…"<br />
+번역: "이웃 한국 공무원들은 자가용 출퇴근을 그만두고 전철 통근. 국민 생활을 지키기 위해 한국 정부는 1인당 최대 6만엔 지급. 다 함께 심각한 에너지 부족을 버티고 있다. 이재명 대통령은 당당하게 이스라엘을 비난. 반면 일본 수뇌부는 노래하고 춤추고…" — @zomihooo (팔로워 359)</p>
+<p>"まともな韓国と頭のおかしな日本" (제목) — @damned398 (팔로워 9,419) — 좋아요 5, RT 3<br />
+번역: "제대로 된 한국과 제정신이 아닌 일본" — 한국 이재명 대통령의 이스라엘 비판을 칭찬하며 일본 정치와 대비하는 글 공유</p>
+</blockquote>
+<hr />
+<h3>중국어권</h3>
+<p><strong>전체 반응 방향:</strong> 지지 우세(약 60%), 비판(약 25%), 분석(약 15%).  </p>
+<p><strong>주목할 트윗:</strong></p>
+<blockquote>
+<p>"前往德黑兰：亚洲外交官解释说，一旦美国不再控制中东石油和天然气的运输，他们与美国的联盟就不复存在。台湾反对派会见习近平。韩国批评以色列。日本新政府内部出现分歧。风向正在转变。"<br />
+번역: "테헤란으로 가는 길: 아시아 외교관들이 설명한다. 미국이 중동 석유·가스 운송 통제력을 잃는 순간, 미국과의 동맹은 더 이상 존재하지 않는다. 대만 야당이 시진핑을 만나다. 한국이 이스라엘을 비난한다. 일본 신정부 내부에 균열이 생겼다. 바람이 바뀌고 있다." — @willwil40451127 (팔로워 752)</p>
+<p>"韩国总统西班牙首相挪威首相都谴责以色列的暴行，连欧盟外长卡拉斯都谴责以色列的军事行动，所以他们都在看'国内的国际新闻'？"<br />
+번역: "한국 대통령, 스페인 총리, 노르웨이 총리 모두 이스라엘의 만행을 규탄하고, 심지어 EU 외교장관 카라스도 이스라엘의 군사 행동을 규탄했다. 그들이 모두 '국내 국제 뉴스만 본다'는 말인가?" — @ztmfsr (팔로워 71)</p>
+</blockquote>
+<hr />
+<h3>아랍어권</h3>
+<p><strong>전체 반응 방향:</strong> 지지 압도적 우세(약 85%).  </p>
+<p><strong>주목할 트윗:</strong></p>
+<blockquote>
+<p>@AlArabiya (العربية, 팔로워 1,508.9만): "이틀 전 팔레스타인인 시신 훼손 영상을 게시한 뒤, 한국 대통령 이재명이 다시 이스라엘을 공격하며 자기반성 없다고 비난, 보편적 인권 존중 촉구" — 좋아요 187, RT 48  </p>
+<p>@AlHadath (الحدث, 팔로워 1,232.7만): 동일 내용 보도 — 좋아요 91, RT 17  </p>
+</blockquote>
+<p><strong>주목:</strong> 아랍어권에서는 알아라비야(1,508만 팔로워)와 알하다스(1,232만 팔로워) 등 주요 위성 채널의 X 계정이 이 사건을 연속 보도했다. 이 계정들의 팔로워 기반을 고려하면 실제 아랍권 노출 도달 규모는 수백만 명에 이를 것으로 추정된다.</p>
+<blockquote>
+<p>"موقف إسبانيا وكوريا الجنوبية من إسرائيل أفضل من مواقف الدول العربية مجتمعة على مدار خمسين سنة"<br />
+번역: "이스라엘에 대한 스페인과 한국의 입장이 지난 50년간 아랍 국가들이 합쳐서 취한 입장보다 낫다." — @lovelydays_ (팔로워 13,467)</p>
+</blockquote>
+<hr />
+<h3>스페인어권</h3>
+<p><strong>전체 반응 방향:</strong> 지지 우세(약 70%).  </p>
+<p><strong>주목할 트윗:</strong></p>
+<blockquote>
+<p>@JEcheverriZ (Javier Echeverría, 팔로워 41,596): "한국 대통령이 팔레스타인 청년을 던지는 IDF 영상 이후 이스라엘을 강력히 비난" — 좋아요 149, RT 116  </p>
+<p>"Un nuevo mínimo en las relaciones diplomáticas. Pero también un nuevo máximo para el coraje moral. El mundo está observando. No solo el Medio Oriente. Asia Oriental también. Israel está acostumbrado al silencio. Corea del Sur acaba de romperlo."<br />
+번역: "외교 관계의 새로운 최저점. 하지만 도덕적 용기의 새로운 최고점이기도 하다. 세계가 지켜보고 있다. 중동만이 아니다. 동아시아도. 이스라엘은 침묵에 익숙하다. 한국이 그 침묵을 방금 깼다." — @biomarieta (Maricarmen Martínez, 팔로워 2,010)</p>
+</blockquote>
+<hr />
+<h3>프랑스어권</h3>
+<p><strong>전체 반응 방향:</strong> 지지 우세(약 75%). sahelbrut3 효과로 이번 수집에서 두드러진 언어권.  </p>
+<p><strong>주목할 트윗:</strong></p>
+<blockquote>
+<p>@officielsoral (Alain Soral Officiel, 팔로워 70,849): "@sahelbrut3 Il est temps de mettre Israël et son idéologie theologico-raciale au ban de l'humanité." — 좋아요 1,201, RT 145 (이번 수집 전체 2위)<br />
+번역: "이스라엘과 그 신학적-인종적 이데올로기를 인류의 추방자 목록에 올릴 때가 됐다." — 알랭 소랄(Alain Soral): 프랑스 극좌·반유대 성향으로 알려진 논객. 계정 특성은 트윗 내용 기반 추정이며 확정 불가.</p>
+<p>@BrokeSource (Broke, 팔로워 56,978, 프랑스): "한국 대통령이 팔레스타인인을 건물에서 내던지는 이스라엘 군인 영상 게시물에서 터졌다" — 좋아요 131, RT 39</p>
+<p>@SibKao9 (SibKao): "@sahelbrut3 아시아에서는 반유대주의 협박이나 쇼아(홀로코스트) 공갈이 통하지 않는다" — 좋아요 24</p>
+</blockquote>
+<hr />
+<h3>터키어권</h3>
+<p><strong>전체 반응 방향:</strong> 지지 우세.  </p>
+<p><strong>주목할 트윗:</strong></p>
+<blockquote>
+<p>@ww3mediaa (3. Dünya Savaşı, 팔로워 750,848): "한국 대통령: IDF가 아이를 학대한 뒤 지붕에서 던지는 영상은 일본의 전시 성노예나 홀로코스트와 다르지 않다" — 좋아요 962, RT 428 (이번 수집 전체 1위 참여 수치)</p>
+</blockquote>
+<p>이번 수집에서 터키어가 5건에 불과하지만 팔로워 75만짜리 계정의 단일 트윗이 전체 1위 파급력을 기록했다.</p>
+<hr />
+<h3>기타 언어권</h3>
+<ul>
+<li><strong>포르투갈어 (8건):</strong> @Byanu (팔로워 74,352) — 브라질 계정으로 추정. "한국 대통령이 룰라 발언을 공유하고 있다" — 좋아요 718, RT 151. 브라질에서 한국-이스라엘 외교 갈등과 룰라의 이스라엘 비판을 연결하는 프레임이 공명했음을 보여준다.</li>
+<li><strong>이탈리아어 (4건):</strong> @mazzettam2 (팔로워 3,313) — "스페인을 '반유대주의'로 부르는 이스라엘 지지자들. 같은 그들이 프랑스, 파키스탄, 터키, 한국, 캐나다, 이제 이탈리아와도 싸우고 있다" — 좋아요 9, RT 2.</li>
+<li><strong>폴란드어 (2건):</strong> "일본과 한국이 미국-이란 전쟁에서 빠졌다" — 중립 보도 성격.</li>
+</ul>
+<hr />
+<h2>5. 어제(4/12) 대비 변화</h2>
+<h3>새로 등장한 언어권·내러티브</h3>
+<ol>
+<li><strong>터키어권 대형 계정 진입:</strong> @ww3mediaa(팔로워 75만)가 이번 수집 최다 참여(좋아요+RT) 트윗으로 올라섰다. 전일 수집에서는 터키어 트윗이 미미했으나, 이번에 터키어 특유의 반이스라엘 정서가 결합되어 폭발적 반응을 만들었다.</li>
+<li><strong>프랑스어권 확대 (sahelbrut3 효과):</strong> 전일 보고서에서 프랑스어는 "기타"에 해당했으나, @sahelbrut3(SAHEL Brut, 팔로워 5.3만)의 트윗이 프랑스어권 답글·인용 77건을 유도하면서 이번 수집에서 23건(3.3%)을 차지했다.</li>
+<li><strong>포르투갈어권(브라질) 신규 진입:</strong> 전일에는 존재하지 않았던 포르투갈어 트윗 8건 등장. @Byanu(팔로워 74,352)가 룰라-이재명 연계 프레임을 제시해 브라질에서 확산 가능성.</li>
+<li><strong>THAAD 이전 내러티브 신규 부상:</strong> 미국이 한국의 방어 자산(THAAD·패트리어트)을 이스라엘로 이전했다는 주장이 복수의 영어 트윗에서 반복 등장. 전일 보고서에서는 확인되지 않았던 주제.</li>
+</ol>
+<h3>반응 톤 변화</h3>
+<ul>
+<li><strong>전일:</strong> 파급력 상위 트윗은 지지 성향이 지배적(1위~4위 모두 지지 프레임). 단일 인플루언서(@RnaudBertrand 좋아요 23,135)가 의제를 주도.</li>
+<li><strong>이번:</strong> 지지와 비판이 고르게 섞이고 주류 보수 미디어(@nypost)가 진입하면서 이스라엘 지지 측 반응이 보강됐다. 단일 의제 지배보다는 분산된 공론화로 이동.</li>
+</ul>
+<h3>건수·파급력 추이</h3>
+<ul>
+<li>건수: 538건 → 703건(+30.7%). 추가 수집 기간이 약 13시간임을 고려하면 시간당 수집량은 전일보다 높다.</li>
+<li>최고 파급력(좋아요+RT): 전일 약 28,900 → 이번 1,390. 다만 이는 이번 기간에 초대형 인플루언서급 인용 트윗이 새로 발생하지 않았기 때문으로, 사건 자체의 열기가 식었다기보다 의제가 안착 단계에 진입한 것으로 해석 가능.</li>
+</ul>
+<h3>새로운 이슈 연결</h3>
+<ul>
+<li><strong>한국 에너지 위기 + 이스라엘 비판 연결:</strong> "한국이 에너지 위기를 겪는 이유는 미국이 이스라엘을 위해 THAAD를 빼가고 호르무즈를 봉쇄했기 때문이며, 이 대통령의 발언은 그에 대한 정당한 반응"이라는 내러티브가 영어·일본어에서 동시 등장.</li>
+<li><strong>인도네시아어 급락:</strong> 전일 수집분에서 폭발적 파급력(상위 10개 중 3개)을 보였던 인도네시아어가 이번에는 4건으로 급감. 초기 반응이 소진되었거나 수집 시간대(한국 새벽)와 인도네시아 시간대 불일치가 원인일 가능성.</li>
+</ul>
+<hr />
+<h2>6. sahelbrut3 트윗 반응 분석</h2>
+<p>@sahelbrut3(SAHEL Brut)는 팔로워 5.3만의 프랑스어 계정으로, 이재명 대통령 관련 트윗(좋아요 4,912, RT 1,959 — 수집 메타데이터 기준)이 77건의 답글+인용을 이번 수집에서 유도했다.</p>
+<h3>언어별 분포</h3>
+<table>
+<thead>
+<tr>
+<th>언어</th>
+<th>건수</th>
+<th>비율</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>영어 (en)</td>
+<td>22</td>
+<td>28.6%</td>
+</tr>
+<tr>
+<td>프랑스어 (fr)</td>
+<td>16</td>
+<td>20.8%</td>
+</tr>
+<tr>
+<td>qme (미디어)</td>
+<td>13</td>
+<td>16.9%</td>
+</tr>
+<tr>
+<td>일본어 (ja)</td>
+<td>7</td>
+<td>9.1%</td>
+</tr>
+<tr>
+<td>스페인어 (es)</td>
+<td>5</td>
+<td>6.5%</td>
+</tr>
+<tr>
+<td>기타 (아랍어·에스토니아어·이탈리아어·포르투갈어·폴란드어·카탈루냐어 등)</td>
+<td>14</td>
+<td>18.2%</td>
+</tr>
+</tbody>
+</table>
+<h3>주요 반응 내용</h3>
+<p><strong>가장 높은 파급력 반응:</strong>
+- <strong>@officielsoral (Alain Soral Officiel, 팔로워 70,849, 프랑스어):</strong> "이스라엘과 그 신학적-인종적 이데올로기를 인류의 추방자 목록에 올릴 때가 됐다." — 좋아요 1,201, RT 145. 프랑스어권 반응 중 압도적 최고 파급력. 트윗 내용 및 계정명 기반으로 극좌·강경 반이스라엘 성향으로 추정되나 확정 불가.</p>
+<ul>
+<li>
+<p><strong>@bob_hoffman_jp (非国民おじさん, 팔로워 7,792, 일본어):</strong> sahelbrut3 트윗 인용. "상식적인 말을 하는 것은 원래 당연한 일이었는데, 지금 세계에선 그것이 큰 용기가 필요한 일이 됐다. 이재명이나 멜로니처럼 멋있는 지도자를 우리도 갖자" — 좋아요 445, RT 105. 이재명과 이탈리아 멜로니를 동급의 도덕적 용기 지도자로 묘사한 점이 흥미롭다. (멜로니는 팔레스타인 문제와 관련해 이탈리아 보수 입장을 강조했으나 이 계정의 해석은 다를 수 있음 — 추정)</p>
+</li>
+<li>
+<p><strong>@nageune31 (팔로워 미상, 일본어):</strong> "@sahelbrut3 日本軍が慰安婦＝性奴隷を戦場で虐殺したことは事実です。ホロコーストで殺されたユダヤ人の命も、戦場で殺されたパレスティナ人と韓国人の命も、同じ命です" — 좋아요 74, RT 29<br />
+번역: "일본군이 위안부=성노예를 전장에서 학살했다는 것은 사실이다. 홀로코스트에서 살해된 유대인의 목숨도, 전장에서 살해된 팔레스타인인과 한국인의 목숨도, 모두 같은 목숨이다."</p>
+</li>
+<li>
+<p><strong>@kalal58128 (Simon MUTOMBO KALALA, 프랑스어):</strong> "이스라엘 말고는 악마의 회당이라 할 나라가 없다. 2층에서 팔레스타인 아이를 던진 그들의 루시퍼적 잔혹성" — 좋아요 74, RT 8. 계정명이 아프리카계(추정)이며 프랑스어로 반응.</p>
+</li>
+</ul>
+<h3>아프리카·프랑스어권 시각</h3>
+<p>sahelbrut3는 채널명(SAHEL Brut)에서 사헬 지역(서아프리카 반건조 지대)을 연상시키며, 팔로워 구성이 프랑스어권 아프리카계를 포함할 가능성이 있다. 그러나 계정 특성은 트윗 내용과 채널명만으로 추정하는 것이므로 확정할 수 없다.</p>
+<p>실제 답글 분석에서 확인된 아프리카계 연관 시각:
+- @kalal58128 (Simon MUTOMBO KALALA): 콩고계로 추정되는 프랑스어 이름. 강경 반이스라엘 어조.
+- @DIAWARALamine11 (Dr Lamine DIAWARA, 팔로워 미상): "이것이 정의로운 인간적 태도다. 이스라엘은 이렇게 정의로운 나라들에게 대우받아야 한다." — 좋아요 14, RT 1. 디아와라(Diawara)는 서아프리카 성씨로 추정.
+- @PatrickMukemba (Patrick Mukemba): 프랑스어로 "맥락이 뭐냐"고 묻는 단순 질문.</p>
+<p><strong>종합 평가:</strong> sahelbrut3 반응에서 아프리카·프랑스어권 특유의 시각(반식민지 정서, 팔레스타인 연대)이 일부 드러나지만, 표본이 77건으로 작아 아프리카권 전체의 의견으로 일반화하기 어렵다. 다만 프랑스어권 확산의 게이트웨이 역할을 했다는 점은 주목할 만하다.</p>
+<hr />
+<h2>7. 자문단 시사점</h2>
+<h3>① 터키어·프랑스어·포르투갈어 등 새로운 언어권 확산 — 유럽·서아프리카 채널 관리 필요</h3>
+<p>이번 수집에서 터키어(팔로워 75만 계정, 좋아요+RT 1,390), 프랑스어(sahelbrut3 연쇄 77건), 포르투갈어(브라질 계정 좋아요 718)가 새롭게 대형 반응을 보였다. 이는 사건이 "영어·일본어권 중심 → 다국어 분산" 단계로 진행하고 있음을 보여준다. <strong>이슬람 세계 및 글로벌 사우스(남반구)로 확산이 가속화하는 시점</strong>에서, 영어 외 언어권 여론 모니터링 채널을 갖추는 것이 정책적으로 중요해졌다. 근거: 터키어 1위, 프랑스어 2위, 포르투갈어 5위 (좋아요+RT 기준).</p>
+<h3>② THAAD 이전·호르무즈·에너지 위기 연계 내러티브가 국제 여론에서 증폭 — 선제적 대응 메시지 준비 필요</h3>
+<p>"미국이 한국의 THAAD를 이스라엘로 빼갔고, 한국이 호르무즈 봉쇄로 에너지 위기를 겪고 있다"는 내러티브가 영어권 복수 계정에서 이번 수집에서 처음 등장했다. 이 프레임은 이재명 대통령의 이스라엘 비판에 정당성을 부여하는 맥락으로 소비되고 있다. 근거: @kaosblatte, @Lori107416667, @CherishHarmony, @haylen630 등 영어 트윗 반복 확인. 이 내러티브는 한미관계 및 에너지 안보 담론과 직결되므로, 미국 측 인식 관리를 포함한 대응 메시지 준비가 필요하다.</p>
+<h3>③ @nypost(뉴욕포스트) 보도로 보수 영어권 반응 유입 — 내러티브 왜곡 감시 필요</h3>
+<p>@nypost(팔로워 373.7만)가 "이스라엘이 한국 대통령을 비난"하는 프레임으로 보도하면서(좋아요 796, RT 154), 이 계정 독자층인 미국 보수 성향 이용자들의 이 대통령 비판 반응이 유입됐다. 일부 계정은 이재명 대통령을 "반유대주의자"로 규정하는 표현을 사용했다. 이는 미국 내 여론 형성에 영향을 미칠 수 있는 경로이므로, 영어권 주류 보수 미디어에 대한 공식 입장 전달 채널을 점검할 필요가 있다. 근거: @nypost 4위, @WillBarclayPCBG(좋아요 247, RT 66) 10위.</p>
+<h3>④ 아랍어권 주요 위성 채널의 연속 보도 — 아랍 세계 내 한국 인지도 제고 기회</h3>
+<p>@AlArabiya(팔로워 1,508만)와 @AlHadath(팔로워 1,232만)가 이 대통령의 발언을 연속 보도했다. 아랍어권에서는 스페인·한국을 "아랍 국가들보다 더 용감한 이스라엘 비판자"로 평가하는 시각이 등장했다. 이는 아랍 국가들과의 외교·무역 관계를 구축하는 데 있어서 한국의 브랜드를 제고할 수 있는 기회가 될 수 있다. 단, 실제 정책 선호 변화로 이어질지는 추가 확인이 필요하다. 근거: @AlArabiya (좋아요 187, RT 48), @AlHadath (좋아요 91, RT 17), @lovelydays_(아랍어, 팔로워 13,467) — "한국과 스페인의 입장이 50년간 아랍 국가 전체보다 낫다."</p>
+<h3>⑤ 일본어권의 "이재명 vs 일본 총리" 대비 프레임 확산 — 한일 시민사회 관계에 복합 효과</h3>
+<p>일본어권에서는 이재명 대통령을 비판하는 "위안부 날조" 프레임과 "왜 일본 총리는 이재명처럼 못 하나"는 자성적 프레임이 동시에 경쟁하고 있다. "まともな韓国と頭のおかしな日本(제대로 된 한국과 제정신이 아닌 일본)" 같은 표현이 팔로워 9,000대 계정에서 RT 3을 기록하는 등, 일본 진보·시민 층 내에서 한국 외교를 긍정적으로 평가하는 흐름이 존재한다. 이는 한일 시민사회 간 연대 채널 구축에 있어서 복합적 함의를 가진다. 근거: @damned398(좋아요 5, RT 3), @zomihooo, @bob_hoffman_jp(sahelbrut3 인용, 좋아요 445, RT 105), @yeuxqui(팔로워 17,163, 좋아요 27, RT 13).</p>
+<hr />
+<p><em>본 보고서는 2026-04-13T06:20 UTC 수집 트윗 703건(비한국어) 기반 작성. 계정 성격은 트윗 내용 및 author_name 필드만으로 판단한 경우 "추정"으로 명시. 수집 시점 이후 수치 변동 미반영.</em></p>
+<div class="footer">
+  청와대 고위공직자 자문단 · 트위터 여론 분석 보고서 · 2026-04-13
+</div>
+</div>
+</body>
+</html>
