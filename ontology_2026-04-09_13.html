@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>트위터 여론 분석 보고서 — 2026-04-13</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a2e;
+    --accent: #2563eb;
+    --border: #e2e8f0;
+    --quote-bg: #f8fafc;
+    --quote-border: #3b82f6;
+    --table-header: #1e293b;
+    --table-header-text: #ffffff;
+    --table-stripe: #f1f5f9;
+    --tag-support: #dcfce7;
+    --tag-critical: #fee2e2;
+    --tag-neutral: #e0f2fe;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a;
+      --text: #e2e8f0;
+      --accent: #60a5fa;
+      --border: #334155;
+      --quote-bg: #1e293b;
+      --quote-border: #3b82f6;
+      --table-header: #334155;
+      --table-header-text: #f1f5f9;
+      --table-stripe: #1e293b;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 17px;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 20px 16px;
+  }
+
+  h1 {
+    font-size: 1.6em;
+    font-weight: 800;
+    margin: 32px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid var(--accent);
+    line-height: 1.3;
+  }
+
+  h2 {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin: 28px 0 10px;
+    padding: 8px 0 6px;
+    border-bottom: 1px solid var(--border);
+    color: var(--accent);
+  }
+
+  h3 {
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 20px 0 8px;
+  }
+
+  p {
+    margin: 8px 0;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  blockquote {
+    background: var(--quote-bg);
+    border-left: 4px solid var(--quote-border);
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.93em;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+
+  blockquote p {
+    margin: 4px 0;
+  }
+
+  /* 테이블 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.88em;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  thead th {
+    background: var(--table-header);
+    color: var(--table-header-text);
+    padding: 10px 8px;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+  }
+
+  tbody td {
+    padding: 8px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:nth-child(even) {
+    background: var(--table-stripe);
+  }
+
+  /* 리스트 */
+  ul, ol {
+    padding-left: 20px;
+    margin: 8px 0;
+  }
+
+  li {
+    margin: 4px 0;
+  }
+
+  /* 구분선 */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 24px 0;
+  }
+
+  /* 모바일 최적화 */
+  @media (max-width: 600px) {
+    body {
+      font-size: 15px;
+    }
+    .container {
+      padding: 12px;
+    }
+    h1 {
+      font-size: 1.4em;
+    }
+    h2 {
+      font-size: 1.15em;
+    }
+    table {
+      font-size: 0.82em;
+    }
+    thead th, tbody td {
+      padding: 6px 4px;
+    }
+    blockquote {
+      padding: 10px 12px;
+      font-size: 0.9em;
+    }
+  }
+
+  /* 인쇄 */
+  @media print {
+    body {
+      font-size: 11pt;
+    }
+    .container {
+      max-width: 100%;
+    }
+    table {
+      display: table;
+    }
+    blockquote {
+      border-left: 2px solid #333;
+      background: #f5f5f5;
+    }
+  }
+
+  /* 푸터 */
+  .footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85em;
+    color: #64748b;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>트위터 여론 온톨로지 분석 — 이재명-이스라엘 담론 구조</h1>
+<p><strong>수집 기간:</strong> 2026-04-09 ~ 2026-04-13<br />
+<strong>분석 건수:</strong> 3,385건 (비한국어)<br />
+<strong>분석 기준일:</strong> 2026-04-12<br />
+<strong>분석 유형:</strong> 개체(Entity)·개념(Concept)·관계(Relation) 온톨로지 매핑</p>
+<hr />
+<h2>1. 핵심 개체(Entity) 분류</h2>
+<h3>A. 행위자(Actor)</h3>
+<h4>A-1. 국가 행위자</h4>
+<table>
+<thead>
+<tr>
+<th>국가</th>
+<th>역할 유형</th>
+<th>트윗 내 위상</th>
+<th>근거 트윗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>한국</strong></td>
+<td>발화 주체 / 사건 진원</td>
+<td>이스라엘을 비판하는 용기 있는 행위자; 동시에 허위정보 확산자</td>
+<td>@anderson_testos: "South Korea just said what most world leaders are whispering behind closed doors"</td>
+</tr>
+<tr>
+<td><strong>이스라엘</strong></td>
+<td>피비판 대상 / 반격 주체</td>
+<td>홀로코스트 방패를 사용하는 가해자; 외교적 고립 가속자</td>
+<td>@nypost: "이스라엘, '용납할 수 없는' 홀로코스트 발언으로 한국 대통령 비난"</td>
+</tr>
+<tr>
+<td><strong>미국</strong></td>
+<td>구조적 배경 행위자</td>
+<td>동맹 체계 관리자; THAAD 이전의 배신자; 이스라엘 후원자</td>
+<td>@kaosblatte: "트럼프가 이스라엘을 위해 빼간 미국 THAAD 발사대"</td>
+</tr>
+<tr>
+<td><strong>이란</strong></td>
+<td>호르무즈 봉쇄 행위자</td>
+<td>에너지 위기의 구조적 원인; 한국 비판의 배후로 의심받는 존재</td>
+<td>@v_silly__g00se: "석유 목적으로 이란과 공통점을 찾으려 한 것"</td>
+</tr>
+<tr>
+<td><strong>일본</strong></td>
+<td>비교 대상 / 역사 개념 제공자</td>
+<td>이재명 발언의 역사적 준거; 무기력한 대조국</td>
+<td>@fugu72001: "아무 말도 못하는 우리나라 총리, 정말 한심하기 짝이 없다"</td>
+</tr>
+<tr>
+<td><strong>터키</strong></td>
+<td>연대 행위자</td>
+<td>에르도안 노선과의 공명; 한국 지지 확산자</td>
+<td>@erdaltursun23 (팔로워 31,441): "#테러리스트이스라엘" 프레임으로 확산</td>
+</tr>
+<tr>
+<td><strong>브라질</strong></td>
+<td>룰라 발언 연결자</td>
+<td>글로벌 사우스 반이스라엘 연대의 선행 사례</td>
+<td>@Byanu (좋아요 857): "이재명이 룰라 발언을 공유"</td>
+</tr>
+<tr>
+<td><strong>스페인</strong></td>
+<td>공동 피비판 행위자</td>
+<td>이스라엘의 외교 고립을 구성하는 열거 목록 내 단골</td>
+<td>@Derechoalavida: "러시아, 중국, 브라질, 스페인, 노르웨이, 한국..."</td>
+</tr>
+<tr>
+<td><strong>팔레스타인</strong></td>
+<td>피해자 / 연대 대상</td>
+<td>이재명 발언의 도덕적 명분 제공자; 가자 주민의 실시간 반응</td>
+<td>@AnasAshour0: "가자 내부에서 한국 국민들에게 모든 사랑을"</td>
+</tr>
+<tr>
+<td><strong>중국</strong></td>
+<td>배경 행위자</td>
+<td>한국의 THAAD 수용으로 무역 손실 야기한 국가; 한국 이탈 서사의 수혜자</td>
+<td>@mitsusato_: "한국도 이스라엘을 비난하며, 미국의 개는 일본만"</td>
+</tr>
+<tr>
+<td><strong>북한</strong></td>
+<td>수사적 도구</td>
+<td>"한국도 이스라엘처럼 적에게 둘러싸임" 비유에 사용</td>
+<td>@RiotAct6: "남북한이 이스라엘 혐오로 연합하나?"</td>
+</tr>
+</tbody>
+</table>
+<h4>A-2. 개인 행위자</h4>
+<table>
+<thead>
+<tr>
+<th>개인</th>
+<th>역할</th>
+<th>트윗 내 위상</th>
+<th>주목 계정</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>이재명</strong></td>
+<td>발화자 / 사건 촉발자</td>
+<td>도덕적 용기의 화신 (지지 측) vs. 허위정보 공유자 (비판 측)</td>
+<td>전체 3,385건의 중심 개체</td>
+</tr>
+<tr>
+<td><strong>네타냐후</strong></td>
+<td>피공격 대상</td>
+<td>이스라엘의 극단적 노선 상징; "광기의 대량 학살자"로 묘사</td>
+<td>@oneno575945: "홀로코스트를 과거에 경험했으면서 타인에게 그것을 가하는 잔인한 네타냐후"</td>
+</tr>
+<tr>
+<td><strong>트럼프</strong></td>
+<td>구조적 배경 행위자</td>
+<td>THAAD 이전의 결정자; 동맹 배신의 주역</td>
+<td>@jasminejyjcu: "트럼프는 이스라엘 말만 들어 전쟁 시작"</td>
+</tr>
+<tr>
+<td><strong>룰라</strong></td>
+<td>비교 기준점</td>
+<td>이재명 행동의 국제적 선행 사례</td>
+<td>@Byanu: "이재명이 룰라의 '이스라엘이 제노사이드 중' 발언 공유"</td>
+</tr>
+<tr>
+<td><strong>Naftali Bennett (나프탈리 베네트)</strong></td>
+<td>이스라엘 내부 목소리</td>
+<td>네타냐후 이후 이스라엘 수복 가능성을 논하는 내부 행위자</td>
+<td>@igal_malka 관련 히브리어 댓글 맥락</td>
+</tr>
+<tr>
+<td><strong>DrewPavlou</strong></td>
+<td>파급력 1위 인플루언서</td>
+<td>허위정보 프레임 확산의 핵심 노드 (좋아요 11,291)</td>
+<td>@DrewPavlou: "이재명이 인용하기로 결정한 계정이 바로 이것"</td>
+</tr>
+<tr>
+<td><strong>이샨 타루르(@ishaantharoor)</strong></td>
+<td>서방 미디어 해석자</td>
+<td>워싱턴포스트 칼럼니스트로서 학살 비교 발언의 정당성 부여</td>
+<td>좋아요 2,396</td>
+</tr>
+<tr>
+<td><strong>@EFischberger</strong></td>
+<td>팩트체커 역할 수행자</td>
+<td>"4가지 사실 오류" 나열로 허위정보 프레임 형성 (좋아요 2,320)</td>
+<td>팔로워 65,540</td>
+</tr>
+</tbody>
+</table>
+<h4>A-3. 기관 행위자</h4>
+<table>
+<thead>
+<tr>
+<th>기관</th>
+<th>역할</th>
+<th>트윗 내 위상</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>이스라엘 외무부(IsraelMFA)</strong></td>
+<td>공식 반박 행위자</td>
+<td>"용납할 수 없다" 성명 발표 → 이재명의 2차·3차·4차 트윗 촉발</td>
+</tr>
+<tr>
+<td><strong>IDF(이스라엘 방위군)</strong></td>
+<td>행위 주체 / 피고발자</td>
+<td>영상 속 행위자; 이미 자체 비난했다는 이스라엘 측 주장의 핵심</td>
+</tr>
+<tr>
+<td><strong>UN</strong></td>
+<td>부재하는 권위체</td>
+<td>국제법 기준으로 인용되나 실질적 행위자로 등장하지 않음</td>
+</tr>
+<tr>
+<td><strong>알아라비야(@AlArabiya)</strong></td>
+<td>아랍어권 의제 설정자</td>
+<td>팔로워 1,508만; 이재명 발언을 아랍 주류 여론에 전달 (좋아요 248/RT 75)</td>
+</tr>
+<tr>
+<td><strong>Middle East Monitor(@MiddleEastMnt)</strong></td>
+<td>영어권 친팔레스타인 미디어</td>
+<td>팔로워 352,930; 이재명 입장 호의적 보도 (좋아요 341/RT 128)</td>
+</tr>
+<tr>
+<td><strong>New York Post(@nypost)</strong></td>
+<td>영어권 보수 미디어</td>
+<td>이스라엘 비난 측 입장에서 사건 보도 (좋아요 856)</td>
+</tr>
+<tr>
+<td><strong>@ww3mediaa</strong></td>
+<td>터키어권 최대 확산자</td>
+<td>팔로워 750,852; 터키 반이스라엘 정서를 집중 증폭 (좋아요 1,558/RT 678)</td>
+</tr>
+<tr>
+<td><strong>@AlMamlakaTV</strong></td>
+<td>요르단 공영방송</td>
+<td>팔로워 1,501,792; 아랍어 주류 보도에 기여</td>
+</tr>
+<tr>
+<td><strong>JBpress</strong></td>
+<td>일본어권 비판 미디어</td>
+<td>팔로워 37,010; "이재명 패턴" 분석 장문 비판</td>
+</tr>
+<tr>
+<td><strong>Yahoo Japan</strong></td>
+<td>일본어권 최대 유통 채널</td>
+<td>공동통신·마이니치·아사히 기사를 통해 일본어권 확산 허브 역할</td>
+</tr>
+<tr>
+<td><strong>@sahelbrut3</strong></td>
+<td>프랑스어권 2차 확산 허브</td>
+<td>이재명 발언을 외국어로 재해석해 확산시킨 유통자 (답글 56건+인용 20건)</td>
+</tr>
+</tbody>
+</table>
+<h4>A-4. 미디어 행위자 (주요 계정)</h4>
+<ul>
+<li><strong>지지 측 대형 계정:</strong> @ww3mediaa(터키어, 75만), @daktilock(터키어, 40만), @AlArabiya(아랍어, 1508만), @MiddleEastMnt(영어, 35만), @Byanu(포르투갈어, 7.4만), @bob_hoffman_jp(일본어), @EduardoSaldania(스페인어, 5.5만)</li>
+<li><strong>비판 측 대형 계정:</strong> @DrewPavlou(영어), @EFischberger(영어, 6.5만), @DrEliDavid(영어), @EYakoby(영어), @ShineShadowNews(영어), @JBpress(일본어, 3.7만)</li>
+<li><strong>중립·분석적 계정:</strong> @ishaantharoor(영어, WaPo), @parandeye_zard(영어), @TenzingLamsang(영어, 4.6만)</li>
+</ul>
+<hr />
+<h3>B. 개념(Concept)</h3>
+<h4>B-1. 가치 개념</h4>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>등장 빈도</th>
+<th>주 사용 진영</th>
+<th>기능</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>인권(Human Rights)</strong></td>
+<td>매우 높음</td>
+<td>지지 측</td>
+<td>이재명 발언의 핵심 명분; "보편적 인권"</td>
+</tr>
+<tr>
+<td><strong>홀로코스트</strong></td>
+<td>높음</td>
+<td>양측 모두</td>
+<td>이스라엘: 비교 불가 방패; 지지 측: 보편 교훈</td>
+</tr>
+<tr>
+<td><strong>위안부(慰安婦)</strong></td>
+<td>중간</td>
+<td>이재명·일본어권</td>
+<td>한국의 역사적 피해 기억 → 팔레스타인과 동치화</td>
+</tr>
+<tr>
+<td><strong>제노사이드(Genocide)</strong></td>
+<td>높음</td>
+<td>지지 측</td>
+<td>이스라엘 행동의 법적·도덕적 규정 시도</td>
+</tr>
+<tr>
+<td><strong>도덕적 용기</strong></td>
+<td>중간</td>
+<td>지지 측</td>
+<td>이재명 행동 평가; "침묵을 깬 지도자"</td>
+</tr>
+<tr>
+<td><strong>주권</strong></td>
+<td>중간</td>
+<td>이재명 직접 발언</td>
+<td>"각국의 주권과 보편적 인권" — 이재명 4번째 트윗</td>
+</tr>
+<tr>
+<td><strong>반유대주의(Antisemitism)</strong></td>
+<td>중간</td>
+<td>이스라엘 측</td>
+<td>비판을 차단하는 레이블링 도구</td>
+</tr>
+<tr>
+<td><strong>침략전쟁</strong></td>
+<td>낮음</td>
+<td>이재명 직접 발언</td>
+<td>"침략 전쟁은 거부되어야 한다"</td>
+</tr>
+<tr>
+<td><strong>라이다이한(ライダイハン)</strong></td>
+<td>낮음</td>
+<td>일본 보수 계정</td>
+<td>위안부 비유에 대한 역공 — 베트남전 한국군 성범죄</td>
+</tr>
+</tbody>
+</table>
+<h4>B-2. 전략 개념</h4>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>등장 빈도</th>
+<th>기능</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>THAAD</strong></td>
+<td>중간</td>
+<td>"미국이 한국 THAAD를 이스라엘로 이전 → 한국 안보 공백" 인과 연결</td>
+</tr>
+<tr>
+<td><strong>호르무즈 봉쇄</strong></td>
+<td>높음</td>
+<td>한국 에너지 위기의 구조적 원인; 이재명 발언의 배경 설명</td>
+</tr>
+<tr>
+<td><strong>에너지 안보</strong></td>
+<td>높음</td>
+<td>한국이 이란과 공통점을 찾는 전략적 동기로 해석</td>
+</tr>
+<tr>
+<td><strong>동맹</strong></td>
+<td>높음</td>
+<td>한미 동맹 균열의 신호; "한국이 미국을 배신" vs. "미국이 한국을 배신"</td>
+</tr>
+<tr>
+<td><strong>글로벌 사우스</strong></td>
+<td>중간</td>
+<td>한국을 서방 이탈 흐름의 일부로 보는 지정학 프레임</td>
+</tr>
+<tr>
+<td><strong>디지털 외교</strong></td>
+<td>낮음(개념) / 높음(실천)</td>
+<td>SNS를 통한 국가 간 설전이라는 새 행위 양식 자체</td>
+</tr>
+<tr>
+<td><strong>탈서방</strong></td>
+<td>낮음(명시) / 높음(함의)</td>
+<td>한국 보수주의 변화 + 미국 동맹 신뢰도 균열 서사</td>
+</tr>
+</tbody>
+</table>
+<h4>B-3. 프레이밍 개념</h4>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>사용 측</th>
+<th>기능</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>허위정보(Disinformation)</strong></td>
+<td>이스라엘 지지 측</td>
+<td>이재명을 공격하는 핵심 레이블</td>
+</tr>
+<tr>
+<td><strong>반유대 계정 인용</strong></td>
+<td>@DrewPavlou 등</td>
+<td>이재명의 신뢰도를 근본적으로 훼손하는 전략</td>
+</tr>
+<tr>
+<td><strong>이란 연계 내러티브</strong></td>
+<td>@ShineShadowNews 등</td>
+<td>이재명을 친이란 행위자로 연결</td>
+</tr>
+<tr>
+<td><strong>도덕적 권위</strong></td>
+<td>지지 측</td>
+<td>이재명을 "침묵 파괴자"로 각인</td>
+</tr>
+<tr>
+<td><strong>매국노</strong></td>
+<td>한국 보수 성향 영어 계정</td>
+<td>이재명을 "중국 스파이", "범죄 정권"으로 레이블링</td>
+</tr>
+<tr>
+<td><strong>피해자 카드(Victim Card)</strong></td>
+<td>비판 측</td>
+<td>"이스라엘은 피해자인 척 멈춰라" (역설적으로 반이스라엘 측이 사용)</td>
+</tr>
+<tr>
+<td><strong>이중잣대</strong></td>
+<td>이란·북한 비판 계정</td>
+<td>"이스라엘은 비판하면서 이란·북한 침묵"</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>C. 사건(Event)</h3>
+<table>
+<thead>
+<tr>
+<th>사건</th>
+<th>날짜</th>
+<th>트윗 내 역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>이재명 1차 트윗</strong> (tweet_id: 2042388873570107631)</td>
+<td>4/10</td>
+<td>핵심 촉발 사건; IDF 영상 공유 + 위안부·홀로코스트 비교</td>
+</tr>
+<tr>
+<td><strong>이재명 2차 트윗</strong> (tweet_id: 2042446838536814611)</td>
+<td>4/10</td>
+<td>반응 소량 (17건)</td>
+</tr>
+<tr>
+<td><strong>이재명 3차 트윗</strong> (tweet_id: 2042735643449782314)</td>
+<td>4/11</td>
+<td>"실망스럽다" 표명 → 가자 주민 감사 다수</td>
+</tr>
+<tr>
+<td><strong>이재명 4차 트윗</strong> (tweet_id: 2043128131469607051)</td>
+<td>4/12</td>
+<td>"주권+보편적 인권" 원칙 확인 → 가장 광범위한 확산</td>
+</tr>
+<tr>
+<td><strong>이스라엘 외무부 반박</strong></td>
+<td>4/10~11</td>
+<td>"용납할 수 없다" → 이재명 추가 트윗 촉발</td>
+</tr>
+<tr>
+<td><strong>한국 외교부 "유감" 표명</strong></td>
+<td>4/11</td>
+<td>"오해에 대한 유감" — 실질적 해명 효과 제한적</td>
+</tr>
+<tr>
+<td><strong>호르무즈 봉쇄</strong></td>
+<td>4/9 이전~진행 중</td>
+<td>이재명 발언의 구조적 배경; 한국 에너지 위기 맥락</td>
+</tr>
+<tr>
+<td><strong>@sahelbrut3 트윗</strong> (tweet_id: 2043108279186813027)</td>
+<td>4/12</td>
+<td>프랑스어권 2차 확산 허브; 76건 반응</td>
+</tr>
+<tr>
+<td><strong>THAAD 이스라엘 이전</strong></td>
+<td>4/9 이전</td>
+<td>한국 안보 공백 서사의 구조적 전제</td>
+</tr>
+<tr>
+<td><strong>윤석열 쿠데타 미수</strong></td>
+<td>과거 사건</td>
+<td>이재명 정권의 정당성 맥락으로 언급 (@Byanu)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. 관계(Relation) 매핑</h2>
+<h3>2-1. 대립 관계</h3>
+<p><strong>A가 B를 비판/공격</strong></p>
+<table>
+<thead>
+<tr>
+<th>관계</th>
+<th>증거 트윗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>이재명 → 이스라엘</td>
+<td>"절대 반하는 끊임없는 행동에 대한 전 세계 비판을 한 번쯤은 되돌아보아야" (4차 트윗 인용)</td>
+</tr>
+<tr>
+<td>이스라엘 외무부 → 이재명</td>
+<td>"용납할 수 없는 홀로코스트 발언" 성명</td>
+</tr>
+<tr>
+<td>@DrewPavlou → 이재명</td>
+<td>"이재명이 리트윗하기로 결정한 계정이 바로 이것" (좋아요 11,291)</td>
+</tr>
+<tr>
+<td>@EFischberger → 이재명</td>
+<td>"4가지 사실 오류" 열거 (좋아요 2,320)</td>
+</tr>
+<tr>
+<td>일본 보수 계정 → 이재명</td>
+<td>"위안부 강제는 날조"; "라이다이한은 왜 두냐"</td>
+</tr>
+<tr>
+<td>한국계 영어 계정 → 이재명</td>
+<td>@REDKor88: "이재명, 북한, 그 스파이들도 빨리 참수되길" <em>(원문 그대로)</em></td>
+</tr>
+<tr>
+<td>이스라엘 측 → 한국(일반)</td>
+<td>@MrRoboto206: "이스라엘은 브로민 수출을 한국에 일시 중단하라"</td>
+</tr>
+<tr>
+<td>@parandeye_zard → 이재명</td>
+<td>"석유가 필요해지자 이스라엘이 악하다는 것을 발견한 세계 지도자들" (좋아요 2,989)</td>
+</tr>
+<tr>
+<td>@ShineShadowNews → 이재명</td>
+<td>"이란 연계 내러티브를 메아리치게 만들며 도덕적 고지를 주장"</td>
+</tr>
+</tbody>
+</table>
+<p><strong>이스라엘 → 인접 국가 (국가 수준 대립)</strong></p>
+<ul>
+<li>@Ahmed47Farooq: "지난 한 주 이스라엘은 스페인, 프랑스, 이탈리아, 한국, 파키스탄, 터키와 외교 충돌"</li>
+<li>@RandyEstrella1: "이스라엘-한국 외교 긴장, 이스라엘-스페인 긴장, EEUU-바티칸 긴장..."</li>
+</ul>
+<h3>2-2. 연대 관계</h3>
+<p><strong>A가 B를 지지/동조</strong></p>
+<table>
+<thead>
+<tr>
+<th>관계</th>
+<th>증거 트윗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>터키 → 한국</td>
+<td>@ww3mediaa (75만): 이재명 발언 무비판 확산; #테러리스트이스라엘</td>
+</tr>
+<tr>
+<td>아랍권 → 한국</td>
+<td>@lovelydays_: "한국의 입장은 50년간 아랍 국가 전체 합친 것보다 낫다"</td>
+</tr>
+<tr>
+<td>브라질 → 한국</td>
+<td>@Byanu: "이재명이 룰라 발언을 공유"</td>
+</tr>
+<tr>
+<td>팔레스타인 → 한국</td>
+<td>@AnasAshour0: "가자 내부에서 모든 사랑을"</td>
+</tr>
+<tr>
+<td>일본 진보 → 한국</td>
+<td>@fugu72001: "한국 대통령은 대단하다, 아무 말도 못하는 우리 총리 한심하다"</td>
+</tr>
+<tr>
+<td>이탈리아 → 한국</td>
+<td>@<em>MaxFree</em>: "이스라엘은 스페인, 프랑스, 이탈리아, 한국, 파키스탄, 터키와 대립 — 지속 불가능"</td>
+</tr>
+<tr>
+<td>호주 → 한국</td>
+<td>@ICBubbleGum: "@AlboMP, 한국의 용기 있는 선도를 따르라"</td>
+</tr>
+<tr>
+<td>남아공 맥락 → 한국</td>
+<td>"한국과 스페인의 입장이 남아공보다 더 결단력 있다"는 대비</td>
+</tr>
+</tbody>
+</table>
+<h3>2-3. 비교 관계</h3>
+<p><strong>A를 B와 동치/대비</strong></p>
+<table>
+<thead>
+<tr>
+<th>비교</th>
+<th>방향</th>
+<th>증거 트윗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>이재명 = 룰라</td>
+<td>동치</td>
+<td>@Byanu: 이재명이 룰라 제노사이드 발언 공유</td>
+</tr>
+<tr>
+<td>이재명 = 스페인 총리 = 이탈리아 총리</td>
+<td>동치</td>
+<td>@jasminejyjcu: "일본은 이탈리아, 스페인, 한국 같은 지도자가 필요하다"</td>
+</tr>
+<tr>
+<td>이재명 ≠ 일본 총리</td>
+<td>대비</td>
+<td>@zomihooo: "이재명은 당당히 비난, 일본 총리는 노래하고 춤추는 베짱이"</td>
+</tr>
+<tr>
+<td>팔레스타인 = 위안부 피해자 = 홀로코스트 피해자</td>
+<td>동치 (이재명 주장)</td>
+<td>이재명 1차 트윗 인용 내용 전반</td>
+</tr>
+<tr>
+<td>홀로코스트 = IDF 행동</td>
+<td>동치 시도 (지지 측) vs. 절대 불가 (이스라엘)</td>
+<td>담론 전체의 핵심 경합 지점</td>
+</tr>
+<tr>
+<td>한국 = 이스라엘 (지정학)</td>
+<td>구조적 비유</td>
+<td>@AviMo6(히브리어): "우리 둘 다 전략적 위협에 직면, 협력하면 무적"</td>
+</tr>
+<tr>
+<td>이스라엘 = 대일본제국</td>
+<td>동치</td>
+<td>@mitsunishi70553: "지금 이스라엘은 과거의 대일본제국과 같은 폭주 국가"</td>
+</tr>
+<tr>
+<td>한국 vs. 일본 (태도)</td>
+<td>대비</td>
+<td>@kaima96698994 (좋아요 83): "언론 자유, 할 말 하는 나라 vs. 미국 눈치 보는 나라"</td>
+</tr>
+<tr>
+<td>미국이 이스라엘에 쓴 돈 vs. 한국에 쓴 돈</td>
+<td>대비</td>
+<td>@RobertDowneyIII: "2000년 이후 이스라엘에 $900억, 한국에 $1억"</td>
+</tr>
+</tbody>
+</table>
+<h3>2-4. 인과 관계</h3>
+<p><strong>A 때문에 B가 발생</strong></p>
+<table>
+<thead>
+<tr>
+<th>인과 사슬</th>
+<th>증거 트윗</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>THAAD 이스라엘 이전 → 한국 안보 공백 + 에너지 위기 → 이재명 이스라엘 비판</td>
+<td>@kaosblatte: "트럼프가 이스라엘 위해 THAAD 빼가며 한국 에너지·무역 위기 초래"</td>
+</tr>
+<tr>
+<td>호르무즈 봉쇄 → 한국 에너지 의존도 위기 → 이재명 발언</td>
+<td>@chendagelaile1(중국어): "호르무즈가 한국 경제에 심각한 영향, 이재명의 이스라엘 비난은 이것이 원인일 수도"</td>
+</tr>
+<tr>
+<td>이재명 1차 트윗 → 이스라엘 외무부 반격 → 이재명 2·3·4차 트윗</td>
+<td>사건 시계열 전체</td>
+</tr>
+<tr>
+<td>이재명 발언 → 아랍어권 대형 미디어 보도 → 3,385건 반응 확산</td>
+<td>@AlArabiya, @AlMamlakaTV 보도</td>
+</tr>
+<tr>
+<td>이재명 허위 영상 공유 → 이스라엘 측 신뢰도 공격 → 영어권에서 허위정보 프레임 정착</td>
+<td>@DrewPavlou 11,291 좋아요</td>
+</tr>
+<tr>
+<td>미국의 동맹 배신 인식 → 한국·일본 이탈 서사 확산</td>
+<td>@HartJolyon: "미국이 이스라엘 빼고 대화 상대가 없어질 것"</td>
+</tr>
+</tbody>
+</table>
+<h3>2-5. 도구 관계</h3>
+<p><strong>A가 B를 위해 C를 사용</strong></p>
+<table>
+<thead>
+<tr>
+<th>주체</th>
+<th>목적</th>
+<th>도구</th>
+<th>증거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>이스라엘</td>
+<td>비판 차단</td>
+<td>홀로코스트 비유 = 반유대주의 레이블</td>
+<td>@EFischberger: "반유대주의 카드로 비판 봉쇄"</td>
+</tr>
+<tr>
+<td>이재명</td>
+<td>팔레스타인 지지 표명</td>
+<td>위안부·홀로코스트 역사 기억</td>
+<td>1차 트윗 전체</td>
+</tr>
+<tr>
+<td>@DrewPavlou</td>
+<td>이재명 신뢰도 훼손</td>
+<td>원본 계정 지목 ("허위정보 계정 인용")</td>
+<td>좋아요 11,291</td>
+</tr>
+<tr>
+<td>일본 보수 계정</td>
+<td>이재명 비판</td>
+<td>라이다이한 (베트남 혼혈 자녀) 소환</td>
+<td>@Alternate_____</td>
+</tr>
+<tr>
+<td>일본 진보 계정</td>
+<td>일본 정치 비판</td>
+<td>이재명 발언을 "일본 총리 무기력의 거울"로 사용</td>
+<td>@zomihooo, @fugu72001</td>
+</tr>
+<tr>
+<td>터키 대형 계정</td>
+<td>반이스라엘 여론 증폭</td>
+<td>이재명 발언을 무비판 확산</td>
+<td>@ww3mediaa (좋아요 1,558)</td>
+</tr>
+<tr>
+<td>한국 보수 계정</td>
+<td>이재명 정권 공격</td>
+<td>이스라엘·미국에 사과 + "중국 스파이" 레이블</td>
+<td>@REDKor88, @IamWoojam</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. 개념 네트워크 (Concept Network)</h2>
+<h3>3-1. "인권" 개념의 경합 구조</h3>
+<p>"인권"은 이 사건에서 <strong>도덕적 맥락</strong>과 <strong>전략적 맥락</strong> 두 가지로 분기한다.</p>
+<p><strong>도덕적 맥락 (지지 측):</strong>
+- 이재명 발언: "각국의 주권과 보편적 인권은 존중받아야 한다" (4차 트윗)
+- @MiddleEastMnt: "보편적 인권 존중 입장 재확인" (좋아요 341)
+- 용법: 국제 규범의 언어로서 이스라엘 행동을 심판하는 기준</p>
+<p><strong>전략적 맥락 (냉소 측):</strong>
+- @parandeye_zard: "석유가 필요해지자 인권 발견" (좋아요 2,989)
+- @v_silly__g00se: "전략적으로 이란과 공통점 찾으려는 석유 목적"
+- 용법: 인권 언어는 에너지 이해관계를 위장하는 도구</p>
+<p><strong>이중 레이어 구조:</strong> 이 사건에서 "인권"은 동시에 두 의미를 담고 있다. 지지 측에게 그것은 진정성 있는 도덕 언어이고, 냉소 측에게 그것은 전략적 포장이다. 이 간극을 이스라엘 측이 "허위정보" 프레임으로 메운다.</p>
+<hr />
+<h3>3-2. "홀로코스트" 개념의 경합 구조</h3>
+<p>홀로코스트는 이 사건의 <strong>가장 폭발적인 개념 노드</strong>다.</p>
+<p><strong>이스라엘의 용법 — 방패:</strong>
+- "용납할 수 없다" + 홀로코스트 기억일 근처라는 시간적 맥락 강조
+- 홀로코스트 비교 = 반유대주의 → 어떤 비판도 차단 가능한 메커니즘</p>
+<p><strong>지지 측의 용법 — 보편 교훈:</strong>
+- "홀로코스트를 경험한 민족이 왜 같은 일을 타인에게" (역설적 비판)
+- @oneno575945: "홀로코스트를 경험했으면서 타인에게 그것을 가하는 네타냐후"
+- @mitsunishi70553: "과거 방패를 현재 방어막으로 쓰는가"</p>
+<p><strong>일본어권의 용법 — 역사 인식 확장:</strong>
+- "유대인 학살에 대해 유대인들은 평생 나치를 쫓는다. 한국도 그렇게 하는가? 그렇다면 라이다이한은?" (일본 보수: 홀로코스트를 역공의 기준으로)
+- "홀로코스트를 누가 矮小化하는가?" (일본 진보: 이스라엘이 홀로코스트 개념 자체를 정치화)</p>
+<p><strong>결론:</strong> 홀로코스트는 이 사건에서 세 가지로 분기한다. (1) 이스라엘의 면죄부, (2) 이스라엘 행동을 심판하는 역설적 기준, (3) 한국의 위안부 주장을 반박하는 일본의 도구.</p>
+<hr />
+<h3>3-3. "위안부" 개념이 이 사건에 끌려들어온 경위</h3>
+<p>위안부는 원래 이 사건과 직접적 관련이 없다. 이재명의 1차 트윗에서 "일본의 전시 성 노예 문제"를 비유로 사용한 것이 연쇄 반응을 낳았다.</p>
+<p><strong>연쇄 구조:</strong>
+1. 이재명: IDF 영상 → 위안부(한국 피해 기억) + 홀로코스트를 동치
+2. 일본 보수: "위안부 강제는 날조다" → 이재명 발언 전체를 무효화
+3. 일본 보수 (강경): "위안부 꺼냈으면 라이다이한도 대답해야" → 한국의 베트남전 가해를 역공
+4. 국제 확산: 스페인어·터키어권은 위안부 맥락을 단순 삭제하고 홀로코스트 비교만 전달
+5. 아랍어권: 위안부 맥락 생략 → "이스라엘 행동 = 홀로코스트"만 각인</p>
+<p><strong>결과:</strong> 위안부 개념은 한국-일본 관계라는 역사적 무게를 이 사건에 추가하면서, 일본어권을 제외한 다른 언어권에서는 탈각되어 "이스라엘 비판의 역사적 정당성" 정도로만 남는다. 일본어권에서는 이 개념이 담론 전체를 별도의 역사 논쟁으로 분기시킨다.</p>
+<hr />
+<h3>3-4. "동맹" 개념의 해체와 재구성</h3>
+<p>동맹 개념은 이 사건에서 두 방향으로 해체된다.</p>
+<p><strong>해체 방향 1 — 미국이 동맹을 배신했다:</strong>
+- @kaosblatte: "THAAD를 이스라엘로 가져가면서 한국에 에너지 위기" → 미국이 동맹 계약을 어김
+- @HartJolyon: "이스라엘 빼면 미국에 대화 상대가 없다" → 동맹 구조 붕괴 시각화
+- @willwil40451127(중국어): "미국이 중동 에너지 운송 통제를 잃으면 아시아 동맹은 끝"
+- @Train_Johnson: "미국의 출구 없음 — 떠나도, 남아도 같은 결말"</p>
+<p><strong>해체 방향 2 — 한국이 동맹을 배신했다:</strong>
+- @ShineShadowNews: "동맹에 선전 승리를 적대 정권에 넘겨줌"
+- @IamWoojam: "이스라엘은 한국의 동맹국, 이재명 정권은 범죄 정권"
+- 이스라엘 지지 한국계 계정 전반</p>
+<p><strong>재구성:</strong> 동맹 개념이 미국-이스라엘-한국 삼각 관계에서 해체된 빈자리를 <strong>글로벌 사우스 연대</strong> 개념이 채운다. 이재명 발언은 이 서사에서 "새로운 동맹 질서의 신호탄"으로 읽힌다.</p>
+<hr />
+<h2>4. 언어권별 존재론적 차이</h2>
+<h3>4-1. 영어권 (~920건): 사건의 정보 생태계 결정권 행사</h3>
+<p><strong>개념 체계:</strong> 사건을 "팩트 vs. 허위정보"의 진실 게임으로 구성. 핵심 축은 영상의 진실성이다.</p>
+<ul>
+<li>지지 측: 이재명 발언 → 도덕적 용기 + 역사적 인식 + 지정학적 시사</li>
+<li>비판 측: 이재명 발언 → 허위정보 공유 + 반유대 계정 인용 + 이란 연계</li>
+</ul>
+<p><strong>권력 동학:</strong> 영어권은 최대 파급력 계정(DrewPavlou 11,291 / EFischberger 2,320 / DrEliDavid 2,387)이 비판 측에 집중되어 있어, 영어권 내에서는 이재명에게 불리한 프레이밍이 더 강력하게 확산됐다. 그러나 Middle East Monitor, Al Jazeera English, Anadolu 등 친팔레스타인 영어 미디어가 반격 역할을 했다.</p>
+<p><strong>주목할 존재론적 차이:</strong> 영어권만이 "이 트윗이 진짜인가"라는 진실 게임을 중심 축으로 설정한다. 다른 언어권은 진실 게임 자체를 부차적으로 취급한다.</p>
+<hr />
+<h3>4-2. 일본어권 (~1,050건): 역사적 개념이 압도적으로 동원됨</h3>
+<p><strong>동원되는 역사 개념:</strong>
+- 위안부 (慰安婦): 이재명 발언의 핵심 소재 → 날조 논쟁 촉발
+- 라이다이한: 한국의 베트남전 가해 → 위안부 역공 도구
+- 대일본제국: 이스라엘과의 동치화 ("현재 이스라엘 = 과거 대일본제국")
+- 반한감정(反韓感情): 이 사건이 기존 반한 정서를 재자극할지 관찰 (일본어 계정 자체 분석)</p>
+<p><strong>이분법적 분리:</strong>
+- 일본 진보 계정: 이재명 지지 + 일본 총리 무기력 비판 → 일본 국내 정치 도구화
+- 일본 보수 계정: 이재명 비판 + 위안부 날조론 + 한국 외교 실패 분석</p>
+<p><strong>존재론적 특수성:</strong> 일본어권은 이 사건을 "한국-이스라엘 외교 사건"이 아니라 "한국-일본 역사 문제의 재현"으로 처리한다. 위안부 개념이 이 사건을 일본어권만의 별도 담론 공간으로 분리시킨다.</p>
+<p><strong>대표 인용:</strong>
+- @mitsunishi70553: "지금 이스라엘은 과거의 대일본제국과 같은 폭주 국가다"
+- @Alternate_____: "라이다이한은 왜 그냥 두냐"
+- @kaima96698994 (좋아요 83): "언론 자유와 할 말 하는 나라 vs. 미국 눈치 보는 나라, 그 차이가 그대로 노출됐다"</p>
+<hr />
+<h3>4-3. 아랍어권 (~190건): 이스라엘이 중심, 한국은 수단</h3>
+<p><strong>중심 개체:</strong> 이스라엘 (피고), 팔레스타인 (피해자). 이재명은 도구적 행위자.</p>
+<p><strong>핵심 개념:</strong> 자이툰 (시신 훼손 영상), 하마스, 가자, 점령, 주권.</p>
+<p><strong>존재론적 구조:</strong> 아랍어권 트윗은 이재명 발언 자체를 심층 분석하지 않는다. @AlArabiya(1508만), @AlMamlakaTV(150만), @SonarCenter(2.8만) 등 대형 미디어가 "한국 대통령이 이스라엘을 비판했다"는 팩트를 전달하는 역할만 한다. 이재명의 도덕적 입장보다 이스라엘의 행동 자체가 담론의 중심이다.</p>
+<p><strong>주목할 점:</strong> @RamiAhmedovich: "한국은 이란도, 걸프도, 이스라엘도 편들지 않았다" — 아랍어권에서도 한국의 입장이 자국 이해관계와 완전히 일치하지 않음을 인식한다. 즉, 아랍어권은 한국을 "우리 편"이 아니라 "독립적 행위자"로 본다.</p>
+<p><strong>대표 인용:</strong>
+- @lovelydays_: "한국과 스페인의 입장이 50년간 아랍 국가 전체보다 낫다" (아랍 자성적 반응)</p>
+<hr />
+<h3>4-4. 중국어권 (~220건): 탈미국 지정학 틀로 해석</h3>
+<p><strong>핵심 틀:</strong> 미국 헤게모니 약화 + 아시아 국가들의 이탈. 이재명 발언은 이 틀의 사례 증거다.</p>
+<ul>
+<li>@Inariokami__: "미국에 굽신거리는 국가는 이스라엘과 일본뿐"</li>
+<li>@willwil40451127: "미국이 중동 에너지 운송 통제를 잃으면 아시아 동맹은 사라진다. 한국이 이스라엘을 비판한다. 일본 새 정부 내 분열. 바람이 바뀌고 있다."</li>
+<li>@chendagelaile1: "호르무즈가 한국 경제에 심각 영향, 이재명 비난은 이것이 원인일 수도"</li>
+</ul>
+<p><strong>이재명 평가:</strong> 혼재. 일부는 호의적 ("첫 번째로 이스라엘 가면을 폭로"), 일부는 냉담 ("한국 국민들은 이재명을 '중국 스파이'라 부르며 이스라엘에 사과"). 친미·반공 성향 중국어 사용자(대만계 추정)가 비판, 반미 성향 계정이 지지.</p>
+<p><strong>존재론적 특수성:</strong> 중국어권은 이 사건을 단독 외교 사건이 아니라 "미국-이스라엘-일본 블록 vs. 나머지 아시아"라는 거대 구조의 파편으로 읽는다.</p>
+<hr />
+<h3>4-5. 히브리어권 (~95건): 이스라엘 내부 인식의 양가성</h3>
+<p><strong>내부 균열:</strong>
+- 강경 이스라엘 지지 계정: 이재명 비판, 한국 무시 ("한국은 3주 후 핵무기를 만든다고 발표할 것" — 풍자)
+- 온건 이스라엘 계정: 한국을 "기술·산업 강국"으로 인정하며 무시 거부</p>
+<p><strong>핵심 인용:</strong>
+- @Ergozmind: "전투기부터 잠수함까지 독자 생산하는 한국을 무시하는 것은 우스운 일" — 이스라엘 내부에서도 한국을 과소평가하는 강경 여론을 비판
+- @AviMo6 (히브리어): "한국과 이스라엘, 모두 전략적 위협에 직면. 협력하면 무적" — 연대 희망 표현
+- @Doraharond: "이스라엘 군사예산이 한국을 능가해 세계 11위 진입" — 군사력 경쟁 프레임</p>
+<p><strong>존재론적 특수성:</strong> 히브리어권 트윗에는 한국 일반과 이재명 정권을 분리하는 "감정적 분열"이 뚜렷하다. 한국 문화(K컬처)에 대한 호감은 유지하면서 이재명 정권을 비판하는 구조가 나타난다.</p>
+<hr />
+<h2>5. 메타 내러티브 구조</h2>
+<h3>5-1. 이 사건이 "탈서방 질서" 담론과 연결되는 방식</h3>
+<p>이재명-이스라엘 사건은 그 자체로는 양자 외교 분쟁이지만, 트위터 담론 공간에서는 <strong>더 큰 탈서방 질서 전환의 증거 파편</strong>으로 기능한다.</p>
+<p>트윗에서 발견되는 상위 서사:
+1. "미국이 동맹 체계를 배신하면서 한국이 독자 노선 선택" (@junotane, @etbadabimbim)
+2. "아시아 외교관들이 중동 에너지를 미국이 통제하지 못하면 동맹이 사라진다고 설명" (@willwil40451127)
+3. "한국+스페인+프랑스+터키+이탈리아+파키스탄 = 이스라엘 고립의 지도" 
+4. "글로벌 사우스 전체가 공개적 반란에 나섰다" (@raythewarchief)</p>
+<p>이 서사는 이재명 발언을 넘어 "2026년 세계 질서 재편"의 신호로 읽힌다. 한국의 행동이 그 신호 중 하나로 편입된다.</p>
+<hr />
+<h3>5-2. "도덕적 권위"의 원천 경합</h3>
+<p>이 사건에서 <strong>누가 도덕적 권위의 원천이 되는가</strong>를 둘러싸고 세 가지 주장이 충돌한다.</p>
+<p><strong>이스라엘의 주장:</strong> 홀로코스트 피해 경험 → 반유대주의를 식별하고 비판할 독점적 권위를 가짐
+- 근거: 이스라엘 외무부 성명, @EFischberger, @DrEliDavid</p>
+<p><strong>이재명의 주장:</strong> 식민지 피해 경험(위안부·학살) → 타인의 고통을 "기억으로" 이해하는 권위를 가짐
+- 근거: @anderson_testos: "점령과 학살을 살아남은 나라가 '우리는 이것을 안다'고 말했다. 정치로서가 아니라, 기억으로서"</p>
+<p><strong>글로벌 사우스의 주장:</strong> 식민지 연대 경험 → 이스라엘을 비판하는 집단적 도덕 권위를 가짐
+- 근거: @lovelydays_: "한국과 스페인의 입장이 50년간 아랍 국가 전체보다 낫다"</p>
+<p><strong>결론:</strong> 도덕적 권위는 단일한 원천에서 나오지 않으며, 이 사건은 그 경합을 시각화한다. 홀로코스트 피해 → 면죄부라는 이스라엘의 공식이 글로벌 담론에서 더 이상 자동 작동하지 않음을 보여준다.</p>
+<hr />
+<h3>5-3. "역사적 기억"이 정치적 도구로 전환되는 기제</h3>
+<p>이 사건에서 역사적 기억은 세 층위에서 도구화된다.</p>
+<p><strong>층위 1 — 이재명의 도구화:</strong>
+위안부 기억 → 팔레스타인 연대의 도덕적 근거 제공 → 국내 지지층에게 "사이다" 발언</p>
+<p><strong>층위 2 — 이스라엘의 도구화:</strong>
+홀로코스트 기억 → 비판 차단 방패 → "홀로코스트와 비교하는 것 자체가 반유대주의"</p>
+<p><strong>층위 3 — 일본 보수의 도구화:</strong>
+라이다이한·위안부 논쟁 → 이재명 발언의 도덕적 자격 박탈 → 한국-일본 역사 논쟁 재점화</p>
+<p><strong>공통 구조:</strong> 역사적 기억은 모든 진영에서 <strong>현재의 정치적 목적</strong>을 위해 선택적으로 호출된다. 이 구조 자체가 이 사건의 메타 레벨 특성이다.</p>
+<hr />
+<h3>5-4. "디지털 외교"라는 새로운 행위 양식의 구조</h3>
+<p>이 사건은 전통 외교 채널을 우회하는 <strong>SNS 직접 외교</strong>의 전형이다.</p>
+<p><strong>기존 외교 채널 우회 증거:</strong>
+- 이재명 대통령이 X에서 직접 이스라엘 외무부와 설전
+- 한국 외교부 "유감" 표명은 사후 수습; 실질 외교는 X에서 진행
+- 이스라엘 외무부가 X로 공식 성명 발표</p>
+<p><strong>새 구조의 특성:</strong>
+1. <strong>비대칭 파급력:</strong> 이스라엘 지지 계정(@DrewPavlou)이 한국 외교부보다 더 큰 영향력 행사
+2. <strong>2차 확산자 출현:</strong> @sahelbrut3 같은 비국가 행위자가 국가 행위자의 발언을 재포장
+3. <strong>실시간 여론 형성:</strong> 이재명 4차 트윗이 @AlArabiya를 통해 수백만 명에게 즉시 전달
+4. <strong>국내 반대 세력의 해외 직접 진출:</strong> 한국 보수 성향 계정이 이스라엘·미국 계정에 직접 사과하고 이재명을 "나의 대통령 아님"으로 표명</p>
+<p><strong>결론:</strong> 디지털 외교는 국가가 의도하지 않은 방향으로 담론을 이탈시킬 수 있는 구조적 취약성을 내포한다. 이 사건에서 이재명의 의도와 실제 확산 결과(허위정보 프레임)는 부분적으로 충돌했다.</p>
+<hr />
+<h2>6. 권력 동학 (Power Dynamics)</h2>
+<h3>6-1. 의제 설정 (Agenda Setting)</h3>
+<p><strong>의제 설정자 위계:</strong></p>
+<ol>
+<li><strong>이재명 대통령</strong> — 사건 자체를 발화함으로써 의제를 창출</li>
+<li><strong>이스라엘 외무부</strong> — "용납할 수 없다" 성명으로 사건을 국제적 외교 분쟁으로 격상</li>
+<li><strong>@DrewPavlou</strong> — 영어권에서 "허위정보 공유 대통령"이라는 의제를 설정 (좋아요 11,291)</li>
+<li><strong>@AlArabiya</strong> — 아랍어권에서 "이스라엘에 맞선 한국" 의제 설정 (팔로워 1,508만)</li>
+<li><strong>@ww3mediaa</strong> — 터키어권에서 "한국 = 반이스라엘 용기 있는 지도자" 의제 설정 (팔로워 750,852)</li>
+<li><strong>Yahoo Japan / 공동통신 / 아사히</strong> — 일본어권 의제를 "한-이 설전 + 위안부"로 설정</li>
+</ol>
+<p><strong>의제의 분리:</strong> 언어권별로 의제가 달리 설정된다. 영어권 = 허위정보, 일본어권 = 위안부·역사, 아랍어권 = 팔레스타인 연대, 터키어권 = 반이스라엘 영웅. 하나의 사건이 네 가지 의제로 분열됐다.</p>
+<hr />
+<h3>6-2. 프레이밍 권력</h3>
+<p><strong>프레이밍 권력 보유자와 전략:</strong></p>
+<table>
+<thead>
+<tr>
+<th>행위자</th>
+<th>프레임</th>
+<th>전략</th>
+<th>실효성</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>이스라엘 지지 영어 계정</td>
+<td>"허위정보 공유 대통령"</td>
+<td>원본 계정 지목 → 이재명의 신뢰 자체 공격</td>
+<td>영어권에서 높음</td>
+</tr>
+<tr>
+<td>이스라엘 외무부</td>
+<td>"홀로코스트 矮小化"</td>
+<td>비교 자체를 범죄화</td>
+<td>영어권·히브리어권에서 효과적</td>
+</tr>
+<tr>
+<td>@ww3mediaa 등 터키어 계정</td>
+<td>"도덕적 용기의 영웅"</td>
+<td>이재명 발언의 도덕적 가치 극대화</td>
+<td>아랍·터키·이슬람권에서 압도적</td>
+</tr>
+<tr>
+<td>일본 진보 계정</td>
+<td>"일본 총리의 거울"</td>
+<td>이재명을 일본 정치 비판의 도구로 전환</td>
+<td>일본어권 내에서 효과적</td>
+</tr>
+<tr>
+<td>일본 보수 계정</td>
+<td>"위안부 날조자의 후계자"</td>
+<td>역사 논쟁으로 담론 이탈</td>
+<td>일본 보수 내에서만 효과적</td>
+</tr>
+<tr>
+<td>@parandeye_zard</td>
+<td>"석유 욕심의 위선자"</td>
+<td>도덕적 주장을 전략적 타산으로 환원</td>
+<td>영어권 냉소 계층에서 효과적</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>6-3. 게이트키퍼 역할</h3>
+<p><strong>게이트키퍼 역할 수행자:</strong></p>
+<ul>
+<li><strong>@DrewPavlou:</strong> 영어권 내 이재명 발언의 "해석 허가권"을 일시적으로 독점. 이재명 발언 이전에 "@Jvnior 계정이 허위정보 생산자"라는 프레임을 선점.</li>
+<li><strong>@sahelbrut3:</strong> 프랑스어권에서 이재명 발언의 2차 확산을 통제. 자신만의 해석을 덧붙여 재포장.</li>
+<li><strong>Yahoo Japan / 아사히신문:</strong> 일본어권에서 이 사건을 "위안부 + 외교 실수"라는 프레임으로 게이트키핑.</li>
+<li><strong>@AlArabiya:</strong> 아랍어권에서 "한국 대통령이 이스라엘을 다시 공격"이라는 우호적 프레임으로 게이트키핑.</li>
+</ul>
+<hr />
+<h3>6-4. 팔로워·좋아요·RT의 불균형이 만드는 담론 권력</h3>
+<table>
+<thead>
+<tr>
+<th>프레임</th>
+<th>최대 파급력 단일 트윗</th>
+<th>팔로워 규모</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>허위정보 비판 (이스라엘 지지)</td>
+<td>좋아요 11,291 (@DrewPavlou)</td>
+<td>개인 계정</td>
+</tr>
+<tr>
+<td>도덕적 지지 (지지 측 영어)</td>
+<td>좋아요 2,396 (@ishaantharoor)</td>
+<td>개인 계정</td>
+</tr>
+<tr>
+<td>지지 측 터키어</td>
+<td>좋아요 1,558 (@ww3mediaa)</td>
+<td>팔로워 750,852</td>
+</tr>
+<tr>
+<td>지지 측 포르투갈어</td>
+<td>좋아요 857 (@Byanu)</td>
+<td>팔로워 74,364</td>
+</tr>
+<tr>
+<td>지지 측 아랍어 미디어</td>
+<td>좋아요 248 (@AlArabiya)</td>
+<td>팔로워 15,088,703</td>
+</tr>
+<tr>
+<td>중립·분석 영어</td>
+<td>좋아요 341 (@MiddleEastMnt)</td>
+<td>팔로워 352,930</td>
+</tr>
+</tbody>
+</table>
+<p><strong>구조적 불균형:</strong> 비판 측(허위정보 프레임)은 영어권 개인 계정에서 폭발적 파급력을 가졌다. 지지 측은 개별 계정 파급력은 낮지만 총 계정 수와 언어 다양성에서 우세하다. @AlArabiya처럼 팔로워가 1,500만인 아랍어 계정의 좋아요 248은 실제 영향력 과소 표현 — 아랍어권의 경우 RT보다 외부 링크 클릭이 핵심 지표다.</p>
+<p><strong>결론:</strong> 영어권의 파급력 집중이 "허위정보 공유 대통령"이라는 프레임을 영어 언론 생태계에서 지배적으로 만들었다. 비영어권의 압도적 지지는 영어권의 1/10 파급력으로 상쇄된다. 이것이 이 사건의 핵심 권력 불균형이다.</p>
+<hr />
+<h2>7. 자문단 시사점 — 온톨로지 분석에서 도출</h2>
+<h3>7-1. 담론 구조의 언어별 분리: 통합 메시지 전략 부재의 취약성</h3>
+<p>이 사건에서 이재명 발언은 언어권별로 전혀 다른 의미로 해석됐다. 한국 정부는 하나의 메시지를 발신했지만, 수신 측은 네 개 이상의 서로 다른 메시지로 재구성했다.</p>
+<p><strong>온톨로지적 진단:</strong> 단일 발화가 다중 의미 체계로 분기할 때, 발화자가 의도하지 않은 프레임이 특정 언어권을 지배한다. 영어권의 "허위정보" 프레임은 이재명의 의도 밖이었으나 가장 강력한 파급력을 가졌다.</p>
+<p><strong>정책 함의:</strong> 소셜미디어를 통한 외교적 발화는 언어권별 수신 구조를 사전 설계해야 한다. 특히 영어권 게이트키퍼 계정들이 선점하기 전에 한국 측 공식 영어 서사를 투입하는 타이밍 전략이 필요하다.</p>
+<hr />
+<h3>7-2. 홀로코스트 방패의 한계 노출: 새로운 도덕적 권위 경쟁의 시작</h3>
+<p>이 사건은 "홀로코스트 피해 경험 = 비판 면제권"이라는 이스라엘의 전통적 방패가 글로벌 담론에서 더 이상 자동 작동하지 않음을 보여주는 사례 중 하나다.</p>
+<p><strong>온톨로지적 진단:</strong> 홀로코스트 개념이 방패에서 역공 기준으로 전환되기 시작했다. "홀로코스트를 경험한 민족이 왜 타인에게 같은 짓을"이라는 논리가 영어·일본어·중국어권에서 동시다발적으로 등장했다.</p>
+<p><strong>정책 함의:</strong> 한국 외교는 이 틈새를 포착해야 한다. 이재명 발언이 "반유대주의"로 환원되지 않도록 "보편적 인권 원칙"을 전면에 내세우는 동시에, 홀로코스트 자체에 대한 존중을 별도로 명확히 하는 이중 전략이 필요하다.</p>
+<hr />
+<h3>7-3. "허위정보 계정 인용" 구조의 선제 차단 필요</h3>
+<p>드루 파블로우의 좋아요 11,291은 이재명이 인용한 원본 계정(@Jvnior)을 지목하는 전략에서 나왔다. 이는 내용이 아니라 출처를 공격함으로써 발언 전체를 무력화하는 기술이다.</p>
+<p><strong>온톨로지적 진단:</strong> 이 전략은 "누가 말하는가"(행위자의 신뢰도)를 "무엇을 말하는가"(내용의 진위)보다 우선시한다. 내용이 아무리 정당해도 출처가 의심스러우면 전체 발언이 오염된다.</p>
+<p><strong>정책 함의:</strong> 대통령실의 SNS 활동에 있어 인용·리트윗 전 출처 계정의 신뢰도 검증 프로세스가 필요하다. 특히 국제 분쟁 상황에서 "허위정보 계정" 레이블을 사전에 붙일 수 있는 계정은 검증 없이 인용해서는 안 된다.</p>
+<hr />
+<h3>7-4. 일본어권의 이중 전선: 위안부 연계 발언의 리스크·기회 동시 존재</h3>
+<p>일본어권은 전체 수집의 31%로 최대 언어권이며, 이재명 발언을 일본 국내 정치 도구로 활용하는 두 방향이 동시에 작동했다.</p>
+<p><strong>온톨로지적 진단:</strong> 위안부 비유는 일본어권에서 이재명 지지(진보 계정)와 이재명 공격(보수 계정)을 동시에 활성화한다. 위안부 연계는 일본어권의 에너지를 가장 크게 촉발하는 촉발 개념이다.</p>
+<p><strong>정책 함의:</strong> 이재명 발언이 일본 진보 여론의 "일본 총리 비판" 에너지를 활성화했다는 점은 한일 시민 연대의 가능성을 보여준다. 그러나 위안부 역사 논쟁이 재점화되는 부작용도 관리해야 한다. 위안부 개념을 국제 이슈 발언에 연결할 때는 일본어권 반응을 사전 시뮬레이션해야 한다.</p>
+<hr />
+<h3>7-5. THAAD-에너지 복합 서사의 한국 외교 약점 노출</h3>
+<p>"THAAD 이스라엘 이전 → 한국 안보 공백 + 에너지 위기 → 이재명 발언"이라는 인과 서사가 여러 영어 계정에서 독립적으로 형성됐다. 이 서사는 이재명의 도덕적 발언을 "전략적 타산"으로 환원시킨다.</p>
+<p><strong>온톨로지적 진단:</strong> 행위자의 발언이 "도덕적"이냐 "전략적"이냐는 발언 내용이 아니라 청중의 의심 수준에 달려 있다. 한국의 에너지 의존성이 알려진 만큼, 한국의 발언은 자동으로 "에너지 이해관계의 함수"로 읽힐 위험이 있다.</p>
+<p><strong>정책 함의:</strong> 한국 외교가 중동 에너지 협력을 모색하는 시점에 이스라엘 비판 발언을 하면, 두 행동이 "이란 편들기"의 증거로 연결된다. 에너지 외교와 인권 외교 사이의 서사 분리 전략이 필요하다.</p>
+<hr />
+<h3>7-6. 한국 내부 분열의 해외 노출: 새로운 취약성</h3>
+<p>한국 보수 성향으로 추정되는 영어 계정들이 이스라엘·미국 계정에 직접 사과하고 이재명을 "나의 대통령 아님"으로 표명하는 행동이 다수 관찰됐다.</p>
+<p><strong>온톨로지적 진단:</strong> 국내 정치 분열이 SNS를 통해 해외 외교 여론전에 실시간 노출되는 것은 이전에는 불가능했던 새로운 구조다. 이 계정들은 이스라엘 측이 "한국 내 지지 기반"으로 활용할 소재를 제공한다.</p>
+<p><strong>정책 함의:</strong> 한국의 외교적 발언이 글로벌 SNS에서 국내 반대 세력에 의해 실시간으로 훼손될 수 있다. 대통령실의 해외 소통 전략은 국내 반대 계정의 해외 활동을 변수로 포함해야 한다.</p>
+<hr />
+<h3>7-7. "디지털 외교"의 구조적 한계: 국가 통제력의 근본적 약화</h3>
+<p>이 사건 전체를 관통하는 온톨로지적 결론은 다음이다: 소셜미디어 시대 외교에서 <strong>국가는 자신의 발언에 대한 해석권을 독점할 수 없다</strong>.</p>
+<p>이재명의 발화 → @sahelbrut3의 재해석 → @ww3mediaa의 확산 → @AlArabiya의 보도 → @DrewPavlou의 역공 — 이 체인 어디서도 한국 정부의 통제는 작동하지 않는다.</p>
+<p><strong>정책 함의:</strong> 향후 국제적 파급력이 예상되는 SNS 발언은 발화 전에 ①영어권 게이트키퍼 계정들의 예상 반응, ②비영어권 2차 확산 패턴, ③국내 반대 세력의 해외 활동 가능성을 다층적으로 시뮬레이션해야 한다. 발화 후 수습보다 발화 설계가 더 중요한 시대다.</p>
+<hr />
+<p><em>본 보고서는 twitter_2026-04-09_13_combined.json(3,385건)에서 직접 읽은 트윗 데이터와 트위터여론_통합분석보고서_2026-04-09_13.md를 1차 자료로 삼아 작성되었습니다. 언어별 건수는 추정치이며, 전수 집계를 위해서는 코드 처리가 필요합니다.</em></p>
+<div class="footer">
+  청와대 고위공직자 자문단 · 트위터 여론 분석 보고서 · 2026-04-13
+</div>
+</div>
+</body>
+</html>
