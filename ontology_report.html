@@ -294,10 +294,11 @@
 
   /* 바 차트 */
   .bar-chart { margin: 14px 0; background: #f8fafc; border-radius: 8px; padding: 16px; border: 1px solid var(--border); }
-  .bar-row { display: flex; align-items: center; margin: 5px 0; }
-  .bar-label { width: 90px; font-size: 12px; text-align: right; padding-right: 10px; color: #555; font-weight: 500; }
-  .bar-track { flex: 1; height: 26px; background: #eef1f6; border-radius: 4px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; color: #fff; font-weight: 600; }
+  .bar-row { display: flex; align-items: center; margin: 6px 0; }
+  .bar-label { width: 90px; font-size: 12px; text-align: right; padding-right: 10px; color: #555; font-weight: 500; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 28px; background: #eef1f6; border-radius: 4px; position: relative; }
+  .bar-fill { height: 100%; border-radius: 4px; }
+  .bar-val { position: absolute; top: 50%; transform: translateY(-50%); font-size: 12px; font-weight: 600; }
 
   /* 타임라인 */
   .timeline { position: relative; margin: 20px 0 20px 20px; border-left: 3px solid #0969da; }
@@ -308,7 +309,8 @@
   .tl-stat { font-size: 11px; color: #777; margin-top: 2px; }
 
   /* 매트릭스 */
-  .matrix { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; margin: 14px 0; }
+  .matrix-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 14px 0; }
+  .matrix { display: grid; grid-template-columns: repeat(6, minmax(80px, 1fr)); gap: 2px; min-width: 500px; }
   .mx-cell { padding: 8px 4px; text-align: center; font-size: 11px; border-radius: 4px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
   .mx-header { background: #1e293b; color: #fff; font-weight: 600; border: 1px solid #1e293b; }
   .mx-conflict { background: #fde8e8; color: #cf222e; border: 1px solid #f5c6c6; }
@@ -326,7 +328,7 @@
   /* 태블릿 */
   @media (max-width: 900px) {
     .cards { grid-template-columns: repeat(2, 1fr); }
-    .matrix { grid-template-columns: repeat(4, 1fr); }
+    .matrix { min-width: 480px; }
   }
 
   /* 모바일 */
@@ -358,8 +360,8 @@
     table { font-size: 12px; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     th, td { padding: 8px 6px; white-space: nowrap; }
 
-    .matrix { grid-template-columns: repeat(4, 1fr); gap: 1px; }
-    .mx-cell { font-size: 9px; padding: 6px 2px; min-height: 36px; }
+    .matrix { min-width: 480px; }
+    .mx-cell { font-size: 10px; padding: 6px 4px; min-height: 36px; }
 
     .timeline { margin-left: 14px; }
     .tl-item { padding-left: 18px; }
@@ -871,14 +873,14 @@
 <hr />
 
 <h2>6. 국가간 관계 매트릭스</h2>
-<div class="matrix">
+<div class="matrix-wrap"><div class="matrix">
   <div class="mx-cell mx-header"></div><div class="mx-cell mx-header">한국</div><div class="mx-cell mx-header">이스라엘</div><div class="mx-cell mx-header">미국</div><div class="mx-cell mx-header">일본</div><div class="mx-cell mx-header">터키</div>
   <div class="mx-cell mx-header">한국</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-conflict">대립·설전</div><div class="mx-cell mx-compare">균열·THAAD</div><div class="mx-cell mx-compare">대비·위안부</div><div class="mx-cell mx-solidarity">연대</div>
   <div class="mx-cell mx-header">이스라엘</div><div class="mx-cell mx-conflict">반박·비난</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-solidarity">후원·동맹</div><div class="mx-cell mx-neutral">간접</div><div class="mx-cell mx-conflict">대립</div>
   <div class="mx-cell mx-header">팔레스타인</div><div class="mx-cell mx-solidarity">감사·연대</div><div class="mx-cell mx-conflict">피해자</div><div class="mx-cell mx-conflict">비판</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-solidarity">연대</div>
   <div class="mx-cell mx-header">브라질</div><div class="mx-cell mx-solidarity">룰라 연대</div><div class="mx-cell mx-conflict">비판</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-solidarity">연대</div>
   <div class="mx-cell mx-header">스페인</div><div class="mx-cell mx-solidarity">공동 비판</div><div class="mx-cell mx-conflict">외교 갈등</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-solidarity">연대</div>
-</div>
+</div></div>
 
 
 <hr/>
@@ -1255,16 +1257,16 @@
 
 <h2>4. 언어권별 분포</h2>
 <div class="bar-chart">
-  <div class="bar-row"><div class="bar-label">영어</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--blue)">1,521</div></div></div>
-  <div class="bar-row"><div class="bar-label">일본어</div><div class="bar-track"><div class="bar-fill" style="width:70.8%;background:var(--red)">1,077</div></div></div>
-  <div class="bar-row"><div class="bar-label">중국어</div><div class="bar-track"><div class="bar-fill" style="width:12.9%;background:var(--orange)">196</div></div></div>
-  <div class="bar-row"><div class="bar-label">아랍어</div><div class="bar-track"><div class="bar-fill" style="width:10.5%;background:var(--green)">160</div></div></div>
-  <div class="bar-row"><div class="bar-label">스페인어</div><div class="bar-track"><div class="bar-fill" style="width:6%;background:var(--purple)">92</div></div></div>
-  <div class="bar-row"><div class="bar-label">프랑스어</div><div class="bar-track"><div class="bar-fill" style="min-width:42px;width:3.2%;background:var(--cyan)">49</div></div></div>
-  <div class="bar-row"><div class="bar-label">인도네시아어</div><div class="bar-track"><div class="bar-fill" style="min-width:42px;width:3.2%;background:var(--pink)">48</div></div></div>
-  <div class="bar-row"><div class="bar-label">히브리어</div><div class="bar-track"><div class="bar-fill" style="min-width:42px;width:2.9%;background:#5a9e6f">44</div></div></div>
-  <div class="bar-row"><div class="bar-label">포르투갈어</div><div class="bar-track"><div class="bar-fill" style="min-width:42px;width:2.5%;background:#8e6cbf">38</div></div></div>
-  <div class="bar-row"><div class="bar-label">터키어</div><div class="bar-track"><div class="bar-fill" style="min-width:42px;width:2%;background:#d07830">31</div></div></div>
+  <div class="bar-row"><div class="bar-label">영어</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--blue)"></div><span class="bar-val" style="left:calc(100% + 6px);color:#333">1,521</span></div></div>
+  <div class="bar-row"><div class="bar-label">일본어</div><div class="bar-track"><div class="bar-fill" style="width:70.8%;background:var(--red)"></div><span class="bar-val" style="left:calc(70.8% + 6px);color:#333">1,077</span></div></div>
+  <div class="bar-row"><div class="bar-label">중국어</div><div class="bar-track"><div class="bar-fill" style="width:12.9%;background:var(--orange)"></div><span class="bar-val" style="left:calc(12.9% + 6px);color:#333">196</span></div></div>
+  <div class="bar-row"><div class="bar-label">아랍어</div><div class="bar-track"><div class="bar-fill" style="width:10.5%;background:var(--green)"></div><span class="bar-val" style="left:calc(10.5% + 6px);color:#333">160</span></div></div>
+  <div class="bar-row"><div class="bar-label">스페인어</div><div class="bar-track"><div class="bar-fill" style="width:6%;background:var(--purple)"></div><span class="bar-val" style="left:calc(6% + 6px);color:#333">92</span></div></div>
+  <div class="bar-row"><div class="bar-label">프랑스어</div><div class="bar-track"><div class="bar-fill" style="width:3.2%;background:var(--cyan)"></div><span class="bar-val" style="left:calc(3.2% + 6px);color:#333">49</span></div></div>
+  <div class="bar-row"><div class="bar-label">인도네시아어</div><div class="bar-track"><div class="bar-fill" style="width:3.2%;background:var(--pink)"></div><span class="bar-val" style="left:calc(3.2% + 6px);color:#333">48</span></div></div>
+  <div class="bar-row"><div class="bar-label">히브리어</div><div class="bar-track"><div class="bar-fill" style="width:2.9%;background:#5a9e6f"></div><span class="bar-val" style="left:calc(2.9% + 6px);color:#333">44</span></div></div>
+  <div class="bar-row"><div class="bar-label">포르투갈어</div><div class="bar-track"><div class="bar-fill" style="width:2.5%;background:#8e6cbf"></div><span class="bar-val" style="left:calc(2.5% + 6px);color:#333">38</span></div></div>
+  <div class="bar-row"><div class="bar-label">터키어</div><div class="bar-track"><div class="bar-fill" style="width:2%;background:#d07830"></div><span class="bar-val" style="left:calc(2% + 6px);color:#333">31</span></div></div>
 </div>
 
 
