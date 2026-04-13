@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이재명-이스라엘 담론 온톨로지 시각화</title>
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<style>
+  :root {
+    --bg: #f7f8fa; --surface: #ffffff; --border: #e1e4e8;
+    --text: #24292f; --text-dim: #656d76; --text-bright: #1b1f24;
+    --blue: #0969da; --green: #1a7f37; --red: #cf222e;
+    --orange: #bf5700; --purple: #8250df; --pink: #bf3989;
+    --cyan: #0e7c6b; --yellow: #9a6700;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+  .page { max-width: 1100px; margin: 0 auto; padding: 24px 20px; }
+
+  h1 { font-size: 22px; font-weight: 600; color: var(--text-bright); margin-bottom: 4px; }
+  h2 { font-size: 16px; font-weight: 600; color: var(--text-bright); margin-top: 36px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 14px; font-weight: 600; color: var(--text); margin-top: 20px; margin-bottom: 8px; }
+  .meta { font-size: 13px; color: var(--text-dim); margin-bottom: 24px; }
+
+  /* 카드 */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; }
+  .card .num { font-size: 32px; font-weight: 700; color: var(--blue); letter-spacing: -1px; }
+  .card .label { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+
+  /* 그래프 */
+  #graph-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin: 16px 0; position: relative; overflow: hidden; }
+  #graph { width: 100%; height: 560px; background: #1a1f2e; border-radius: 0 0 8px 8px; }
+  #graph-controls { position: absolute; top: 12px; left: 12px; z-index: 10; display: flex; gap: 6px; flex-wrap: wrap; }
+  .gbtn {
+    padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--text-dim); font-size: 12px; cursor: pointer; transition: all 0.15s;
+  }
+  .gbtn:hover { border-color: var(--blue); color: var(--text); }
+  .gbtn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+  #graph-legend {
+    position: absolute; bottom: 12px; right: 12px; background: rgba(26,31,46,0.92);
+    border-radius: 8px; padding: 10px 14px; font-size: 11px; border: 1px solid var(--border);
+  }
+  #graph-legend div { display: flex; align-items: center; gap: 6px; margin: 3px 0; color: #adb5c4; }
+  .ldot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+  /* 툴팁 */
+  #tooltip {
+    position: fixed; display: none; z-index: 200;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 16px; max-width: 320px; font-size: 13px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4); pointer-events: none;
+  }
+  #tooltip .tt-title { font-weight: 600; font-size: 14px; color: var(--text-bright); margin-bottom: 4px; }
+  #tooltip .tt-type { color: var(--text-dim); font-size: 11px; }
+  #tooltip .tt-detail { margin-top: 6px; color: var(--text); font-size: 12px; }
+
+  /* 테이블 */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+  th { background: var(--surface); color: var(--text-dim); padding: 10px 12px; text-align: left; font-weight: 600; border-bottom: 2px solid var(--border); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: rgba(88,166,255,0.04); }
+
+  /* 개념 경합 */
+  .concept-battle { display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0; margin: 14px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+  .cb-side { padding: 16px; background: var(--surface); }
+  .cb-left { border-right: 1px solid var(--border); }
+  .cb-right { border-left: 1px solid var(--border); }
+  .cb-center { display: flex; align-items: center; justify-content: center; background: var(--bg); font-weight: 700; font-size: 14px; color: var(--orange); writing-mode: vertical-rl; }
+  .cb-title { font-weight: 600; font-size: 13px; color: var(--text-bright); margin-bottom: 8px; }
+  .cb-item { font-size: 12px; margin: 4px 0; color: var(--text-dim); }
+  .cb-item strong { color: var(--text); }
+
+  /* 인과 사슬 */
+  .causal-chain { display: flex; align-items: center; gap: 0; margin: 14px 0; overflow-x: auto; padding: 16px; background: var(--surface); border-radius: 8px; border: 1px solid var(--border); }
+  .cc-node { background: var(--bg); border: 1px solid var(--blue); border-radius: 8px; padding: 10px 14px; min-width: 110px; text-align: center; font-size: 12px; font-weight: 500; color: var(--text); flex-shrink: 0; }
+  .cc-arrow { font-size: 16px; color: var(--blue); padding: 0 4px; flex-shrink: 0; opacity: 0.6; }
+  .cc-node.hl { border-color: var(--orange); background: rgba(210,153,34,0.1); color: var(--orange); }
+
+  /* 바 차트 */
+  .bar-chart { margin: 14px 0; }
+  .bar-row { display: flex; align-items: center; margin: 5px 0; }
+  .bar-label { width: 90px; font-size: 12px; text-align: right; padding-right: 10px; color: var(--text-dim); }
+  .bar-track { flex: 1; height: 24px; background: var(--surface); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); }
+  .bar-fill { height: 100%; border-radius: 3px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; color: #fff; font-weight: 600; }
+
+  /* 타임라인 */
+  .timeline { position: relative; margin: 20px 0 20px 20px; border-left: 2px solid var(--border); }
+  .tl-item { position: relative; padding: 12px 0 12px 24px; }
+  .tl-dot { position: absolute; left: -7px; top: 16px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--bg); }
+  .tl-date { font-size: 12px; color: var(--blue); font-weight: 600; }
+  .tl-content { font-size: 13px; color: var(--text); margin-top: 2px; }
+  .tl-stat { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+
+  /* 매트릭스 */
+  .matrix { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; margin: 14px 0; }
+  .mx-cell { padding: 8px 4px; text-align: center; font-size: 11px; border-radius: 4px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+  .mx-header { background: var(--surface); color: var(--text-dim); font-weight: 600; border: 1px solid var(--border); }
+  .mx-conflict { background: rgba(248,81,73,0.12); color: var(--red); border: 1px solid rgba(248,81,73,0.2); }
+  .mx-solidarity { background: rgba(63,185,80,0.12); color: var(--green); border: 1px solid rgba(63,185,80,0.2); }
+  .mx-neutral { background: var(--bg); color: var(--text-dim); border: 1px solid var(--border); }
+  .mx-compare { background: rgba(210,153,34,0.12); color: var(--orange); border: 1px solid rgba(210,153,34,0.2); }
+
+  /* 권력 테이블 색상 */
+  .td-green { background: rgba(63,185,80,0.08); }
+  .td-red { background: rgba(248,81,73,0.08); }
+  .td-yellow { background: rgba(210,153,34,0.08); }
+
+  .footer { text-align: center; color: var(--text-dim); font-size: 11px; margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); }
+
+  /* 태블릿 */
+  @media (max-width: 900px) {
+    .page { max-width: 100%; padding: 16px; }
+    h1 { font-size: 19px; }
+    .cards { grid-template-columns: repeat(2, 1fr); }
+    .matrix { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* 모바일 */
+  @media (max-width: 600px) {
+    body { font-size: 10pt; }
+    .page { padding: 10px; }
+    h1 { font-size: 17px; }
+    h2 { font-size: 14px; margin-top: 28px; }
+    h3 { font-size: 13px; }
+    .cards { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .card { padding: 12px 14px; }
+    .card .num { font-size: 24px; }
+    .card .label { font-size: 11px; }
+
+    #graph-wrap { margin: 10px -10px; border-radius: 0; border-left: none; border-right: none; }
+    #graph { height: 380px; }
+    #graph-controls { top: 6px; left: 6px; gap: 4px; }
+    .gbtn { font-size: 10px; padding: 3px 8px; }
+    #graph-legend { font-size: 10px; padding: 6px 10px; bottom: 6px; right: 6px; }
+
+    .concept-battle { grid-template-columns: 1fr; }
+    .cb-center { writing-mode: horizontal-tb; padding: 8px; font-size: 12px; }
+    .cb-side { padding: 12px; }
+    .cb-title { font-size: 12px; }
+    .cb-item { font-size: 11px; }
+
+    .causal-chain { flex-direction: column; padding: 12px; gap: 0; }
+    .cc-node { min-width: auto; width: 100%; }
+    .cc-arrow { transform: rotate(90deg); padding: 2px 0; }
+
+    .bar-label { width: 70px; font-size: 11px; }
+    .bar-fill { font-size: 10px; }
+
+    table { font-size: 12px; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    th, td { padding: 8px 6px; white-space: nowrap; }
+
+    .matrix { grid-template-columns: repeat(4, 1fr); gap: 1px; }
+    .mx-cell { font-size: 9px; padding: 6px 2px; min-height: 36px; }
+
+    .timeline { margin-left: 14px; }
+    .tl-item { padding-left: 18px; }
+    .tl-date { font-size: 11px; }
+    .tl-content { font-size: 12px; }
+    .tl-stat { font-size: 10px; }
+
+    #tooltip { max-width: 260px; font-size: 12px; }
+  }
+
+  /* 터치 디바이스 - 호버 대신 탭 */
+  @media (hover: none) {
+    .gbtn:hover { border-color: var(--border); color: var(--text-dim); }
+    .gbtn.active:hover { border-color: var(--blue); color: #fff; }
+    tr:hover td { background: transparent; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>이재명-이스라엘 담론 온톨로지 시각화</h1>
+<p class="meta">3,385건 비한국어 트윗 · 2026-04-09~13 · 12개 언어 · 자문단 정책자문용</p>
+
+<div class="cards">
+  <div class="card"><div class="num">3,385</div><div class="label">총 수집 (비한국어)</div></div>
+  <div class="card" onclick="document.getElementById('lang-detail').style.display=document.getElementById('lang-detail').style.display==='none'?'block':'none'" style="cursor:pointer">
+    <div class="num" style="color:var(--green)">15+</div><div class="label">언어 (클릭하면 목록)</div>
+    <div id="lang-detail" style="display:none; margin-top:8px; font-size:11px; color:var(--text-dim); line-height:1.8">
+      영어 1,521 · 일본어 1,077 · 중국어 196 · 아랍어 160 · 스페인어 92 · 프랑스어 49 · 인도네시아어 48 · 히브리어 44 · 포르투갈어 38 · 터키어 31 · 독일어 15 · 이탈리아어 12 · 카탈루냐어 7 · 에스토니아어 4 · 힌디어 3 · 기타
+    </div>
+  </div>
+  <div class="card"><div class="num" style="color:var(--purple)">10</div><div class="label">내러티브 프레임</div></div>
+  <div class="card"><div class="num" style="color:var(--orange)">23,135</div><div class="label">최고 좋아요</div></div>
+</div>
+
+<h2>1. 지식 그래프</h2>
+<div id="graph-wrap">
+  <div id="graph-controls">
+    <button class="gbtn active" onclick="showAll()">전체</button>
+    <button class="gbtn" onclick="filterGroup('actor')">행위자</button>
+    <button class="gbtn" onclick="filterGroup('concept')">개념</button>
+    <button class="gbtn" onclick="filterGroup('conflict')">대립</button>
+    <button class="gbtn" onclick="filterGroup('solidarity')">연대</button>
+    <button class="gbtn" onclick="filterGroup('causal')">인과</button>
+  </div>
+  <div id="graph"></div>
+  <div id="graph-legend">
+    <div><span class="ldot" style="background:#ff6b6b"></span> 국가</div>
+    <div><span class="ldot" style="background:#ffd43b"></span> 개인</div>
+    <div><span class="ldot" style="background:#b197fc"></span> 기관·미디어</div>
+    <div><span class="ldot" style="background:#63e6be"></span> 가치 개념</div>
+    <div><span class="ldot" style="background:#69db7c"></span> 전략 개념</div>
+    <div><span class="ldot" style="background:#f783ac"></span> 프레이밍</div>
+  </div>
+</div>
+<div id="tooltip"><div class="tt-title"></div><div class="tt-type"></div><div class="tt-detail"></div></div>
+
+<h2>2. 핵심 개념 경합</h2>
+
+<h3>홀로코스트 — 3중 경합</h3>
+<div class="concept-battle">
+  <div class="cb-side cb-left">
+    <div class="cb-title">🛡 이스라엘의 방패</div>
+    <div class="cb-item"><strong>"유대인 학살 경시는 용납 불가"</strong></div>
+    <div class="cb-item">@IsraelMFA — 좋아요 8,744</div>
+    <div class="cb-item">비판 차단 도구로 사용</div>
+  </div>
+  <div class="cb-center">VS</div>
+  <div class="cb-side cb-right">
+    <div class="cb-title">🌍 보편적 교훈</div>
+    <div class="cb-item"><strong>"가자에서 일어나는 일이 또 다른 홀로코스트"</strong></div>
+    <div class="cb-item">@leilaFORpeace</div>
+    <div class="cb-item">가해자↔피해자 역전 논리</div>
+  </div>
+</div>
+
+<h3>동맹 — 양방향 해체</h3>
+<div class="concept-battle">
+  <div class="cb-side cb-left">
+    <div class="cb-title">미국이 한국을 배신</div>
+    <div class="cb-item"><strong>"THAAD를 빼가고 호르무즈 봉쇄"</strong></div>
+    <div class="cb-item">→ 이스라엘 비판 정당화</div>
+  </div>
+  <div class="cb-center">VS</div>
+  <div class="cb-side cb-right">
+    <div class="cb-title">한국이 동맹을 배신</div>
+    <div class="cb-item"><strong>"자유세계 동맹을 저버렸다"</strong></div>
+    <div class="cb-item">→ 이재명을 친이란으로 프레이밍</div>
+  </div>
+</div>
+
+<h3>위안부 — 분기</h3>
+<div class="concept-battle">
+  <div class="cb-side cb-left">
+    <div class="cb-title">이재명의 연결</div>
+    <div class="cb-item"><strong>"위안부·홀로코스트와 다를 바 없다"</strong></div>
+    <div class="cb-item">팔레스타인 피해와 동치화</div>
+  </div>
+  <div class="cb-center">VS</div>
+  <div class="cb-side cb-right">
+    <div class="cb-title">일본 보수의 역공</div>
+    <div class="cb-item"><strong>"위안부는 날조" "라이따이한은?"</strong></div>
+    <div class="cb-item">@Daishi_hundred — 좋아요 761</div>
+    <div class="cb-item">타 언어권에서는 탈각</div>
+  </div>
+</div>
+
+<h2>3. 핵심 인과 사슬</h2>
+<div class="causal-chain">
+  <div class="cc-node">미국, THAAD<br>이스라엘 이전</div>
+  <div class="cc-arrow">→</div>
+  <div class="cc-node">한국<br>안보 공백</div>
+  <div class="cc-arrow">→</div>
+  <div class="cc-node">이란<br>호르무즈 봉쇄</div>
+  <div class="cc-arrow">→</div>
+  <div class="cc-node">한국<br>에너지 위기</div>
+  <div class="cc-arrow">→</div>
+  <div class="cc-node hl">이재명<br>이스라엘 비판</div>
+  <div class="cc-arrow">→</div>
+  <div class="cc-node">이스라엘<br>외무부 반격</div>
+  <div class="cc-arrow">→</div>
+  <div class="cc-node hl">글로벌 확산<br>3,385건</div>
+</div>
+
+<h2>4. 언어권별 분포</h2>
+<div class="bar-chart">
+  <div class="bar-row"><div class="bar-label">영어</div><div class="bar-track"><div class="bar-fill" style="width:45%;background:var(--blue)">1,521</div></div></div>
+  <div class="bar-row"><div class="bar-label">일본어</div><div class="bar-track"><div class="bar-fill" style="width:32%;background:var(--red)">1,077</div></div></div>
+  <div class="bar-row"><div class="bar-label">중국어</div><div class="bar-track"><div class="bar-fill" style="width:6%;background:var(--orange)">196</div></div></div>
+  <div class="bar-row"><div class="bar-label">아랍어</div><div class="bar-track"><div class="bar-fill" style="width:5%;background:var(--green)">160</div></div></div>
+  <div class="bar-row"><div class="bar-label">스페인어</div><div class="bar-track"><div class="bar-fill" style="width:3%;background:var(--purple)">92</div></div></div>
+  <div class="bar-row"><div class="bar-label">프랑스어</div><div class="bar-track"><div class="bar-fill" style="width:1.5%;background:var(--cyan)">49</div></div></div>
+  <div class="bar-row"><div class="bar-label">인도네시아어</div><div class="bar-track"><div class="bar-fill" style="width:1.4%;background:var(--pink)">48</div></div></div>
+  <div class="bar-row"><div class="bar-label">히브리어</div><div class="bar-track"><div class="bar-fill" style="width:1.3%;background:#7ee787">44</div></div></div>
+  <div class="bar-row"><div class="bar-label">포르투갈어</div><div class="bar-track"><div class="bar-fill" style="width:1%;background:#d2a8ff">38</div></div></div>
+  <div class="bar-row"><div class="bar-label">터키어</div><div class="bar-track"><div class="bar-fill" style="width:1%;background:#ffa657">31</div></div></div>
+</div>
+
+<h2>5. 사건 타임라인</h2>
+<div class="timeline">
+  <div class="tl-item"><div class="tl-dot" style="background:var(--blue)"></div><div class="tl-date">4/10 08:47 KST</div><div class="tl-content"><strong>이재명 1차 트윗</strong> — IDF 영상 공유, 위안부·홀로코스트 비교</div><div class="tl-stat">조회 1,086만 · 좋아요 61,618 · 영어·히브리어 선행</div></div>
+  <div class="tl-item"><div class="tl-dot" style="background:var(--orange)"></div><div class="tl-date">4/10 12:37 KST</div><div class="tl-content"><strong>이재명 2차 트윗</strong> — 영상 확인 필요, 국제법 원칙</div><div class="tl-stat">조회 175만 · 좋아요 18,945</div></div>
+  <div class="tl-item"><div class="tl-dot" style="background:var(--red)"></div><div class="tl-date">4/10~11</div><div class="tl-content"><strong>이스라엘 외무부 반박</strong> — "용납할 수 없다"</div><div class="tl-stat">설전 구도 형성 · 일본어·아랍어 급증</div></div>
+  <div class="tl-item"><div class="tl-dot" style="background:var(--red);width:16px;height:16px;left:-9px"></div><div class="tl-date">4/11 07:45 KST ★ 최대 파급</div><div class="tl-content"><strong>이재명 3차 트윗</strong> — "실망스럽다" 역비판</div><div class="tl-stat">조회 716만 · 좋아요 45,006 · 상위 10개 중 7개 차지</div></div>
+  <div class="tl-item"><div class="tl-dot" style="background:var(--purple)"></div><div class="tl-date">4/12 09:44 KST</div><div class="tl-content"><strong>이재명 4차 트윗</strong> — "매국노", 보편적 인권</div><div class="tl-stat">조회 81만 · 터키어·프랑스어·포르투갈어 진입</div></div>
+  <div class="tl-item"><div class="tl-dot" style="background:var(--pink)"></div><div class="tl-date">4/12</div><div class="tl-content"><strong>@sahelbrut3</strong> — 프랑스어권 2차 확산</div><div class="tl-stat">좋아요 4,912 · RT 1,959 · 77건 반응 유도</div></div>
+</div>
+
+<h2>6. 국가간 관계 매트릭스</h2>
+<div class="matrix">
+  <div class="mx-cell mx-header"></div><div class="mx-cell mx-header">한국</div><div class="mx-cell mx-header">이스라엘</div><div class="mx-cell mx-header">미국</div><div class="mx-cell mx-header">일본</div><div class="mx-cell mx-header">터키</div>
+  <div class="mx-cell mx-header">한국</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-conflict">대립·설전</div><div class="mx-cell mx-compare">균열·THAAD</div><div class="mx-cell mx-compare">대비·위안부</div><div class="mx-cell mx-solidarity">연대</div>
+  <div class="mx-cell mx-header">이스라엘</div><div class="mx-cell mx-conflict">반박·비난</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-solidarity">후원·동맹</div><div class="mx-cell mx-neutral">간접</div><div class="mx-cell mx-conflict">대립</div>
+  <div class="mx-cell mx-header">팔레스타인</div><div class="mx-cell mx-solidarity">감사·연대</div><div class="mx-cell mx-conflict">피해자</div><div class="mx-cell mx-conflict">비판</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-solidarity">연대</div>
+  <div class="mx-cell mx-header">브라질</div><div class="mx-cell mx-solidarity">룰라 연대</div><div class="mx-cell mx-conflict">비판</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-solidarity">연대</div>
+  <div class="mx-cell mx-header">스페인</div><div class="mx-cell mx-solidarity">공동 비판</div><div class="mx-cell mx-conflict">외교 갈등</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-neutral">—</div><div class="mx-cell mx-solidarity">연대</div>
+</div>
+
+<h2>7. 담론 권력 불균형</h2>
+<table>
+  <tr><th>구분</th><th>지지 측</th><th>비판 측</th></tr>
+  <tr><td><strong>건수</strong></td><td class="td-green">압도적 다수 (~60%)</td><td class="td-red">소수 (~25%)</td></tr>
+  <tr><td><strong>언어 다양성</strong></td><td class="td-green">12개 언어</td><td class="td-red">영어·일본어 집중</td></tr>
+  <tr><td><strong>계정당 파급력</strong></td><td class="td-red">낮음 (분산)</td><td class="td-green">높음 (11,291)</td></tr>
+  <tr><td><strong>미디어</strong></td><td>AlArabiya, MiddleEastMnt</td><td>NYPost, IsraelMFA</td></tr>
+  <tr><td><strong>취약점</strong></td><td class="td-yellow">영상 출처 반박 부재</td><td class="td-yellow">"반유대주의" 레이블 남용 인식</td></tr>
+</table>
+
+<div class="footer">청와대 고위공직자 자문단 · 온톨로지 시각화 · 2026-04-13</div>
+</div>
+
+<script>
+const nodes = new vis.DataSet([
+  {id:'kr',label:'한국',group:'actor',color:'#ff6b6b',size:38,font:{size:15,color:'#fff'},title:'발화 주체',detail:'3,385건 담론의 중심'},
+  {id:'il',label:'이스라엘',group:'actor',color:'#ff6b6b',size:36,font:{size:15,color:'#fff'},title:'피비판/반격 주체'},
+  {id:'us',label:'미국',group:'actor',color:'#ff6b6b',size:28,font:{size:13,color:'#fff'},title:'THAAD·동맹 배신'},
+  {id:'ir',label:'이란',group:'actor',color:'#ff6b6b',size:20,font:{size:11,color:'#fff'},title:'호르무즈 봉쇄'},
+  {id:'jp',label:'일본',group:'actor',color:'#ff6b6b',size:26,font:{size:13,color:'#fff'},title:'비교 대상 (1,077건)'},
+  {id:'tr',label:'터키',group:'actor',color:'#ff6b6b',size:20,font:{size:11,color:'#fff'},title:'연대'},
+  {id:'br',label:'브라질',group:'actor',color:'#ff6b6b',size:18,font:{size:11,color:'#fff'},title:'룰라 연결'},
+  {id:'ps',label:'팔레스타인',group:'actor',color:'#ff6b6b',size:22,font:{size:12,color:'#fff'},title:'피해자/연대'},
+  {id:'es',label:'스페인',group:'actor',color:'#ff6b6b',size:16,font:{size:10,color:'#fff'},title:'공동 비판'},
+
+  {id:'ljm',label:'이재명',group:'actor',color:'#ffd43b',size:46,font:{size:18,color:'#1a1f2e',bold:true},title:'발화자/촉발자',detail:'도덕적 용기 vs 허위정보 공유자'},
+  {id:'ntn',label:'네타냐후',group:'actor',color:'#ffd43b',size:20,font:{size:11,color:'#1a1f2e'},title:'피공격 대상'},
+  {id:'trump',label:'트럼프',group:'actor',color:'#ffd43b',size:22,font:{size:11,color:'#1a1f2e'},title:'THAAD 결정자'},
+  {id:'drew',label:'DrewPavlou',group:'actor',color:'#ffd43b',size:24,font:{size:11,color:'#1a1f2e'},title:'파급력 1위 (11,291)'},
+  {id:'lula',label:'룰라',group:'actor',color:'#ffd43b',size:16,font:{size:10,color:'#1a1f2e'},title:'선행 사례'},
+
+  {id:'ismfa',label:'이스라엘\n외무부',group:'media',color:'#b197fc',size:26,font:{size:11,color:'#fff'},title:'공식 반박'},
+  {id:'alarabiya',label:'AlArabiya',group:'media',color:'#b197fc',size:22,font:{size:11,color:'#fff'},title:'아랍권 1508만'},
+  {id:'nypost',label:'NYPost',group:'media',color:'#b197fc',size:20,font:{size:11,color:'#fff'},title:'보수 미디어 374만'},
+  {id:'ww3',label:'ww3mediaa',group:'media',color:'#b197fc',size:20,font:{size:11,color:'#fff'},title:'터키 75만'},
+  {id:'sahel',label:'sahelbrut3',group:'media',color:'#b197fc',size:18,font:{size:10,color:'#fff'},title:'프랑스어 확산'},
+
+  {id:'hr',label:'인권',group:'concept',color:'#63e6be',size:26,font:{size:13,color:'#1a1f2e'},shape:'box',shapeProperties:{borderRadius:4}},
+  {id:'holo',label:'홀로코스트',group:'concept',color:'#63e6be',size:28,font:{size:13,color:'#1a1f2e'},shape:'box',shapeProperties:{borderRadius:4}},
+  {id:'cw',label:'위안부',group:'concept',color:'#63e6be',size:22,font:{size:12,color:'#1a1f2e'},shape:'box',shapeProperties:{borderRadius:4}},
+  {id:'thaad',label:'THAAD',group:'concept',color:'#69db7c',size:22,font:{size:12,color:'#1a1f2e'},shape:'box',shapeProperties:{borderRadius:4}},
+  {id:'hormuz',label:'호르무즈',group:'concept',color:'#69db7c',size:24,font:{size:12,color:'#1a1f2e'},shape:'box',shapeProperties:{borderRadius:4}},
+  {id:'alliance',label:'동맹',group:'concept',color:'#69db7c',size:22,font:{size:12,color:'#1a1f2e'},shape:'box',shapeProperties:{borderRadius:4}},
+  {id:'disinfo',label:'허위정보',group:'concept',color:'#f783ac',size:22,font:{size:12,color:'#1a1f2e'},shape:'box',shapeProperties:{borderRadius:4}},
+  {id:'antisem',label:'반유대주의',group:'concept',color:'#f783ac',size:20,font:{size:11,color:'#1a1f2e'},shape:'box',shapeProperties:{borderRadius:4}},
+  {id:'courage',label:'도덕적 용기',group:'concept',color:'#f783ac',size:20,font:{size:11,color:'#1a1f2e'},shape:'box',shapeProperties:{borderRadius:4}},
+]);
+
+const edges = new vis.DataSet([
+  {from:'ljm',to:'il',color:{color:'#f85149'},width:4,label:'비판',font:{size:10,color:'#f85149',strokeWidth:2,strokeColor:'#fff'},arrows:'to',group:'conflict'},
+  {from:'ismfa',to:'ljm',color:{color:'#f85149'},width:3,label:'반박',font:{size:10,color:'#f85149',strokeWidth:2,strokeColor:'#fff'},arrows:'to',group:'conflict'},
+  {from:'drew',to:'ljm',color:{color:'#f85149'},width:3,label:'신뢰도 공격',font:{size:9,color:'#f85149',strokeWidth:2,strokeColor:'#fff'},arrows:'to',group:'conflict'},
+  {from:'il',to:'es',color:{color:'#f85149',opacity:0.25},width:1,dashes:true,group:'conflict'},
+  {from:'il',to:'tr',color:{color:'#f85149',opacity:0.25},width:1,dashes:true,group:'conflict'},
+
+  {from:'tr',to:'kr',color:{color:'#69db7c'},width:2,label:'연대',font:{size:10,color:'#69db7c',strokeWidth:2,strokeColor:'#fff'},group:'solidarity'},
+  {from:'br',to:'kr',color:{color:'#69db7c'},width:2,label:'룰라',font:{size:10,color:'#69db7c',strokeWidth:2,strokeColor:'#fff'},group:'solidarity'},
+  {from:'ps',to:'kr',color:{color:'#69db7c'},width:2,label:'감사',font:{size:10,color:'#69db7c',strokeWidth:2,strokeColor:'#fff'},group:'solidarity'},
+  {from:'es',to:'kr',color:{color:'#69db7c',opacity:0.35},width:1,group:'solidarity'},
+  {from:'ljm',to:'lula',color:{color:'#69db7c',opacity:0.5},width:1,dashes:true,group:'solidarity'},
+
+  {from:'us',to:'thaad',color:{color:'#58a6ff'},width:2,label:'이전',font:{size:10,color:'#58a6ff',strokeWidth:2,strokeColor:'#fff'},arrows:'to',group:'causal'},
+  {from:'thaad',to:'hormuz',color:{color:'#58a6ff'},width:2,group:'causal'},
+  {from:'ir',to:'hormuz',color:{color:'#58a6ff'},width:2,label:'봉쇄',font:{size:10,color:'#58a6ff',strokeWidth:2,strokeColor:'#fff'},arrows:'to',group:'causal'},
+  {from:'hormuz',to:'kr',color:{color:'#58a6ff'},width:2,label:'위기',font:{size:10,color:'#58a6ff',strokeWidth:2,strokeColor:'#fff'},arrows:'to',group:'causal'},
+  {from:'trump',to:'us',color:{color:'#58a6ff',opacity:0.35},width:1,group:'causal'},
+
+  {from:'ljm',to:'hr',color:{color:'#63e6be',opacity:0.4},width:1,group:'c'},
+  {from:'ljm',to:'cw',color:{color:'#63e6be',opacity:0.4},width:1,group:'c'},
+  {from:'ljm',to:'holo',color:{color:'#63e6be',opacity:0.4},width:1,group:'c'},
+  {from:'il',to:'holo',color:{color:'#f783ac',opacity:0.4},width:1,label:'방패',font:{size:9,color:'#f783ac',strokeWidth:2,strokeColor:'#fff'},group:'c'},
+  {from:'il',to:'antisem',color:{color:'#f783ac',opacity:0.4},width:1,group:'c'},
+  {from:'drew',to:'disinfo',color:{color:'#f783ac',opacity:0.4},width:1,group:'c'},
+  {from:'ljm',to:'courage',color:{color:'#69db7c',opacity:0.3},width:1,group:'c'},
+  {from:'kr',to:'alliance',color:{color:'#8b949e',opacity:0.25},width:1,group:'c'},
+  {from:'us',to:'alliance',color:{color:'#8b949e',opacity:0.25},width:1,group:'c'},
+  {from:'cw',to:'jp',color:{color:'#63e6be',opacity:0.35},width:1,group:'c'},
+  {from:'alarabiya',to:'kr',color:{color:'#b197fc',opacity:0.25},width:1,arrows:'to',group:'c'},
+  {from:'nypost',to:'il',color:{color:'#b197fc',opacity:0.25},width:1,arrows:'to',group:'c'},
+  {from:'ww3',to:'tr',color:{color:'#b197fc',opacity:0.25},width:1,group:'c'},
+  {from:'sahel',to:'kr',color:{color:'#b197fc',opacity:0.25},width:1,arrows:'to',group:'c'},
+  {from:'ismfa',to:'il',color:{color:'#b197fc',opacity:0.15},width:1,group:'c'},
+  {from:'ntn',to:'il',color:{color:'#d29922',opacity:0.15},width:1,group:'c'},
+  {from:'ljm',to:'kr',color:{color:'#d29922',opacity:0.15},width:1,group:'c'},
+]);
+
+const network = new vis.Network(document.getElementById('graph'), {nodes,edges}, {
+  physics:{solver:'forceAtlas2Based',forceAtlas2Based:{gravitationalConstant:-55,centralGravity:0.008,springLength:155,springConstant:0.04},stabilization:{iterations:200}},
+  interaction:{hover:true,tooltipDelay:80},
+  edges:{smooth:{type:'continuous'},font:{align:'middle'}},
+  nodes:{borderWidth:0,shadow:{enabled:true,color:'rgba(0,0,0,0.4)',size:8}}
+});
+
+const tt=document.getElementById('tooltip');
+network.on('hoverNode',p=>{const n=nodes.get(p.node);if(!n)return;tt.querySelector('.tt-title').textContent=n.label.replace(/\n/g,' ');tt.querySelector('.tt-type').textContent=n.title||'';tt.querySelector('.tt-detail').textContent=n.detail||'';tt.style.display='block';});
+network.on('blurNode',()=>{tt.style.display='none';});
+document.addEventListener('mousemove',e=>{if(tt.style.display==='block'){let x=e.clientX+12,y=e.clientY+12;if(x+330>window.innerWidth)x=e.clientX-340;if(y+120>window.innerHeight)y=e.clientY-130;tt.style.left=x+'px';tt.style.top=y+'px';}});
+
+function showAll(){document.querySelectorAll('.gbtn').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');nodes.forEach(n=>nodes.update({id:n.id,hidden:false}));edges.forEach(e=>edges.update({id:e.id,hidden:false}));}
+function filterGroup(t){document.querySelectorAll('.gbtn').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');
+if(t==='actor'){const ids=nodes.get({filter:n=>n.group==='actor'}).map(n=>n.id);nodes.forEach(n=>nodes.update({id:n.id,hidden:!ids.includes(n.id)}));edges.forEach(e=>edges.update({id:e.id,hidden:!(ids.includes(e.from)&&ids.includes(e.to))}));}
+else if(t==='concept'){const ci=nodes.get({filter:n=>n.group==='concept'}).map(n=>n.id);const r=new Set(ci);edges.forEach(e=>{if(ci.includes(e.from))r.add(e.to);if(ci.includes(e.to))r.add(e.from);});nodes.forEach(n=>nodes.update({id:n.id,hidden:!r.has(n.id)}));edges.forEach(e=>edges.update({id:e.id,hidden:!(r.has(e.from)&&r.has(e.to))}));}
+else{const eg=edges.get({filter:e=>e.group===t});const inv=new Set();eg.forEach(e=>{inv.add(e.from);inv.add(e.to);});nodes.forEach(n=>nodes.update({id:n.id,hidden:!inv.has(n.id)}));edges.forEach(e=>edges.update({id:e.id,hidden:e.group!==t}));}}
+</script>
+</body>
+</html>
