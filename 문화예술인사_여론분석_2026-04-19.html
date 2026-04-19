@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>이재명 정부 문화예술 인사 논란 여론 분석 2026-04-19</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.1.0/wordcloud2.min.js"></script>
+<style>
+:root{--acc:#2563eb;--bg:#f8fafc;--card:#fff;--bdr:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:#1e293b;line-height:1.6}
+header{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;padding:2rem}
+header h1{font-size:1.5rem;margin-bottom:.3rem}
+header p{opacity:.8;font-size:.88rem}
+main{max-width:1080px;margin:2rem auto;padding:0 1rem}
+.block{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:1.5rem;margin-bottom:2rem}
+.executive{border-left:4px solid var(--acc)}
+.executive ol{padding-left:1.4rem}
+.executive li{margin-bottom:.7rem}
+h2{font-size:1.15rem;color:var(--acc);margin-bottom:1rem;border-bottom:1px solid var(--bdr);padding-bottom:.5rem}
+h3{font-size:.98rem;color:#334155;margin:1.1rem 0 .5rem}
+.vis-row{display:flex;gap:1.5rem;align-items:flex-start;margin:1rem 0;flex-wrap:wrap}
+.vis-box{min-width:200px}
+.flex1{flex:1}
+.chart-wrap{display:flex;flex-direction:column;align-items:center;gap:.4rem}
+.chart-legend{display:flex;gap:.8rem;font-size:.84rem;flex-wrap:wrap;justify-content:center}
+.op-note{font-size:.75rem;color:#94a3b8;text-align:center;margin-top:.2rem}
+.wc-container{margin:.5rem 0}
+.section-label{font-size:.8rem;color:#64748b;margin-bottom:.3rem}
+.tweet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:.7rem;margin:.7rem 0}
+.tweet-card{background:#f8fafc;border:1px solid var(--bdr);border-radius:8px;padding:.8rem;font-size:.84rem}
+.tweet-badges{display:flex;gap:.3rem;margin-bottom:.3rem;flex-wrap:wrap}
+.badge{font-size:.7rem;padding:.1rem .45rem;border-radius:4px;font-weight:600}
+.badge-type{background:#dbeafe;color:#1d4ed8}
+.tweet-meta{display:flex;align-items:baseline;gap:.4rem;margin-bottom:.35rem;flex-wrap:wrap}
+.author{color:var(--acc);font-weight:600;text-decoration:none}
+.aname{color:#64748b;font-size:.82rem}
+.flw{color:#94a3b8;font-size:.74rem}
+.tweet-text{word-break:break-word;margin-bottom:.4rem;line-height:1.5}
+.tweet-stats{color:#94a3b8;font-size:.77rem;display:flex;gap:.7rem}
+.orig-tweet{background:#eff6ff;border-left:3px solid var(--acc);padding:1rem;border-radius:6px;margin-bottom:.8rem}
+.data-table{width:100%;border-collapse:collapse;font-size:.83rem}
+.data-table th,.data-table td{border:1px solid var(--bdr);padding:.35rem .55rem;text-align:left}
+.data-table th{background:#f1f5f9}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.35rem;margin:.5rem 0}
+.tag{background:#e0f2fe;color:#0369a1;padding:.15rem .5rem;border-radius:20px;font-size:.78rem}
+.tag b{color:#0c4a6e}
+.kw-top{padding-top:.5rem}
+details{margin-top:.8rem}
+summary{cursor:pointer;color:var(--acc);font-size:.88rem;padding:.35rem 0}
+a{color:var(--acc)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media(max-width:680px){
+  .vis-row{flex-direction:column}
+  .wc-container canvas{width:100%!important;height:auto!important}
+  .data-table{font-size:.75rem}
+  header h1{font-size:1.2rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>이재명 정부 문화예술 인사 논란 트위터 여론 분석</h1>
+  <p>기준일: 2026-04-19 &nbsp;|&nbsp; 황교익·서승만·장한나·최휘영·전우용 + 확산 트윗 3건</p>
+</header>
+<main>
+
+
+<section class="block">
+  <h2>데이터 수집 현황</h2>
+  <p style="font-size:.83rem;color:#64748b;margin-bottom:.8rem">
+    twitterapi.io 기반 수집. 시간은 한국 표준시(KST) 기준. @wpdlatm10(타인 발언 수집 계정)은 키워드 분석에서 제외,
+    '최휘영' 키워드에서는 @mcstkorea(문체부 공식계정) 추가 제외.
+  </p>
+
+  <h3>1) 확산 트윗 3건 (인용 + 답글)</h3>
+  <div class="table-wrap">
+  <table class="data-table">
+    <thead><tr><th>원본 트윗</th><th>원본 작성 시각</th><th>응답 수집</th><th>응답 기간</th></tr></thead>
+    <tbody><tr><td><a href='https://x.com/lieben/status/2045362679565754563' target='_blank'>@lieben</a></td><td>2026-04-18 13:43</td><td>인용 23 · 답글 4 → <b>27</b>건</td><td>2026-04-18 13:43 ~ 2026-04-19 01:11</td></tr><tr><td><a href='https://x.com/museun_happen/status/2045020180347236435' target='_blank'>@museun_happen</a></td><td>2026-04-17 15:03</td><td>인용 32 · 답글 1 → <b>33</b>건</td><td>2026-04-17 15:03 ~ 2026-04-19 02:15</td></tr><tr><td><a href='https://x.com/bandobyul/status/2045464478511501493' target='_blank'>@bandobyul</a></td><td>2026-04-18 20:28</td><td>인용 2 · 답글 4 → <b>6</b>건</td><td>2026-04-18 20:28 ~ 2026-04-18 23:11</td></tr></tbody>
+  </table>
+  </div>
+
+  <h3>2) 인물 키워드 5개 (최신순 검색)</h3>
+  <div class="table-wrap">
+  <table class="data-table">
+    <thead><tr><th>키워드</th><th>수집 건수</th><th>수집 기간</th></tr></thead>
+    <tbody><tr><td><b>전우용</b></td><td>400건 <span style='color:#64748b;font-size:.75rem'>(API 상한 400건)</span></td><td>2025-06-17 ~ 2026-04-19</td></tr><tr><td><b>황교익</b></td><td>400건 <span style='color:#64748b;font-size:.75rem'>(API 상한 400건)</span></td><td>2025-01-23 ~ 2026-04-19</td></tr><tr><td><b>서승만</b> <span style='color:#64748b;font-size:.75rem'>(since:2025-01-01)</span></td><td>223건</td><td>2025-01-06 ~ 2026-04-18</td></tr><tr><td><b>장한나</b> <span style='color:#64748b;font-size:.75rem'>(since:2025-01-01)</span></td><td>171건</td><td>2025-01-06 ~ 2026-04-19</td></tr><tr><td><b>최휘영</b></td><td>400건 <span style='color:#64748b;font-size:.75rem'>(API 상한 400건)</span></td><td>2025-09-09 ~ 2026-04-19</td></tr></tbody>
+  </table>
+  </div>
+
+  <p style="font-size:.78rem;color:#94a3b8;margin-top:.8rem">
+    ※ 논조 분류는 수집된 전체 트윗을 수동 검토해 비판/지지/중립 중 하나를 부여함.
+    키워드 중 최휘영(문체부 장관직 전반)을 제외한 인물은 '임명·인사' 맥락 트윗만 논조 분석 대상에 포함.
+  </p>
+</section>
+
+
+<section class="block executive">
+  <h2>Executive Summary</h2>
+  <ol>
+    <li><b>황교익 임명이 최대 뇌관</b>: 한국문화관광연구원장 임명에 "한국음식의 기원은 일제강점기" 등 과거 발언 재소환. 비판 88.6% vs 지지 11.4%. @museun_happen 어록 정리 트윗 조회 490,305건.</li>
+    <li><b>장한나는 유일한 호평 인사</b>: "40년 만에 첫 여성·음악인 출신" 예술의전당 사장. 비판 11.8% — 5개 키워드 중 압도적으로 낮음.</li>
+    <li><b>4월 21일 기자회견 향해 여론 집결</b>: @lieben·@bandobyul 트윗이 연명 서명과 연동, 오프라인 행동으로 이어지는 중. @lieben 조회 59,084건.</li>
+    <li><b>최휘영 장관 하이브-NOL 연관 의혹</b>: 문화정책 공정성 우려로 확산. 비판·지지 팽팽 (비판 92.5%).</li>
+    <li><b>서승만·전우용은 부차 논란</b>: 서승만은 인사 패키지 비판에 묶여 있고, 전우용은 친정부 지식인으로 기존 구도 반복.</li>
+  </ol>
+</section>
+
+<section class="block">
+  <h2>키워드별 논조 한눈에 보기</h2>
+  <p style="font-size:.83rem;color:#64748b;margin-bottom:.8rem">의견 표명 트윗(비판/지지 키워드 포함) 기준. 단순 정보 공유 트윗은 제외.</p>
+  
+<canvas id="overview_tone" height="110"></canvas>
+<script>
+new Chart(document.getElementById('overview_tone'), {
+  type: 'bar',
+  data: {
+    labels: ["전우용", "황교익", "서승만", "장한나", "최휘영"],
+    datasets: [
+      { label: '비판', data: [66.5, 88.6, 86.3, 11.8, 92.5], backgroundColor: '#ef4444' },
+      { label: '지지', data: [33.5, 11.4, 13.7, 88.2, 7.5], backgroundColor: '#22c55e' }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      title: { display: true,
+        text: '키워드별 비판 vs 지지 비율 (의견 표명 트윗 기준, %)',
+        font: {size:13} }
+    },
+    scales: {
+      x: { stacked: true, max: 100 },
+      y: { stacked: true }
+    }
+  }
+});
+</script>
+</section>
+
+<section class="block">
+  <h2>분석 배경</h2>
+  <p>이재명 정부 출범 후 문화예술기관 인사가 잇달아 논란을 빚고 있다.
+  황교익(한국문화관광연구원장), 서승만(국립정동극장), 최휘영(문체부 장관) 임명에 대한 비판이 트위터를 달구는 가운데,
+  지휘자 장한나(예술의전당 사장)만 전문성 기반 호평을 받으며 엇갈린 여론이 형성됐다.
+  4월 21일 청와대 분수대 앞 긴급 기자회견 예고 트윗이 연명 서명 캠페인과 결합, 오프라인 행동으로 이어지고 있다.</p>
+</section>
+
+
+<section class="block">
+  <h2>확산 트윗 분석: @lieben</h2>
+  <div class="orig-tweet">
+    <p>[공유] 이재명 정부 문화예술 인사정책 규탄 긴급 기자회견이 4월 21일 오전 11시 청와대 분수대  앞 광장에서 열릴 예정입니다.<br><br>- 공공 문화예술기관 인사의 공공성과 전문성 훼손, 즉각 중단하십시오.<br>- 문화예술 인사 기준과 원칙, 전면 재정립하십시오.<br><br>🔗연명 참여: https://t.co/HUDDZ1tEjp https://t.co/LfMh0yScVE</p>
+    <div class="tweet-stats" style="margin-top:.5rem">
+      <span>❤ 636</span>
+      <span>🔁 740</span>
+      <span>💬 4</span>
+      <span>🔗 35</span>
+      <span>👁 59,084</span>
+    </div>
+  </div>
+  <div class="vis-row">
+    <div class="vis-box">
+<div class="chart-wrap">
+  <canvas id="donut_lieben" width="180" height="180"></canvas>
+  <div class="chart-legend">
+    <span style="color:#ef4444;font-weight:600">비판 95.7%</span>
+    <span style="color:#22c55e;font-weight:600">지지 4.3%</span>
+  </div>
+  <div class="op-note">의견 표명 트윗 23건 (85.2%) 기준</div>
+</div>
+<script>
+new Chart(document.getElementById('donut_lieben'), {
+  type: 'doughnut',
+  data: {
+    labels: ["\ube44\ud310", "\uc9c0\uc9c0"],
+    datasets: [{ data: [22, 1], backgroundColor: ["#ef4444", "#22c55e"],
+      borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: false,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: '@lieben 반응 논조', font: { size: 12 } }
+    }
+  }
+});
+</script></div>
+    <div class="vis-box flex1">
+<div class="wc-container">
+  <div class="section-label">반응 워드클라우드</div>
+  <canvas id="wc_lieben" width="680" height="240"></canvas>
+</div>
+<script>
+WordCloud(document.getElementById('wc_lieben'), {
+  list: [["문화예술", 5], ["이재명", 4], ["문체부", 3], ["최휘영", 3], ["장관", 3], ["임명", 3], ["실용주의", 3], ["인사", 3], ["제대로", 2], ["이런", 2], ["직접", 2], ["사과하라는", 2], ["대통령님이", 2], ["논할", 2], ["없는", 2], ["Hwiyoung_Chae", 2], ["정부는", 2], ["정부", 2], ["세종학당재단", 2], ["문체부장관", 2], ["최휘영이", 2], ["무슨", 2], ["관장합니까", 2], ["문화의", 2], ["무식한", 2], ["그만해라", 2], ["출신", 2], ["인물들", 2], ["전우용은", 2], ["실용주의의", 2], ["논란", 2], ["공연", 2], ["규탄", 2], ["Jaemyung_Lee", 2], ["lieben", 2], ["대기업", 2], ["대표", 2], ["장관님", 1], ["사고", 1], ["치신", 1], ["바람에", 1], ["기자회견", 1], ["자리까지", 1], ["생기고", 1], ["대통령한테", 1], ["입장문", 1], ["나오고", 1], ["있는데", 1], ["뭐하시나요", 1], ["사과해야", 1], ["일도", 1], ["아닌데", 1], ["국민들이", 1], ["봐야하는거죠", 1], ["사고는", 1], ["장관님이", 1], ["쳤는데", 1], ["무책임하시게도", 1], ["기자회견에", 1], ["아무런", 1]],
+  gridSize: 8,
+  weightFactor: function(s) { return Math.max(10, s / 5 * 60); },
+  fontFamily: 'Noto Sans KR, sans-serif',
+  color: function() {
+    return ['#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2'][
+      Math.floor(Math.random()*6)];
+  },
+  backgroundColor: '#f8fafc',
+  rotateRatio: 0.25, minSize: 10,
+});
+</script></div>
+  </div>
+  
+  <h3>주요 반응 트윗</h3>
+  <div class="tweet-grid">
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">인용</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="" target="_blank" class="author">@</a>
+    <span class="aname"></span>
+    <span class="flw">팔로워 550</span>
+  </div>
+  <div class="tweet-text">문체부 최휘영 장관님 사고 제대로 치신 바람에 이런 기자회견 자리까지 생기고 이재명 대통령한테 직접 사과하라는 입장문 까지 나오고 있는데 뭐하시나요 이재명 대통령님이 사과해야 할 일도 아닌데 왜 이재명 대통령님이 직접 사과하라는 거 까지 우리 국민들이 봐야하는거죠? 사고는 장관님이 쳤는데 무책임하시게도 이런 기자회견에 아무런 얘기도 없으시네요😮‍💨</div>
+  <div class="tweet-stats"><span>❤ 106</span><span>🔁 54</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">인용</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="" target="_blank" class="author">@</a>
+    <span class="aname"></span>
+    <span class="flw">팔로워 8,024</span>
+  </div>
+  <div class="tweet-text">모든 무능한 정부는 문화예술 인사참사부터 정권 붕괴 시작이였음 이명박,박근혜가 그랬고 예산부터 썰고 간 윤석열 븅신새끼는 논할 가치도 없고<br>정부 정책 인식 수준이 문화예술을 후순위로 보고있다는 무지함의 증거임<br>문화는 사회의 가치,정체성,산업,외교,시민의식까지 포괄하는 총합적 산출물임</div>
+  <div class="tweet-stats"><span>❤ 75</span><span>🔁 37</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">인용</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="" target="_blank" class="author">@</a>
+    <span class="aname"></span>
+    <span class="flw">팔로워 1,631</span>
+  </div>
+  <div class="tweet-text">최휘영 장관 털공스타일인가봐 <br>황교익 한국문화관광연구원장 임명<br>세종학당재단 이사장에 역사학자 전우용<br>문조털묻은것들이 잼통령 욕먹이기작전 잘하고있단거제 https://t.co/Rcy3Johkdx</div>
+  <div class="tweet-stats"><span>❤ 62</span><span>🔁 24</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">인용</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="" target="_blank" class="author">@</a>
+    <span class="aname"></span>
+    <span class="flw">팔로워 2,431</span>
+  </div>
+  <div class="tweet-text">그 자리에서 끄져주세요. 당신은 대한민국 <br>문화 예술을 논할 자격이 없는 사람입니다.<br>@Hwiyoung_Chae</div>
+  <div class="tweet-stats"><span>❤ 83</span><span>🔁 11</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">답글</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/lieben/status/2045362679565754563" target="_blank" class="author">@lieben</a>
+    <span class="aname">자줏빛 여름</span>
+    <span class="flw">팔로워 883</span>
+  </div>
+  <div class="tweet-text">[공유] 이재명 정부 문화예술 인사정책 규탄 긴급 기자회견이 4월 21일 오전 11시 청와대 분수대  앞 광장에서 열릴 예정입니다.<br><br>- 공공 문화예술기관 인사의 공공성과 전문성 훼손, 즉각 중단하십시오.<br>- 문화예술 인사 기준과 원칙, 전면 재정립하십시오.<br><br>🔗연명 참여: https://t.co/HUDDZ1tEjp https://t.co/LfMh0yScVE</div>
+  <div class="tweet-stats"><span>❤ 636</span><span>🔁 742</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">답글</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/Rho_do_den_dron/status/2045470154767966672" target="_blank" class="author">@Rho_do_den_dron</a>
+    <span class="aname">📀</span>
+    <span class="flw">팔로워 30</span>
+  </div>
+  <div class="tweet-text">@lieben 창작자와 창작 생태계를 무시하고, (특정)대기업·플랫폼 자본의 이익만 대변하는 반노동적 문체부 장관(네이버 대표·놀유니버스 대표 출신)과 인맥 카르텔.(국중박 관장, 세종학당재단 이사장, 대중문화교류위원회 위원장 및 아래 인물들…) 대기업 배불리기만! @Jaemyung_Lee<br>https://t.co/JYF5qljWZW</div>
+  <div class="tweet-stats"><span>❤ 54</span><span>🔁 25</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">답글</span><span class="badge" style="background:#94a3b820;color:#94a3b8">중립</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/lieben/status/2045362682103312533" target="_blank" class="author">@lieben</a>
+    <span class="aname">자줏빛 여름</span>
+    <span class="flw">팔로워 883</span>
+  </div>
+  <div class="tweet-text">*출처: https://t.co/lUbQLzWOHx</div>
+  <div class="tweet-stats"><span>❤ 1</span><span>🔁 2</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">답글</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/wkamBCXBOEPlSwJ/status/2045521279080628652" target="_blank" class="author">@wkamBCXBOEPlSwJ</a>
+    <span class="aname">응림헌 서성</span>
+    <span class="flw">팔로워 21</span>
+  </div>
+  <div class="tweet-text">@lieben 미친거냐? 윤마귀똥개검거니똥갈ㅂ몸종같은놈들아 어린준성접대한뚜겅똥개검은순잔고위조몸종이냐?</div>
+  <div class="tweet-stats"><span>❤ 0</span><span>🔁 0</span></div>
+</div></div>
+  <details>
+    <summary>활성 계정 TOP20</summary>
+    <div class="table-wrap"><table class="data-table">
+<thead><tr><th>#</th><th>계정</th><th>이름</th><th>팔로워</th><th>참여수</th></tr></thead>
+<tbody><tr><td>1</td><td><a href='https://x.com/lieben' target='_blank'>@lieben</a></td><td>자줏빛 여름</td><td>883</td><td>2</td></tr><tr><td>2</td><td><a href='https://x.com/wkamBCXBOEPlSwJ' target='_blank'>@wkamBCXBOEPlSwJ</a></td><td>응림헌 서성</td><td>21</td><td>1</td></tr><tr><td>3</td><td><a href='https://x.com/Rho_do_den_dron' target='_blank'>@Rho_do_den_dron</a></td><td>📀</td><td>30</td><td>1</td></tr></tbody></table></div>
+  </details>
+</section>
+<section class="block">
+  <h2>확산 트윗 분석: @museun_happen</h2>
+  <div class="orig-tweet">
+    <p>오늘 한국문화관광연구원장 임명된 황교익 어록이 새롭게 조명되고 있음<br><br>-한국음식의 기원은 일제강점기<br>-불고기는 일본 야키니쿠의 번역어<br>-떡볶이는 맛없는 음식이고 쌀이 부족할 시절 많이 먹어서 익숙해진 것뿐<br>-혼밥은 마음의 병이고 사회적 자폐 https://t.co/CmelR4NRo9</p>
+    <div class="tweet-stats" style="margin-top:.5rem">
+      <span>❤ 849</span>
+      <span>🔁 1,035</span>
+      <span>💬 0</span>
+      <span>🔗 389</span>
+      <span>👁 490,305</span>
+    </div>
+  </div>
+  <div class="vis-row">
+    <div class="vis-box">
+<div class="chart-wrap">
+  <canvas id="donut_museun_happen" width="180" height="180"></canvas>
+  <div class="chart-legend">
+    <span style="color:#ef4444;font-weight:600">비판 93.8%</span>
+    <span style="color:#22c55e;font-weight:600">지지 6.2%</span>
+  </div>
+  <div class="op-note">의견 표명 트윗 32건 (97.0%) 기준</div>
+</div>
+<script>
+new Chart(document.getElementById('donut_museun_happen'), {
+  type: 'doughnut',
+  data: {
+    labels: ["\ube44\ud310", "\uc9c0\uc9c0"],
+    datasets: [{ data: [30, 2], backgroundColor: ["#ef4444", "#22c55e"],
+      borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: false,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: '@museun_happen 반응 논조', font: { size: 12 } }
+    }
+  }
+});
+</script></div>
+    <div class="vis-box flex1">
+<div class="wc-container">
+  <div class="section-label">반응 워드클라우드</div>
+  <canvas id="wc_museun_happen" width="680" height="240"></canvas>
+</div>
+<script>
+WordCloud(document.getElementById('wc_museun_happen'), {
+  list: [["황교익", 6], ["진짜", 4], ["일제강점기", 3], ["누가", 3], ["또나오고", 3], ["서승만", 2], ["국립정동극장", 2], ["장동직", 2], ["이사장", 2], ["이재명", 2], ["사람이", 2], ["떡볶이", 2], ["이런", 2], ["건가", 2], ["한국음식의", 2], ["역시", 2], ["그렇게", 2], ["백종원", 2], ["Jaemyung_Lee", 2], ["일본", 2], ["대표", 1], ["박혜진", 1], ["국립오페라단", 1], ["단장", 1], ["임진택", 1], ["문화예술교육진흥원장", 1], ["강헌", 1], ["문화예술교육진흥원", 1], ["전용우", 1], ["세종학당이사장", 1], ["정부", 1], ["문화분야", 1], ["인사는", 1], ["무능력", 1], ["비전문", 1], ["공개", 1], ["지지자들만을", 1], ["위한", 1], ["난장판", 1], ["같음", 1], ["한마디로", 1], ["역대급", 1], ["재앙수준임", 1], ["했다고", 1], ["연구원장", 1], ["뉴스공장", 1], ["출연하는구나", 1], ["인간이", 1], ["임명되었는지", 1], ["모르는", 1], ["하는거야", 1], ["모르는거야", 1], ["영수증이지", 1], ["예술계가", 1], ["지지하셨으니", 1], ["감당하셔야죵", 1], ["아무나", 1], ["아무자리에나", 1], ["넣어주는구만", 1], ["임명해도", 1]],
+  gridSize: 8,
+  weightFactor: function(s) { return Math.max(10, s / 6 * 60); },
+  fontFamily: 'Noto Sans KR, sans-serif',
+  color: function() {
+    return ['#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2'][
+      Math.floor(Math.random()*6)];
+  },
+  backgroundColor: '#f8fafc',
+  rotateRatio: 0.25, minSize: 10,
+});
+</script></div>
+  </div>
+  
+  <h3>주요 반응 트윗</h3>
+  <div class="tweet-grid">
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">인용</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="" target="_blank" class="author">@</a>
+    <span class="aname"></span>
+    <span class="flw">팔로워 5,114</span>
+  </div>
+  <div class="tweet-text">서승만 국립정동극장 대표 <br>장동직 국립정동극장 이사장 <br>박혜진 국립오페라단 단장 <br>임진택 문화예술교육진흥원장<br>강헌 문화예술교육진흥원 이사장 <br>전용우 세종학당이사장 <br>.......<br>이재명 정부 문화분야 인사는 무능력 비전문 공개 지지자들만을 위한 난장판 같음. 한마디로 역대급 재앙수준임</div>
+  <div class="tweet-stats"><span>❤ 791</span><span>🔁 988</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">인용</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="" target="_blank" class="author">@</a>
+    <span class="aname"></span>
+    <span class="flw">팔로워 1,268</span>
+  </div>
+  <div class="tweet-text">이 사람이 뭐 했다고 연구원장?<br>아… 뉴스공장 출연하는구나? https://t.co/I3P43mTZrh</div>
+  <div class="tweet-stats"><span>❤ 183</span><span>🔁 109</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">인용</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="" target="_blank" class="author">@</a>
+    <span class="aname"></span>
+    <span class="flw">팔로워 971</span>
+  </div>
+  <div class="tweet-text">황교익 서승만 장동직 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ예술계가 이재명 지지하셨으니 뭐 감당하셔야죵</div>
+  <div class="tweet-stats"><span>❤ 54</span><span>🔁 51</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">인용</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="" target="_blank" class="author">@</a>
+    <span class="aname"></span>
+    <span class="flw">팔로워 8,677</span>
+  </div>
+  <div class="tweet-text">저 인간이 왜 임명되었는지 모르는 척 하는거야? 진짜 모르는거야?<br>떡볶이 영수증이지 뭐 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ https://t.co/OcPXGEz6Tp</div>
+  <div class="tweet-stats"><span>❤ 61</span><span>🔁 42</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">답글</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/museun_happen/status/2045020180347236435" target="_blank" class="author">@museun_happen</a>
+    <span class="aname">무슨 일이 일어나고 있나요?</span>
+    <span class="flw">팔로워 205,442</span>
+  </div>
+  <div class="tweet-text">오늘 한국문화관광연구원장 임명된 황교익 어록이 새롭게 조명되고 있음<br><br>-한국음식의 기원은 일제강점기<br>-불고기는 일본 야키니쿠의 번역어<br>-떡볶이는 맛없는 음식이고 쌀이 부족할 시절 많이 먹어서 익숙해진 것뿐<br>-혼밥은 마음의 병이고 사회적 자폐 https://t.co/CmelR4NRo9</div>
+  <div class="tweet-stats"><span>❤ 849</span><span>🔁 1,035</span></div>
+</div></div>
+  <details>
+    <summary>활성 계정 TOP20</summary>
+    <div class="table-wrap"><table class="data-table">
+<thead><tr><th>#</th><th>계정</th><th>이름</th><th>팔로워</th><th>참여수</th></tr></thead>
+<tbody><tr><td>1</td><td><a href='https://x.com/museun_happen' target='_blank'>@museun_happen</a></td><td>무슨 일이 일어나고 있나요?</td><td>205,442</td><td>1</td></tr></tbody></table></div>
+  </details>
+</section>
+<section class="block">
+  <h2>확산 트윗 분석: @bandobyul</h2>
+  <div class="orig-tweet">
+    <p>[긴급 기자회견]<br>이재명 정부 문화예술 인사정책 규탄 기자회견 <br>"이재명 정부는 문화예술의 전문성과 신뢰를 훼손하는 일방적 인사조치를 즉각 중단하라!"<br><br>- 이재명 정부 공공 문화예술기관 기관장 인사 전면 비판<br>- 공공 문화예술기관 인사의 공공성과 전문성 훼손을 중단하라 https://t.co/VPCdyOyP3I</p>
+    <div class="tweet-stats" style="margin-top:.5rem">
+      <span>❤ 142</span>
+      <span>🔁 168</span>
+      <span>💬 1</span>
+      <span>🔗 2</span>
+      <span>👁 7,588</span>
+    </div>
+  </div>
+  <div class="vis-row">
+    <div class="vis-box">
+<div class="chart-wrap">
+  <canvas id="donut_bandobyul" width="180" height="180"></canvas>
+  <div class="chart-legend">
+    <span style="color:#ef4444;font-weight:600">비판 100.0%</span>
+    <span style="color:#22c55e;font-weight:600">지지 0.0%</span>
+  </div>
+  <div class="op-note">의견 표명 트윗 6건 (100.0%) 기준</div>
+</div>
+<script>
+new Chart(document.getElementById('donut_bandobyul'), {
+  type: 'doughnut',
+  data: {
+    labels: ["\ube44\ud310", "\uc9c0\uc9c0"],
+    datasets: [{ data: [6, 0], backgroundColor: ["#ef4444", "#22c55e"],
+      borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: false,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: '@bandobyul 반응 논조', font: { size: 12 } }
+    }
+  }
+});
+</script></div>
+    <div class="vis-box flex1">
+<div class="wc-container">
+  <div class="section-label">반응 워드클라우드</div>
+  <canvas id="wc_bandobyul" width="680" height="240"></canvas>
+</div>
+<script>
+WordCloud(document.getElementById('wc_bandobyul'), {
+  list: [["문화예술", 5], ["이재명", 5], ["정부", 4], ["인사", 4], ["기관장", 3], ["기자회견", 3], ["전면", 3], ["긴급", 2], ["전문성과", 2], ["중단하라", 2], ["공공", 2], ["문화예술기관", 2], ["연명", 2], ["단체", 2], ["이후", 2], ["친정권이지만", 1], ["이건", 1], ["정말", 1], ["잘못하고", 1], ["있는", 1], ["거라", 1], ["서명함", 1], ["6개월", 1], ["넘게", 1], ["공석인", 1], ["기관도", 1], ["있는데", 1], ["에효", 1], ["인사정책", 1], ["규탄", 1], ["정부는", 1], ["문화예술의", 1], ["신뢰를", 1], ["훼손하는", 1], ["일방적", 1], ["인사조치를", 1], ["즉각", 1], ["비판", 1], ["인사의", 1], ["공공성과", 1], ["전문성", 1], ["훼손을", 1], ["기준과", 1], ["원칙을", 1], ["재정립하라", 1], ["신청", 1], ["개인", 1], ["기자회견문", 1], ["참고", 1], ["2026년", 1], ["4월", 1], ["21일", 1], ["오전", 1], ["11시", 1], ["청와대", 1], ["분수대", 1], ["광장", 1], ["인사정책을", 1], ["규탄하는", 1], ["문화예술계", 1]],
+  gridSize: 8,
+  weightFactor: function(s) { return Math.max(10, s / 5 * 60); },
+  fontFamily: 'Noto Sans KR, sans-serif',
+  color: function() {
+    return ['#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2'][
+      Math.floor(Math.random()*6)];
+  },
+  backgroundColor: '#f8fafc',
+  rotateRatio: 0.25, minSize: 10,
+});
+</script></div>
+  </div>
+  
+  <h3>주요 반응 트윗</h3>
+  <div class="tweet-grid">
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">인용</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="" target="_blank" class="author">@</a>
+    <span class="aname"></span>
+    <span class="flw">팔로워 333</span>
+  </div>
+  <div class="tweet-text">친정권이지만 이건 정말 잘못하고 있는 거라 서명함</div>
+  <div class="tweet-stats"><span>❤ 0</span><span>🔁 0</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">인용</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="" target="_blank" class="author">@</a>
+    <span class="aname"></span>
+    <span class="flw">팔로워 80</span>
+  </div>
+  <div class="tweet-text">6개월 넘게 기관장 공석인 문화예술 기관도 있는데.. 에효.</div>
+  <div class="tweet-stats"><span>❤ 0</span><span>🔁 0</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">답글</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/bandobyul/status/2045464478511501493" target="_blank" class="author">@bandobyul</a>
+    <span class="aname">언젠가 서정민갑</span>
+    <span class="flw">팔로워 4,870</span>
+  </div>
+  <div class="tweet-text">[긴급 기자회견]<br>이재명 정부 문화예술 인사정책 규탄 기자회견 <br>"이재명 정부는 문화예술의 전문성과 신뢰를 훼손하는 일방적 인사조치를 즉각 중단하라!"<br><br>- 이재명 정부 공공 문화예술기관 기관장 인사 전면 비판<br>- 공공 문화예술기관 인사의 공공성과 전문성 훼손을 중단하라 https://t.co/VPCdyOyP3I</div>
+  <div class="tweet-stats"><span>❤ 142</span><span>🔁 168</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">답글</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/bandobyul/status/2045464482047312129" target="_blank" class="author">@bandobyul</a>
+    <span class="aname">언젠가 서정민갑</span>
+    <span class="flw">팔로워 4,870</span>
+  </div>
+  <div class="tweet-text">- 문화예술 인사 기준과 원칙을 전면 재정립하라<br><br>[연명 신청]<br>- 개인 및 단체 연명, 기자회견문 참고<br>https://t.co/MuZABEr7QV<br>——————-<br>◯ 일 시 : 2026년 4월 21일(화) 오전 11시<br>◯ 장 소 : 청와대 분수대 앞 광장<br>◯ 주 최 : 이재명 정부 문화예술 인사정책을 규탄하는 문화예술계 일동</div>
+  <div class="tweet-stats"><span>❤ 27</span><span>🔁 44</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">답글</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/bandobyul/status/2045464485142634669" target="_blank" class="author">@bandobyul</a>
+    <span class="aname">언젠가 서정민갑</span>
+    <span class="flw">팔로워 4,870</span>
+  </div>
+  <div class="tweet-text">(기자회견 제안 단체 : 문화연대, 블랙리스트 이후)<br><br>이재명 정부 출범 이후 반복되는 문화예술 분야 인사 논란과 관련해 긴급 기자회견을 열고, 전문성과 공공성이 훼손된 인사 관행을 규탄합니다.  <br><br>최근 주요 기관장 인사에서 전문성보다 인지도와 정치적 관계가 작동하고 있다는 비판이 제기되며,</div>
+  <div class="tweet-stats"><span>❤ 22</span><span>🔁 20</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge badge-type">답글</span><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/bandobyul/status/2045464491484397744" target="_blank" class="author">@bandobyul</a>
+    <span class="aname">언젠가 서정민갑</span>
+    <span class="flw">팔로워 4,870</span>
+  </div>
+  <div class="tweet-text">현장의 신뢰가 크게 흔들리고 있습니다. 이에 우리는 인사정책의 전면 재검토와 기준·원칙 재정립, 책임 규명 등을 요구하고자 합니다.<br><br>◯ 문의 : 02.773.7707, culture918@gmail.com</div>
+  <div class="tweet-stats"><span>❤ 24</span><span>🔁 15</span></div>
+</div></div>
+  <details>
+    <summary>활성 계정 TOP20</summary>
+    <div class="table-wrap"><table class="data-table">
+<thead><tr><th>#</th><th>계정</th><th>이름</th><th>팔로워</th><th>참여수</th></tr></thead>
+<tbody><tr><td>1</td><td><a href='https://x.com/bandobyul' target='_blank'>@bandobyul</a></td><td>언젠가 서정민갑</td><td>4,870</td><td>4</td></tr></tbody></table></div>
+  </details>
+</section>
+
+
+<section class="block">
+  <h2>키워드 분석: '전우용' (377건)</h2>
+  <div class="vis-row">
+    <div class="vis-box">
+<div class="chart-wrap">
+  <canvas id="donut_kw_전우용" width="180" height="180"></canvas>
+  <div class="chart-legend">
+    <span style="color:#ef4444;font-weight:600">비판 66.5%</span>
+    <span style="color:#22c55e;font-weight:600">지지 33.5%</span>
+  </div>
+  <div class="op-note">의견 표명 트윗 239건 (63.4%) 기준</div>
+</div>
+<script>
+new Chart(document.getElementById('donut_kw_전우용'), {
+  type: 'doughnut',
+  data: {
+    labels: ["\ube44\ud310", "\uc9c0\uc9c0"],
+    datasets: [{ data: [159, 80], backgroundColor: ["#ef4444", "#22c55e"],
+      borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: false,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: '\'전우용\' 논조', font: { size: 12 } }
+    }
+  }
+});
+</script></div>
+    <div class="kw-top flex1">
+      <div class="tag-cloud"><span class="tag">#전우용 <b>42</b></span><span class="tag">#역사학자 <b>13</b></span><span class="tag">#김어준 <b>11</b></span><span class="tag">#뉴스공장 <b>9</b></span><span class="tag">#이재명 <b>7</b></span><span class="tag">#김태형 <b>6</b></span><span class="tag">#검찰개혁 <b>5</b></span><span class="tag">#겸손은힘들다 <b>4</b></span><span class="tag">#대통령 <b>4</b></span><span class="tag">#메아리미디어 <b>4</b></span><span class="tag">#민들레tv <b>3</b></span><span class="tag">#sbs <b>3</b></span></div>
+    </div>
+  </div>
+  <h3>주요 트윗 TOP6</h3>
+  <div class="tweet-grid">
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/ihatemaksan2/status/2038484164811637170" target="_blank" class="author">@ihatemaksan2</a>
+    <span class="aname">막살🌷</span>
+    <span class="flw">팔로워 3,688</span>
+  </div>
+  <div class="tweet-text">rt 성범죄 전력 조회 하니까 발끈하시던 전우용 할라버지가 떠오르고..<br>그냥 생각났다고 ㅎ https://t.co/rXAy1KN1yg</div>
+  <div class="tweet-stats"><span>❤ 1,318</span><span>🔁 675</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#94a3b820;color:#94a3b8">중립</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/telavi93/status/1938381243403640849" target="_blank" class="author">@telavi93</a>
+    <span class="aname">Ohsun Kwon</span>
+    <span class="flw">팔로워 24,095</span>
+  </div>
+  <div class="tweet-text">전우용 교수<br>"정치검찰이란 용어를 쓰면 안된다.<br>범죄검찰이 적확하다."<br><br>https://t.co/TCW8mpxe0e https://t.co/3LFpccbvqz</div>
+  <div class="tweet-stats"><span>❤ 1,287</span><span>🔁 474</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/latulla_mrk/status/2042445310325371073" target="_blank" class="author">@latulla_mrk</a>
+    <span class="aname">💫M미친S사람G그뤠잇💫밀피유</span>
+    <span class="flw">팔로워 161</span>
+  </div>
+  <div class="tweet-text">네?? 전우용??ㅋㅋㅋㅋㅋㅋㅋㅋㅋ 그 전우용?????ㅋㅋㅋㅋㅋㅋㅋ 와 최휘영 진짜 가지가지한다... https://t.co/JGxCud4upV</div>
+  <div class="tweet-stats"><span>❤ 404</span><span>🔁 620</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/acdui/status/2042516336992285063" target="_blank" class="author">@acdui</a>
+    <span class="aname">언럭키즈</span>
+    <span class="flw">팔로워 954</span>
+  </div>
+  <div class="tweet-text">이번엔 전우용 성범죄 경력 조회는 했음? https://t.co/bQsTFKhVEK</div>
+  <div class="tweet-stats"><span>❤ 407</span><span>🔁 582</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#94a3b820;color:#94a3b8">중립</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/telavi93/status/1951070326630351200" target="_blank" class="author">@telavi93</a>
+    <span class="aname">Ohsun Kwon</span>
+    <span class="flw">팔로워 24,095</span>
+  </div>
+  <div class="tweet-text">전우용 교수<br>"김건희는 왜 이렇게 무성의하게 대놓고 거짓말을 할까.<br>왜냐하면 모두가 김건희 거짓말을 진실인 것처럼 포장해 주기 때문이다.<br><br>검찰도, <br>대학도, <br>언론도."<br><br>https://t.co/2YTbyoblbO https://t.co/oCSHM7PIhM</div>
+  <div class="tweet-stats"><span>❤ 766</span><span>🔁 369</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#94a3b820;color:#94a3b8">중립</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/telavi93/status/2039852521930551749" target="_blank" class="author">@telavi93</a>
+    <span class="aname">Ohsun Kwon</span>
+    <span class="flw">팔로워 24,095</span>
+  </div>
+  <div class="tweet-text">전우용 역사학자<br><br>"제주 4.3은 아직도 제대로 이름을 못짓고 있다. <br><br>아직도 이 사건이 사회적으로 합의가 안되고 있기 때문이다.<br><br>명확히 제주 양민학살사건이다."<br><br>https://t.co/VEkUHGOaUN https://t.co/UoEbCJWFcA</div>
+  <div class="tweet-stats"><span>❤ 463</span><span>🔁 273</span></div>
+</div></div>
+  <details>
+    <summary>주요 발화자 TOP20</summary>
+    <div class="table-wrap"><table class="data-table">
+<thead><tr><th>#</th><th>계정</th><th>이름</th><th>팔로워</th><th>참여수</th></tr></thead>
+<tbody><tr><td>1</td><td><a href='https://x.com/DEDIPe86R77My8S' target='_blank'>@DEDIPe86R77My8S</a></td><td>제석주(제갈석주) seok joo.ROK.</td><td>477</td><td>14</td></tr><tr><td>2</td><td><a href='https://x.com/KBC14701470' target='_blank'>@KBC14701470</a></td><td>김병철</td><td>285</td><td>14</td></tr><tr><td>3</td><td><a href='https://x.com/shsh7600' target='_blank'>@shsh7600</a></td><td>쟝고</td><td>367</td><td>12</td></tr><tr><td>4</td><td><a href='https://x.com/telavi93' target='_blank'>@telavi93</a></td><td>Ohsun Kwon</td><td>24,095</td><td>7</td></tr><tr><td>5</td><td><a href='https://x.com/shp8992' target='_blank'>@shp8992</a></td><td>Carpe diem(抑强扶弱 東學大同世上)</td><td>2,792</td><td>5</td></tr><tr><td>6</td><td><a href='https://x.com/encho500' target='_blank'>@encho500</a></td><td>홍옥이좋아</td><td>882</td><td>4</td></tr><tr><td>7</td><td><a href='https://x.com/cybertruck02093' target='_blank'>@cybertruck02093</a></td><td>𝙹𝚊𝚔𝚎</td><td>1,702</td><td>4</td></tr><tr><td>8</td><td><a href='https://x.com/Pygmalion_Love' target='_blank'>@Pygmalion_Love</a></td><td>라테</td><td>596</td><td>4</td></tr><tr><td>9</td><td><a href='https://x.com/bagbohye230498' target='_blank'>@bagbohye230498</a></td><td>작은궁전</td><td>149</td><td>4</td></tr><tr><td>10</td><td><a href='https://x.com/6308jhannes' target='_blank'>@6308jhannes</a></td><td>경천애인 I</td><td>1,629</td><td>3</td></tr><tr><td>11</td><td><a href='https://x.com/Hwang_MDD' target='_blank'>@Hwang_MDD</a></td><td>백동수</td><td>176</td><td>3</td></tr><tr><td>12</td><td><a href='https://x.com/GingseongY' target='_blank'>@GingseongY</a></td><td>청아한 난초</td><td>4,096</td><td>3</td></tr><tr><td>13</td><td><a href='https://x.com/joh000hd' target='_blank'>@joh000hd</a></td><td>banja</td><td>34</td><td>3</td></tr><tr><td>14</td><td><a href='https://x.com/gomirae' target='_blank'>@gomirae</a></td><td>내가 친노다 ! 🌙✨🎗🕯️</td><td>30,063</td><td>3</td></tr><tr><td>15</td><td><a href='https://x.com/mindlenews1' target='_blank'>@mindlenews1</a></td><td>시민언론 민들레</td><td>8,321</td><td>3</td></tr><tr><td>16</td><td><a href='https://x.com/yellowknife000' target='_blank'>@yellowknife000</a></td><td>빌레로이앤🎗️🌺</td><td>13,756</td><td>3</td></tr><tr><td>17</td><td><a href='https://x.com/coulespir' target='_blank'>@coulespir</a></td><td>나나</td><td>1,251</td><td>3</td></tr><tr><td>18</td><td><a href='https://x.com/EcheveriaKorea' target='_blank'>@EcheveriaKorea</a></td><td>에코박인옥</td><td>1,443</td><td>3</td></tr><tr><td>19</td><td><a href='https://x.com/ProconscienceO' target='_blank'>@ProconscienceO</a></td><td>독도는 우리 땅 대마도도 우리 땅</td><td>2,081</td><td>3</td></tr><tr><td>20</td><td><a href='https://x.com/Haeundo' target='_blank'>@Haeundo</a></td><td>하이컨셉</td><td>103,317</td><td>3</td></tr></tbody></table></div>
+  </details>
+</section>
+<section class="block">
+  <h2>키워드 분석: '황교익' (366건)</h2>
+  <div class="vis-row">
+    <div class="vis-box">
+<div class="chart-wrap">
+  <canvas id="donut_kw_황교익" width="180" height="180"></canvas>
+  <div class="chart-legend">
+    <span style="color:#ef4444;font-weight:600">비판 88.6%</span>
+    <span style="color:#22c55e;font-weight:600">지지 11.4%</span>
+  </div>
+  <div class="op-note">의견 표명 트윗 281건 (76.8%) 기준</div>
+</div>
+<script>
+new Chart(document.getElementById('donut_kw_황교익'), {
+  type: 'doughnut',
+  data: {
+    labels: ["\ube44\ud310", "\uc9c0\uc9c0"],
+    datasets: [{ data: [249, 32], backgroundColor: ["#ef4444", "#22c55e"],
+      borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: false,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: '\'황교익\' 논조', font: { size: 12 } }
+    }
+  }
+});
+</script></div>
+    <div class="kw-top flex1">
+      <div class="tag-cloud"><span class="tag">#황교익 <b>17</b></span><span class="tag">#뉴스공장 <b>3</b></span><span class="tag">#뉴스1 <b>2</b></span><span class="tag">#이재명 <b>2</b></span><span class="tag">#유시민 <b>2</b></span><span class="tag">#대통령의혀 <b>2</b></span><span class="tag">#정치 <b>2</b></span><span class="tag">#음식이야기 <b>2</b></span><span class="tag">#음식 <b>2</b></span><span class="tag">#정치이야기 <b>2</b></span><span class="tag">#시식기 <b>2</b></span><span class="tag">#foodcolumnist <b>2</b></span></div>
+    </div>
+  </div>
+  <h3>주요 트윗 TOP6</h3>
+  <div class="tweet-grid">
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/museun_happen/status/2045020180347236435" target="_blank" class="author">@museun_happen</a>
+    <span class="aname">무슨 일이 일어나고 있나요?</span>
+    <span class="flw">팔로워 205,373</span>
+  </div>
+  <div class="tweet-text">오늘 한국문화관광연구원장 임명된 황교익 어록이 새롭게 조명되고 있음<br><br>-한국음식의 기원은 일제강점기<br>-불고기는 일본 야키니쿠의 번역어<br>-떡볶이는 맛없는 음식이고 쌀이 부족할 시절 많이 먹어서 익숙해진 것뿐<br>-혼밥은 마음의 병이고 사회적 자폐 https://t.co/CmelR4NRo9</div>
+  <div class="tweet-stats"><span>❤ 846</span><span>🔁 1,033</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/Hosunggoon/status/2045025193450701145" target="_blank" class="author">@Hosunggoon</a>
+    <span class="aname">류호성 더 핫산 앤드 야마다</span>
+    <span class="flw">팔로워 2,662</span>
+  </div>
+  <div class="tweet-text">'맛 칼럼니스트'  황교익, 한국문화관광연구원장 임명 | 다음 - 이데일리 https://t.co/Vxqbpaaryf <br><br>뭐 하냐 대체...?</div>
+  <div class="tweet-stats"><span>❤ 313</span><span>🔁 690</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/siniooooo/status/2045435656131031496" target="_blank" class="author">@siniooooo</a>
+    <span class="aname">시니오</span>
+    <span class="flw">팔로워 8,971</span>
+  </div>
+  <div class="tweet-text">&lt;한국문화관광연구원&gt; 원장으로 임명된 황교익 씨의 한국음식과 문화 비하 망언 다시 보기. https://t.co/C8qnKMSbaE https://t.co/dxEugaKbIo</div>
+  <div class="tweet-stats"><span>❤ 258</span><span>🔁 342</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/RealTonySLee/status/1906218356501577982" target="_blank" class="author">@RealTonySLee</a>
+    <span class="aname">TonySanghoLee</span>
+    <span class="flw">팔로워 12,855</span>
+  </div>
+  <div class="tweet-text">윤석열 대통령은 조용한데, <br><br>박지원, 박찬대, 황교익, 최강욱 <br><br>이들은 왜 이렇게 급할까요?<br><br>모아놓고 보니 어처구니가 없네요. https://t.co/psHiGYi7ML</div>
+  <div class="tweet-stats"><span>❤ 306</span><span>🔁 100</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/kimkyochon/status/2045044903101792284" target="_blank" class="author">@kimkyochon</a>
+    <span class="aname">🇰🇷AGMS🇰🇷</span>
+    <span class="flw">팔로워 8,676</span>
+  </div>
+  <div class="tweet-text">이번 황교익 임명 건 가지고 개딸들 즈개비 재명이 쌍욕 안쳐먹게 하려고 최휘영 책임 선으로 컷 하려고 시도하는거 참 애처롭다 애처로워 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ<br>응, 그거 느개비 떡볶이 영수증이야 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ https://t.co/TJOhTLw16x</div>
+  <div class="tweet-stats"><span>❤ 164</span><span>🔁 141</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/6308jhannes/status/2045094344940765521" target="_blank" class="author">@6308jhannes</a>
+    <span class="aname">경천애인 I</span>
+    <span class="flw">팔로워 1,631</span>
+  </div>
+  <div class="tweet-text">털묻은 문체부장관 심각함 <br>하이브 토스 찾아간것도 어이없고<br>체육계 돌아가는 상황 전혀모르고<br>축구협회언급 0 <br>올림픽중계권관련문제에 대해 아는게 없음<br>문조털 노인들 자리주기 <br>1년에 수억원씩 연봉 갖다바치기 뭐냐<br>문어게인 앞장섬<br>세월호로 까이는 문덮어주며 잼욕먹임 <br>황교익 전우용임명건</div>
+  <div class="tweet-stats"><span>❤ 231</span><span>🔁 97</span></div>
+</div></div>
+  <details>
+    <summary>주요 발화자 TOP20</summary>
+    <div class="table-wrap"><table class="data-table">
+<thead><tr><th>#</th><th>계정</th><th>이름</th><th>팔로워</th><th>참여수</th></tr></thead>
+<tbody><tr><td>1</td><td><a href='https://x.com/nannana1232' target='_blank'>@nannana1232</a></td><td>Oneday</td><td>1,982</td><td>9</td></tr><tr><td>2</td><td><a href='https://x.com/kimkyochon' target='_blank'>@kimkyochon</a></td><td>🇰🇷AGMS🇰🇷</td><td>8,676</td><td>8</td></tr><tr><td>3</td><td><a href='https://x.com/amys17700' target='_blank'>@amys17700</a></td><td>안 무는 강아지</td><td>270</td><td>5</td></tr><tr><td>4</td><td><a href='https://x.com/B4H8mKnGxUVaMs6' target='_blank'>@B4H8mKnGxUVaMs6</a></td><td>브이.</td><td>2,517</td><td>4</td></tr><tr><td>5</td><td><a href='https://x.com/ghgns' target='_blank'>@ghgns</a></td><td>민</td><td>111</td><td>4</td></tr><tr><td>6</td><td><a href='https://x.com/5migarden' target='_blank'>@5migarden</a></td><td>1g의희망의 사유</td><td>6,087</td><td>4</td></tr><tr><td>7</td><td><a href='https://x.com/LIDER_kang' target='_blank'>@LIDER_kang</a></td><td>라이더_깡</td><td>1,291</td><td>3</td></tr><tr><td>8</td><td><a href='https://x.com/parro_70' target='_blank'>@parro_70</a></td><td>통일 路</td><td>1,485</td><td>3</td></tr><tr><td>9</td><td><a href='https://x.com/naanangnaang' target='_blank'>@naanangnaang</a></td><td>꾸아앙</td><td>7,710</td><td>3</td></tr><tr><td>10</td><td><a href='https://x.com/6308jhannes' target='_blank'>@6308jhannes</a></td><td>경천애인 I</td><td>1,629</td><td>3</td></tr><tr><td>11</td><td><a href='https://x.com/travis20260121' target='_blank'>@travis20260121</a></td><td>생각의힘</td><td>5,258</td><td>3</td></tr><tr><td>12</td><td><a href='https://x.com/nohrump2024' target='_blank'>@nohrump2024</a></td><td>Novak K. Gaezinsky</td><td>1,242</td><td>3</td></tr><tr><td>13</td><td><a href='https://x.com/BackingChairman' target='_blank'>@BackingChairman</a></td><td>The leader of 9th Earth's the Strides Party: 영알못</td><td>272</td><td>3</td></tr><tr><td>14</td><td><a href='https://x.com/tlalsk' target='_blank'>@tlalsk</a></td><td>bultaoreune</td><td>1,222</td><td>3</td></tr><tr><td>15</td><td><a href='https://x.com/Ncboaydogteer' target='_blank'>@Ncboaydogteer</a></td><td>카요우리</td><td>1,337</td><td>3</td></tr><tr><td>16</td><td><a href='https://x.com/mtxgr2' target='_blank'>@mtxgr2</a></td><td>누이르</td><td>305</td><td>3</td></tr><tr><td>17</td><td><a href='https://x.com/choihc1008' target='_blank'>@choihc1008</a></td><td>개당 트리거 중도 봄냥</td><td>138</td><td>2</td></tr><tr><td>18</td><td><a href='https://x.com/bluexmas47' target='_blank'>@bluexmas47</a></td><td>🧶bluexmas🧶</td><td>6,570</td><td>2</td></tr><tr><td>19</td><td><a href='https://x.com/jangoverwatch' target='_blank'>@jangoverwatch</a></td><td>재명제명</td><td>5,852</td><td>2</td></tr><tr><td>20</td><td><a href='https://x.com/handpis' target='_blank'>@handpis</a></td><td>song</td><td>2,626</td><td>2</td></tr></tbody></table></div>
+  </details>
+</section>
+<section class="block">
+  <h2>키워드 분석: '서승만' (149건)</h2>
+  <div class="vis-row">
+    <div class="vis-box">
+<div class="chart-wrap">
+  <canvas id="donut_kw_서승만" width="180" height="180"></canvas>
+  <div class="chart-legend">
+    <span style="color:#ef4444;font-weight:600">비판 86.3%</span>
+    <span style="color:#22c55e;font-weight:600">지지 13.7%</span>
+  </div>
+  <div class="op-note">의견 표명 트윗 117건 (78.5%) 기준</div>
+</div>
+<script>
+new Chart(document.getElementById('donut_kw_서승만'), {
+  type: 'doughnut',
+  data: {
+    labels: ["\ube44\ud310", "\uc9c0\uc9c0"],
+    datasets: [{ data: [101, 16], backgroundColor: ["#ef4444", "#22c55e"],
+      borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: false,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: '\'서승만\' 논조', font: { size: 12 } }
+    }
+  }
+});
+</script></div>
+    <div class="kw-top flex1">
+      <div class="tag-cloud"><span class="tag">#서승만 <b>10</b></span><span class="tag">#국립정동극장 <b>8</b></span><span class="tag">#뉴스1 <b>4</b></span><span class="tag">#정동극장 <b>3</b></span><span class="tag">#정청래 <b>2</b></span><span class="tag">#정성호 <b>2</b></span><span class="tag">#김민석 <b>2</b></span><span class="tag">#친명 <b>2</b></span><span class="tag">#더불어민주당 <b>2</b></span><span class="tag">#뉴데일리 <b>2</b></span><span class="tag">#네타냐후 <b>1</b></span><span class="tag">#트럼프 <b>1</b></span></div>
+    </div>
+  </div>
+  <h3>주요 트윗 TOP6</h3>
+  <div class="tweet-grid">
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/uklondon21/status/2045056724286275633" target="_blank" class="author">@uklondon21</a>
+    <span class="aname">보부상</span>
+    <span class="flw">팔로워 5,114</span>
+  </div>
+  <div class="tweet-text">서승만 국립정동극장 대표 <br>장동직 국립정동극장 이사장 <br>박혜진 국립오페라단 단장 <br>임진택 문화예술교육진흥원장<br>강헌 문화예술교육진흥원 이사장 <br>전용우 세종학당이사장 <br>.......<br>이재명 정부 문화분야 인사는 무능력 비전문 공개 지지자들만을 위한 난장판 같음. 한마디로 역대급 재앙수준임</div>
+  <div class="tweet-stats"><span>❤ 791</span><span>🔁 989</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/B4H8mKnGxUVaMs6/status/2042555802507178067" target="_blank" class="author">@B4H8mKnGxUVaMs6</a>
+    <span class="aname">브이.</span>
+    <span class="flw">팔로워 2,518</span>
+  </div>
+  <div class="tweet-text">연극인 A씨는 “정부에 대한 신뢰가 흔들린다. 정말 구리다”고 한탄했고, 연극인 B씨는 “정치적 품앗이만 있고 문화예술 진흥은 없는 인사”라고 꼬집었다<br><br>ㅋㅋㅋ레알<br><br>“대장동 씹는 애들 대장암 걸렸으면” 논란... 친여 서승만, 국립정동극장 대표 임명 (출처 : 네이버 뉴스) https://t.co/NHKiQnL8pA</div>
+  <div class="tweet-stats"><span>❤ 334</span><span>🔁 309</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/tomiyokiz/status/2042577094484594827" target="_blank" class="author">@tomiyokiz</a>
+    <span class="aname">YOKIZ</span>
+    <span class="flw">팔로워 8,171</span>
+  </div>
+  <div class="tweet-text">한국의 민주당은 똥꼬만 빨면 한자리씩 줌.<br><br>개그맨 서승만 국립정동극장 대표 임명, “서씨는 2022년 대선 당시 이재명 후보를 공개 지지했고 이후 친명 성향 유튜브 활동을 이어왔다.” https://t.co/1EL6czc5Os</div>
+  <div class="tweet-stats"><span>❤ 152</span><span>🔁 70</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/hail_trueblue/status/2043637652361257348" target="_blank" class="author">@hail_trueblue</a>
+    <span class="aname">어부바</span>
+    <span class="flw">팔로워 2,067</span>
+  </div>
+  <div class="tweet-text">문화단체, 서승만 기관장 인선에 ＂李 지원 숫자만 웅장, 인사는 우스웠다＂ <br>문화연대 첫 반발 “보은인사, 기관장 논공행상, 경청 않는 일방적 태도”<br>(출처 : 미디어오늘) https://t.co/TZ9gZJkEug</div>
+  <div class="tweet-stats"><span>❤ 60</span><span>🔁 94</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#22c55e20;color:#22c55e">지지</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/aaLee5518771265/status/2042542763032613278" target="_blank" class="author">@aaLee5518771265</a>
+    <span class="aname">K-시민</span>
+    <span class="flw">팔로워 1,777</span>
+  </div>
+  <div class="tweet-text">서승만,  국립정동극장 대표 됐다.<br>오.. 뉴스 보자마자 적임자라는 생각 딱 들었다.<br>잘하실 듯. https://t.co/aDvy4OUCcU</div>
+  <div class="tweet-stats"><span>❤ 125</span><span>🔁 43</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/gurigirl/status/2045157917004017705" target="_blank" class="author">@gurigirl</a>
+    <span class="aname">hej</span>
+    <span class="flw">팔로워 971</span>
+  </div>
+  <div class="tweet-text">황교익 서승만 장동직 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ예술계가 이재명 지지하셨으니 뭐 감당하셔야죵</div>
+  <div class="tweet-stats"><span>❤ 54</span><span>🔁 51</span></div>
+</div></div>
+  <details>
+    <summary>주요 발화자 TOP20</summary>
+    <div class="table-wrap"><table class="data-table">
+<thead><tr><th>#</th><th>계정</th><th>이름</th><th>팔로워</th><th>참여수</th></tr></thead>
+<tbody><tr><td>1</td><td><a href='https://x.com/B4H8mKnGxUVaMs6' target='_blank'>@B4H8mKnGxUVaMs6</a></td><td>브이.</td><td>2,519</td><td>4</td></tr><tr><td>2</td><td><a href='https://x.com/TVChosunNews' target='_blank'>@TVChosunNews</a></td><td>TV조선 뉴스</td><td>30,143</td><td>4</td></tr><tr><td>3</td><td><a href='https://x.com/Beingandtime27' target='_blank'>@Beingandtime27</a></td><td>存在&時間 Being and Time</td><td>7,600</td><td>3</td></tr><tr><td>4</td><td><a href='https://x.com/djA00mh9956moon' target='_blank'>@djA00mh9956moon</a></td><td>할멈• ᴥ •</td><td>8,024</td><td>2</td></tr><tr><td>5</td><td><a href='https://x.com/achim6500138375' target='_blank'>@achim6500138375</a></td><td>모든것의리터러시</td><td>619</td><td>2</td></tr><tr><td>6</td><td><a href='https://x.com/BackingChairman' target='_blank'>@BackingChairman</a></td><td>The leader of 9th Earth's the Strides Party: 영알못</td><td>272</td><td>2</td></tr><tr><td>7</td><td><a href='https://x.com/hail_trueblue' target='_blank'>@hail_trueblue</a></td><td>어부바</td><td>2,067</td><td>2</td></tr><tr><td>8</td><td><a href='https://x.com/kimthdr' target='_blank'>@kimthdr</a></td><td>그만알아보자</td><td>481</td><td>2</td></tr><tr><td>9</td><td><a href='https://x.com/News1_Politics' target='_blank'>@News1_Politics</a></td><td>뉴스1정치</td><td>442</td><td>2</td></tr><tr><td>10</td><td><a href='https://x.com/News1Kr' target='_blank'>@News1Kr</a></td><td>뉴스1</td><td>21,624</td><td>2</td></tr><tr><td>11</td><td><a href='https://x.com/yuyutraveler' target='_blank'>@yuyutraveler</a></td><td>arongdarong</td><td>5,345</td><td>2</td></tr><tr><td>12</td><td><a href='https://x.com/wikitree' target='_blank'>@wikitree</a></td><td>위키트리 WIKITREE</td><td>275,185</td><td>2</td></tr><tr><td>13</td><td><a href='https://x.com/witches_brew__' target='_blank'>@witches_brew__</a></td><td>Witches Brew</td><td>539</td><td>2</td></tr><tr><td>14</td><td><a href='https://x.com/cheol70' target='_blank'>@cheol70</a></td><td>민철</td><td>152</td><td>2</td></tr><tr><td>15</td><td><a href='https://x.com/GingseongY' target='_blank'>@GingseongY</a></td><td>청아한 난초</td><td>4,096</td><td>2</td></tr><tr><td>16</td><td><a href='https://x.com/Dangjinland' target='_blank'>@Dangjinland</a></td><td>大韓國人</td><td>28,920</td><td>2</td></tr><tr><td>17</td><td><a href='https://x.com/ecri11' target='_blank'>@ecri11</a></td><td>haecheon</td><td>10,019</td><td>2</td></tr><tr><td>18</td><td><a href='https://x.com/Oscaryun13' target='_blank'>@Oscaryun13</a></td><td>Oscar yun</td><td>130</td><td>2</td></tr><tr><td>19</td><td><a href='https://x.com/LIDER_kang' target='_blank'>@LIDER_kang</a></td><td>라이더_깡</td><td>1,292</td><td>1</td></tr><tr><td>20</td><td><a href='https://x.com/sorryjamjam' target='_blank'>@sorryjamjam</a></td><td>쌀국슈</td><td>366</td><td>1</td></tr></tbody></table></div>
+  </details>
+</section>
+<section class="block">
+  <h2>키워드 분석: '장한나' (170건)</h2>
+  <div class="vis-row">
+    <div class="vis-box">
+<div class="chart-wrap">
+  <canvas id="donut_kw_장한나" width="180" height="180"></canvas>
+  <div class="chart-legend">
+    <span style="color:#ef4444;font-weight:600">비판 11.8%</span>
+    <span style="color:#22c55e;font-weight:600">지지 88.2%</span>
+  </div>
+  <div class="op-note">의견 표명 트윗 34건 (20.0%) 기준</div>
+</div>
+<script>
+new Chart(document.getElementById('donut_kw_장한나'), {
+  type: 'doughnut',
+  data: {
+    labels: ["\ube44\ud310", "\uc9c0\uc9c0"],
+    datasets: [{ data: [4, 30], backgroundColor: ["#ef4444", "#22c55e"],
+      borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: false,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: '\'장한나\' 논조', font: { size: 12 } }
+    }
+  }
+});
+</script></div>
+    <div class="kw-top flex1">
+      <div class="tag-cloud"><span class="tag">#장한나 <b>16</b></span><span class="tag">#백남준 <b>10</b></span><span class="tag">#백남준아트센터 <b>10</b></span><span class="tag">#namjunepaikartcenter <b>10</b></span><span class="tag">#namjunepaik <b>10</b></span><span class="tag">#랜덤액세스프로젝트 <b>9</b></span><span class="tag">#randomaccessproject <b>9</b></span><span class="tag">#크레이지리치코리안 <b>6</b></span><span class="tag">#뉴스1 <b>3</b></span><span class="tag">#imbc연예 <b>3</b></span><span class="tag">#전시 <b>3</b></span><span class="tag">#예술의전당 <b>2</b></span></div>
+    </div>
+  </div>
+  <h3>주요 트윗 TOP6</h3>
+  <div class="tweet-grid">
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#94a3b820;color:#94a3b8">중립</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/yonhaptweet/status/2040955995950911976" target="_blank" class="author">@yonhaptweet</a>
+    <span class="aname">연합뉴스</span>
+    <span class="flw">팔로워 386,018</span>
+  </div>
+  <div class="tweet-text">예술의전당 사장에 장한나…첫 음악인 출신 여성 사장<br>https://t.co/lYxoTvcdju</div>
+  <div class="tweet-stats"><span>❤ 3,851</span><span>🔁 3,218</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#22c55e20;color:#22c55e">지지</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/dhdmsrbcjstk/status/2040962095060303873" target="_blank" class="author">@dhdmsrbcjstk</a>
+    <span class="aname">minor_lover</span>
+    <span class="flw">팔로워 1,265</span>
+  </div>
+  <div class="tweet-text">유리천장 깬 지휘봉…장한나, 예술의전당 40년 만에 첫 여성 사장<br><br>https://t.co/jCNZsNhT0i</div>
+  <div class="tweet-stats"><span>❤ 2,466</span><span>🔁 833</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#22c55e20;color:#22c55e">지지</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/ARCHIV0161/status/2040993707793801591" target="_blank" class="author">@ARCHIV0161</a>
+    <span class="aname">아르히브</span>
+    <span class="flw">팔로워 1,382</span>
+  </div>
+  <div class="tweet-text">예당 사장으로 장한나 임명!이라니 😯 축하합니다 https://t.co/HkPeYawJnz</div>
+  <div class="tweet-stats"><span>❤ 707</span><span>🔁 266</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#94a3b820;color:#94a3b8">중립</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/_herlivery/status/2041118722321182914" target="_blank" class="author">@_herlivery</a>
+    <span class="aname">뉴스 헐리버리</span>
+    <span class="flw">팔로워 5,251</span>
+  </div>
+  <div class="tweet-text">[인물_people]<br>장한나 사장 내정은 여러모로 화제를 낳았다. 예술공연계와 행정 분야에서 잔뼈가 굵은 50~60대 남성들의 자리를 차지하면서다. (...)문체부는 6일 다른 예술 기관의 수장도 새로 선임했다. 모두 여성 인사다. <br>https://t.co/PoHYXOegUe</div>
+  <div class="tweet-stats"><span>❤ 149</span><span>🔁 78</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#94a3b820;color:#94a3b8">중립</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/KBSnews/status/2040987872195490022" target="_blank" class="author">@KBSnews</a>
+    <span class="aname">KBS 뉴스</span>
+    <span class="flw">팔로워 438,722</span>
+  </div>
+  <div class="tweet-text">예술의전당 사장에 장한나…첫 음악인 출신 여성 사장 #KBS #KBS뉴스 <br>https://t.co/KJMljeBba9</div>
+  <div class="tweet-stats"><span>❤ 67</span><span>🔁 42</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#22c55e20;color:#22c55e">지지</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/hambachsteak/status/2040963532762857555" target="_blank" class="author">@hambachsteak</a>
+    <span class="aname">Bach</span>
+    <span class="flw">팔로워 1,533</span>
+  </div>
+  <div class="tweet-text">예술의전당 사장에 장한나…<br>연말에 사장님이 지휘하는 베토벤 합창 공연이 있게 되었군요 ㅋㅋ</div>
+  <div class="tweet-stats"><span>❤ 99</span><span>🔁 21</span></div>
+</div></div>
+  <details>
+    <summary>주요 발화자 TOP20</summary>
+    <div class="table-wrap"><table class="data-table">
+<thead><tr><th>#</th><th>계정</th><th>이름</th><th>팔로워</th><th>참여수</th></tr></thead>
+<tbody><tr><td>1</td><td><a href='https://x.com/NamJunePaikArt' target='_blank'>@NamJunePaikArt</a></td><td>백남준아트센터</td><td>4,355</td><td>14</td></tr><tr><td>2</td><td><a href='https://x.com/daljin' target='_blank'>@daljin</a></td><td>김달진미술연구소</td><td>34,807</td><td>5</td></tr><tr><td>3</td><td><a href='https://x.com/alliil161527' target='_blank'>@alliil161527</a></td><td>알리일</td><td>27</td><td>4</td></tr><tr><td>4</td><td><a href='https://x.com/padograph' target='_blank'>@padograph</a></td><td>Padograph パドグラフ 파도그래프</td><td>1,343</td><td>4</td></tr><tr><td>5</td><td><a href='https://x.com/_herlivery' target='_blank'>@_herlivery</a></td><td>뉴스 헐리버리</td><td>5,251</td><td>3</td></tr><tr><td>6</td><td><a href='https://x.com/matsaucetime' target='_blank'>@matsaucetime</a></td><td>친몸</td><td>6,473</td><td>3</td></tr><tr><td>7</td><td><a href='https://x.com/imbcenews' target='_blank'>@imbcenews</a></td><td>iMBC연예</td><td>32,300</td><td>3</td></tr><tr><td>8</td><td><a href='https://x.com/shineweare99' target='_blank'>@shineweare99</a></td><td>shineweare</td><td>195</td><td>2</td></tr><tr><td>9</td><td><a href='https://x.com/dichterliebe__' target='_blank'>@dichterliebe__</a></td><td>시랑</td><td>455</td><td>2</td></tr><tr><td>10</td><td><a href='https://x.com/joymaeng' target='_blank'>@joymaeng</a></td><td>인도 망고 🥭</td><td>2,314</td><td>2</td></tr><tr><td>11</td><td><a href='https://x.com/News1Kr' target='_blank'>@News1Kr</a></td><td>뉴스1</td><td>21,624</td><td>2</td></tr><tr><td>12</td><td><a href='https://x.com/w_ddd_ddd' target='_blank'>@w_ddd_ddd</a></td><td>DD</td><td>3,045</td><td>2</td></tr><tr><td>13</td><td><a href='https://x.com/KyungsooLover21' target='_blank'>@KyungsooLover21</a></td><td>디오야</td><td>3,842</td><td>2</td></tr><tr><td>14</td><td><a href='https://x.com/hambachsteak' target='_blank'>@hambachsteak</a></td><td>Bach</td><td>1,533</td><td>2</td></tr><tr><td>15</td><td><a href='https://x.com/MMCAKOREA' target='_blank'>@MMCAKOREA</a></td><td>국립현대미술관</td><td>750,709</td><td>2</td></tr><tr><td>16</td><td><a href='https://x.com/Resilie46234164' target='_blank'>@Resilie46234164</a></td><td>.🌺</td><td>487</td><td>2</td></tr><tr><td>17</td><td><a href='https://x.com/sportsseoul1' target='_blank'>@sportsseoul1</a></td><td>스포츠서울</td><td>2,164</td><td>2</td></tr><tr><td>18</td><td><a href='https://x.com/didcjfqnr10' target='_blank'>@didcjfqnr10</a></td><td>강홍산하</td><td>658</td><td>2</td></tr><tr><td>19</td><td><a href='https://x.com/inomatu17' target='_blank'>@inomatu17</a></td><td>和田 いのまつ</td><td>3,905</td><td>2</td></tr><tr><td>20</td><td><a href='https://x.com/woohyong' target='_blank'>@woohyong</a></td><td>최우형</td><td>8,981</td><td>1</td></tr></tbody></table></div>
+  </details>
+</section>
+<section class="block">
+  <h2>키워드 분석: '최휘영' (398건)</h2>
+  <div class="vis-row">
+    <div class="vis-box">
+<div class="chart-wrap">
+  <canvas id="donut_kw_최휘영" width="180" height="180"></canvas>
+  <div class="chart-legend">
+    <span style="color:#ef4444;font-weight:600">비판 92.5%</span>
+    <span style="color:#22c55e;font-weight:600">지지 7.5%</span>
+  </div>
+  <div class="op-note">의견 표명 트윗 307건 (77.1%) 기준</div>
+</div>
+<script>
+new Chart(document.getElementById('donut_kw_최휘영'), {
+  type: 'doughnut',
+  data: {
+    labels: ["\ube44\ud310", "\uc9c0\uc9c0"],
+    datasets: [{ data: [284, 23], backgroundColor: ["#ef4444", "#22c55e"],
+      borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: {
+    responsive: false,
+    plugins: {
+      legend: { display: false },
+      title: { display: true, text: '\'최휘영\' 논조', font: { size: 12 } }
+    }
+  }
+});
+</script></div>
+    <div class="kw-top flex1">
+      <div class="tag-cloud"><span class="tag">#강동원 <b>27</b></span><span class="tag">#21세기대군부인 <b>26</b></span><span class="tag">#최휘영 <b>14</b></span><span class="tag">#이재명 <b>6</b></span><span class="tag">#문체부 <b>5</b></span><span class="tag">#장관 <b>4</b></span><span class="tag">#뉴스1 <b>4</b></span><span class="tag">#문화체육관광부 <b>3</b></span><span class="tag">#대중문화 <b>3</b></span><span class="tag">#지역화폐 <b>2</b></span><span class="tag">#기타 <b>2</b></span><span class="tag">#네이버 <b>2</b></span></div>
+    </div>
+  </div>
+  <h3>주요 트윗 TOP6</h3>
+  <div class="tweet-grid">
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#94a3b820;color:#94a3b8">중립</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/mofa_kr/status/2036646757673615538" target="_blank" class="author">@mofa_kr</a>
+    <span class="aname">대한민국 외교부 MOFA_KR</span>
+    <span class="flw">팔로워 195,316</span>
+  </div>
+  <div class="tweet-text">문화체육관광부(장관 최휘영)와 국립국어원은 외교부(장관 조현)가 요청한 ‘몽골 수도의 한글 표기 변경 건’을 심의하고, 최종적으로 몽골 수도의 한글 표기를 ‘울란바토르’에서 ‘울란바타르’로 변경하는 것을 결정했습니다.&gt;https://t.co/i8fmCOTVI0 https://t.co/RkJWnCpVSP</div>
+  <div class="tweet-stats"><span>❤ 2,123</span><span>🔁 2,359</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/stephennjz0722/status/2031606607122149543" target="_blank" class="author">@stephennjz0722</a>
+    <span class="aname">포터내야 하는 기다림</span>
+    <span class="flw">팔로워 135</span>
+  </div>
+  <div class="tweet-text">[공론화] 문체부-하이브-놀(NOL)의 기묘한 삼각관계, 이대로 괜찮은가?<br>1. 문체부 장관의 '놀라운' 이력현재 문화체육관광부의 수장인 최휘영 장관은 임명 직전까지 '놀유니버스(인터파크트리플)'의 공동대표였습니다. 민간 기업 대표가 곧바로 해당 산업을 관장하는 부처의 장관이 된 '회전문 인사'의 전형이라는 지적이 나오고 있습니다.<br><br>2. 하이브 공연의 '놀' 단독 예매인터파크 티켓이 '놀(NOL)'로 개편된 후, 현재 BTS를 비롯한 하이브의 주요 공연 예매가 이곳에서 단독으로 진행되고 있습니다</div>
+  <div class="tweet-stats"><span>❤ 1,403</span><span>🔁 1,510</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/menemenemeneme2/status/2035322624721698922" target="_blank" class="author">@menemenemeneme2</a>
+    <span class="aname">mhdhh support</span>
+    <span class="flw">팔로워 538</span>
+  </div>
+  <div class="tweet-text">문화를 돈으로 만 보다가 참사가 난거지 . 최휘영 빨리 자르고 문화정책 기조를 제로부터 다시 세워야 됨 정치가 이렇게 국뽕욕심에 끼어들어서는 안되 그리고 거대자본을 경계를 해야지 거기에 편승하려고 하면 안되 문화는 그런게 아니야</div>
+  <div class="tweet-stats"><span>❤ 1,228</span><span>🔁 886</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/cielbleu531/status/2035555954654347711" target="_blank" class="author">@cielbleu531</a>
+    <span class="aname">석순</span>
+    <span class="flw">팔로워 510</span>
+  </div>
+  <div class="tweet-text">대통령의 도덕적 의지를 지지합니다만 왜 놀유니버스 비상장주식을 60억어치 보유한 최휘영 문체부 장관에게나 주가조작 혐의로 수사중인 방시혁에게는 적용되지 않는지 의문입니다. 그래서 어제의 그 공연이 특히 응원봉시민들에게 공감받지 못한 것이고 문화 정책에 우려하는 이유입니다.</div>
+  <div class="tweet-stats"><span>❤ 1,255</span><span>🔁 853</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/sigolnurung/status/2034864641982308829" target="_blank" class="author">@sigolnurung</a>
+    <span class="aname">나비효과걍누렁 | F.N 🦋⁵</span>
+    <span class="flw">팔로워 1,335</span>
+  </div>
+  <div class="tweet-text">국립중앙박물관(유홍준 관장)은 중소 기업의 굿즈를 카피해서 자기들이 생산한다고 통보<br>국가유산청(허민 청장)은 돈도 안 주고 대필 시킨(노예로 부려먹은) 사람이 청장<br>문화체육관광부(최휘영 장관)는 저작권 침해 방조와 들국화 전인권 씨에게 고소 당한 전적<br>국뽕 숟가락(남의 것)에 미칠만 해</div>
+  <div class="tweet-stats"><span>❤ 816</span><span>🔁 841</span></div>
+</div>
+<div class="tweet-card">
+  <div class="tweet-badges"><span class="badge" style="background:#ef444420;color:#ef4444">비판</span></div>
+  <div class="tweet-meta">
+    <a href="https://x.com/endolph/status/1973898736838586745" target="_blank" class="author">@endolph</a>
+    <span class="aname">원펀치맨</span>
+    <span class="flw">팔로워 11,283</span>
+  </div>
+  <div class="tweet-text">이번화재가 아니었어도 이재명은 민간클라우드에 맡길 계획을 세우고 있었음. 근데 nhn이 어떤 회사냐. 이재명 공공개발앱회사임.(이때도 의심을 많이 받음) 그리고 최휘영 문체부장관이 거쳐갔던 회사임. 냄새가 나지. https://t.co/sUNviXaFHy</div>
+  <div class="tweet-stats"><span>❤ 818</span><span>🔁 790</span></div>
+</div></div>
+  <details>
+    <summary>주요 발화자 TOP20</summary>
+    <div class="table-wrap"><table class="data-table">
+<thead><tr><th>#</th><th>계정</th><th>이름</th><th>팔로워</th><th>참여수</th></tr></thead>
+<tbody><tr><td>1</td><td><a href='https://x.com/YGangcheol43305' target='_blank'>@YGangcheol43305</a></td><td>Fiancée and spokesperson of 강동원(박태성)</td><td>37</td><td>28</td></tr><tr><td>2</td><td><a href='https://x.com/sigolnurung' target='_blank'>@sigolnurung</a></td><td>나비효과걍누렁 | F.N 🦋⁵</td><td>1,335</td><td>21</td></tr><tr><td>3</td><td><a href='https://x.com/g9sz8gqqY' target='_blank'>@g9sz8gqqY</a></td><td>짜침수거</td><td>19</td><td>12</td></tr><tr><td>4</td><td><a href='https://x.com/daljin' target='_blank'>@daljin</a></td><td>김달진미술연구소</td><td>34,806</td><td>11</td></tr><tr><td>5</td><td><a href='https://x.com/ForCheongRae' target='_blank'>@ForCheongRae</a></td><td>콩쥐</td><td>942</td><td>7</td></tr><tr><td>6</td><td><a href='https://x.com/latulla_mrk' target='_blank'>@latulla_mrk</a></td><td>💫M미친S사람G그뤠잇💫밀피유</td><td>161</td><td>5</td></tr><tr><td>7</td><td><a href='https://x.com/oicoicuc' target='_blank'>@oicoicuc</a></td><td>돼지가우물에빠진날</td><td>36</td><td>4</td></tr><tr><td>8</td><td><a href='https://x.com/sophos3000' target='_blank'>@sophos3000</a></td><td>백두대간</td><td>2,146</td><td>4</td></tr><tr><td>9</td><td><a href='https://x.com/Teddyjun' target='_blank'>@Teddyjun</a></td><td>Teddyjun 🕯️🎗</td><td>474</td><td>4</td></tr><tr><td>10</td><td><a href='https://x.com/rhwkenfdj' target='_blank'>@rhwkenfdj</a></td><td>후빔이(엣홈)🕯🎗</td><td>179</td><td>4</td></tr><tr><td>11</td><td><a href='https://x.com/uhbnmnjhyhn' target='_blank'>@uhbnmnjhyhn</a></td><td>qz..</td><td>0</td><td>4</td></tr><tr><td>12</td><td><a href='https://x.com/pepeppppp_S2' target='_blank'>@pepeppppp_S2</a></td><td>ㅍ_ㅍ</td><td>41</td><td>4</td></tr><tr><td>13</td><td><a href='https://x.com/bamnadeuli' target='_blank'>@bamnadeuli</a></td><td>밤나들이</td><td>1,762</td><td>4</td></tr><tr><td>14</td><td><a href='https://x.com/joyful3131' target='_blank'>@joyful3131</a></td><td>TruthForUsAll</td><td>693</td><td>4</td></tr><tr><td>15</td><td><a href='https://x.com/girlfrommars21' target='_blank'>@girlfrommars21</a></td><td>girl from Mars</td><td>55</td><td>3</td></tr><tr><td>16</td><td><a href='https://x.com/kimsunmyung_' target='_blank'>@kimsunmyung_</a></td><td>김선명</td><td>4,138</td><td>3</td></tr><tr><td>17</td><td><a href='https://x.com/bluepaperbook' target='_blank'>@bluepaperbook</a></td><td>민희진여자친구</td><td>2,011</td><td>3</td></tr><tr><td>18</td><td><a href='https://x.com/encho500' target='_blank'>@encho500</a></td><td>홍옥이좋아</td><td>883</td><td>3</td></tr><tr><td>19</td><td><a href='https://x.com/news1_photodesk' target='_blank'>@news1_photodesk</a></td><td>뉴스1사진방</td><td>301</td><td>3</td></tr><tr><td>20</td><td><a href='https://x.com/Salmonlove6' target='_blank'>@Salmonlove6</a></td><td>살몬</td><td>122</td><td>3</td></tr></tbody></table></div>
+  </details>
+</section>
+
+<section class="block">
+  <h2>대응 전략 제언</h2>
+  <ol style="padding-left:1.4rem;line-height:2">
+    <li><b>황교익 임명 배경 투명 해명 시급</b>: 과거 발언 재소환이 계속되는 한 논란 장기화. 임명 근거·전문성 자격 공식 발표 필요.</li>
+    <li><b>장한나 사례를 인사 기준 모델로 활용</b>: 전문성·공공성 기반 인사 원칙 공식화로 신뢰 회복.</li>
+    <li><b>최휘영 NOL 연관 의혹 조기 차단</b>: 이해충돌 가능성 선제 공개 해명 필요.</li>
+    <li><b>4월 21일 기자회견 후속 모니터링</b>: 오프라인 집회→트위터 2차 확산 패턴 예상. 회견 직후 키워드 재수집 권고.</li>
+    <li><b>문화예술계 연명 서명 규모 추적</b>: 서명 계정이 향후 반정부 여론 허브가 될 가능성.</li>
+  </ol>
+</section>
+
+</main>
+</body>
+</html>
