@@ -112,7 +112,9 @@ a{color:var(--acc)}
   <h2>키워드별 논조 한눈에 보기</h2>
   <p style="font-size:.83rem;color:#64748b;margin-bottom:.8rem">의견 표명 트윗(비판/지지 키워드 포함) 기준. 단순 정보 공유 트윗은 제외.</p>
   
-<canvas id="overview_tone" height="110"></canvas>
+<div style="position:relative;height:280px">
+<canvas id="overview_tone"></canvas>
+</div>
 <script>
 new Chart(document.getElementById('overview_tone'), {
   type: 'bar',
@@ -126,14 +128,16 @@ new Chart(document.getElementById('overview_tone'), {
   options: {
     indexAxis: 'y',
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
+      legend: { position: 'top' },
       title: { display: true,
         text: '키워드별 비판 vs 지지 비율 (의견 표명 트윗 기준, %)',
         font: {size:13} }
     },
     scales: {
-      x: { stacked: true, max: 100 },
-      y: { stacked: true }
+      x: { stacked: true, max: 100, ticks: { font: {size: 11} } },
+      y: { stacked: true, ticks: { font: {size: 13, weight: '600'}, color: '#1e293b' } }
     }
   }
 });
@@ -191,20 +195,22 @@ new Chart(document.getElementById('donut_lieben'), {
     <div class="vis-box flex1">
 <div class="wc-container">
   <div class="section-label">반응 워드클라우드</div>
-  <canvas id="wc_lieben" width="680" height="240"></canvas>
+  <canvas id="wc_lieben" width="720" height="420"></canvas>
 </div>
 <script>
 WordCloud(document.getElementById('wc_lieben'), {
-  list: [["문화예술", 5], ["이재명", 4], ["문체부", 3], ["최휘영", 3], ["장관", 3], ["임명", 3], ["실용주의", 3], ["인사", 3], ["제대로", 2], ["이런", 2], ["직접", 2], ["사과하라는", 2], ["대통령님이", 2], ["논할", 2], ["없는", 2], ["Hwiyoung_Chae", 2], ["정부는", 2], ["정부", 2], ["세종학당재단", 2], ["문체부장관", 2], ["최휘영이", 2], ["무슨", 2], ["관장합니까", 2], ["문화의", 2], ["무식한", 2], ["그만해라", 2], ["출신", 2], ["인물들", 2], ["전우용은", 2], ["실용주의의", 2], ["논란", 2], ["공연", 2], ["규탄", 2], ["Jaemyung_Lee", 2], ["lieben", 2], ["대기업", 2], ["대표", 2], ["장관님", 1], ["사고", 1], ["치신", 1], ["바람에", 1], ["기자회견", 1], ["자리까지", 1], ["생기고", 1], ["대통령한테", 1], ["입장문", 1], ["나오고", 1], ["있는데", 1], ["뭐하시나요", 1], ["사과해야", 1], ["일도", 1], ["아닌데", 1], ["국민들이", 1], ["봐야하는거죠", 1], ["사고는", 1], ["장관님이", 1], ["쳤는데", 1], ["무책임하시게도", 1], ["기자회견에", 1], ["아무런", 1]],
-  gridSize: 8,
-  weightFactor: function(s) { return Math.max(10, s / 5 * 60); },
+  list: [["문화예술", 5], ["이재명", 4], ["문체부", 3], ["최휘영", 3], ["장관", 3], ["임명", 3], ["실용주의", 3], ["인사", 3], ["제대로", 2], ["직접", 2], ["사과하라는", 2], ["대통령님이", 2], ["논할", 2], ["없는", 2], ["Hwiyoung_Chae", 2], ["정부는", 2], ["정부", 2], ["세종학당재단", 2], ["문체부장관", 2], ["최휘영이", 2], ["무슨", 2], ["관장합니까", 2], ["문화의", 2], ["무식한", 2], ["그만해라", 2], ["출신", 2], ["인물들", 2], ["전우용은", 2], ["실용주의의", 2], ["논란", 2], ["공연", 2], ["규탄", 2], ["Jaemyung_Lee", 2], ["lieben", 2], ["대기업", 2], ["대표", 2], ["장관님", 1], ["사고", 1], ["치신", 1], ["바람에", 1], ["기자회견", 1], ["자리까지", 1], ["생기고", 1], ["대통령한테", 1], ["입장문", 1], ["나오고", 1], ["있는데", 1], ["뭐하시나요", 1], ["사과해야", 1], ["일도", 1], ["아닌데", 1], ["국민들이", 1], ["봐야하는거죠", 1], ["사고는", 1], ["장관님이", 1], ["쳤는데", 1], ["무책임하시게도", 1], ["기자회견에", 1], ["아무런", 1], ["얘기도", 1]],
+  gridSize: 4,
+  weightFactor: function(s) { return 12 + Math.pow(s / 5, 0.55) * 48; },
   fontFamily: 'Noto Sans KR, sans-serif',
-  color: function() {
-    return ['#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2'][
-      Math.floor(Math.random()*6)];
+  color: function(word, weight) {
+    const palette = ['#1e3a8a','#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2','#334155'];
+    return palette[Math.floor(Math.random()*palette.length)];
   },
   backgroundColor: '#f8fafc',
-  rotateRatio: 0.25, minSize: 10,
+  rotateRatio: 0.2, minRotation: 0, maxRotation: 0,
+  minSize: 10, shrinkToFit: true,
+  drawOutOfBound: false,
 });
 </script></div>
   </div>
@@ -340,20 +346,22 @@ new Chart(document.getElementById('donut_museun_happen'), {
     <div class="vis-box flex1">
 <div class="wc-container">
   <div class="section-label">반응 워드클라우드</div>
-  <canvas id="wc_museun_happen" width="680" height="240"></canvas>
+  <canvas id="wc_museun_happen" width="720" height="420"></canvas>
 </div>
 <script>
 WordCloud(document.getElementById('wc_museun_happen'), {
-  list: [["황교익", 6], ["진짜", 4], ["일제강점기", 3], ["누가", 3], ["또나오고", 3], ["서승만", 2], ["국립정동극장", 2], ["장동직", 2], ["이사장", 2], ["이재명", 2], ["사람이", 2], ["떡볶이", 2], ["이런", 2], ["건가", 2], ["한국음식의", 2], ["역시", 2], ["그렇게", 2], ["백종원", 2], ["Jaemyung_Lee", 2], ["일본", 2], ["대표", 1], ["박혜진", 1], ["국립오페라단", 1], ["단장", 1], ["임진택", 1], ["문화예술교육진흥원장", 1], ["강헌", 1], ["문화예술교육진흥원", 1], ["전용우", 1], ["세종학당이사장", 1], ["정부", 1], ["문화분야", 1], ["인사는", 1], ["무능력", 1], ["비전문", 1], ["공개", 1], ["지지자들만을", 1], ["위한", 1], ["난장판", 1], ["같음", 1], ["한마디로", 1], ["역대급", 1], ["재앙수준임", 1], ["했다고", 1], ["연구원장", 1], ["뉴스공장", 1], ["출연하는구나", 1], ["인간이", 1], ["임명되었는지", 1], ["모르는", 1], ["하는거야", 1], ["모르는거야", 1], ["영수증이지", 1], ["예술계가", 1], ["지지하셨으니", 1], ["감당하셔야죵", 1], ["아무나", 1], ["아무자리에나", 1], ["넣어주는구만", 1], ["임명해도", 1]],
-  gridSize: 8,
-  weightFactor: function(s) { return Math.max(10, s / 6 * 60); },
+  list: [["황교익", 6], ["일제강점기", 3], ["누가", 3], ["또나오고", 3], ["서승만", 2], ["국립정동극장", 2], ["장동직", 2], ["이사장", 2], ["이재명", 2], ["사람이", 2], ["떡볶이", 2], ["건가", 2], ["한국음식의", 2], ["역시", 2], ["그렇게", 2], ["백종원", 2], ["Jaemyung_Lee", 2], ["일본", 2], ["대표", 1], ["박혜진", 1], ["국립오페라단", 1], ["단장", 1], ["임진택", 1], ["문화예술교육진흥원장", 1], ["강헌", 1], ["문화예술교육진흥원", 1], ["전용우", 1], ["세종학당이사장", 1], ["정부", 1], ["문화분야", 1], ["인사는", 1], ["무능력", 1], ["비전문", 1], ["공개", 1], ["지지자들만을", 1], ["위한", 1], ["난장판", 1], ["같음", 1], ["한마디로", 1], ["역대급", 1], ["재앙수준임", 1], ["했다고", 1], ["연구원장", 1], ["뉴스공장", 1], ["출연하는구나", 1], ["인간이", 1], ["임명되었는지", 1], ["모르는", 1], ["하는거야", 1], ["모르는거야", 1], ["영수증이지", 1], ["예술계가", 1], ["지지하셨으니", 1], ["감당하셔야죵", 1], ["아무나", 1], ["아무자리에나", 1], ["넣어주는구만", 1], ["임명해도", 1], ["인간을", 1], ["임명하냐", 1]],
+  gridSize: 4,
+  weightFactor: function(s) { return 12 + Math.pow(s / 6, 0.55) * 48; },
   fontFamily: 'Noto Sans KR, sans-serif',
-  color: function() {
-    return ['#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2'][
-      Math.floor(Math.random()*6)];
+  color: function(word, weight) {
+    const palette = ['#1e3a8a','#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2','#334155'];
+    return palette[Math.floor(Math.random()*palette.length)];
   },
   backgroundColor: '#f8fafc',
-  rotateRatio: 0.25, minSize: 10,
+  rotateRatio: 0.2, minRotation: 0, maxRotation: 0,
+  minSize: 10, shrinkToFit: true,
+  drawOutOfBound: false,
 });
 </script></div>
   </div>
@@ -459,20 +467,22 @@ new Chart(document.getElementById('donut_bandobyul'), {
     <div class="vis-box flex1">
 <div class="wc-container">
   <div class="section-label">반응 워드클라우드</div>
-  <canvas id="wc_bandobyul" width="680" height="240"></canvas>
+  <canvas id="wc_bandobyul" width="720" height="420"></canvas>
 </div>
 <script>
 WordCloud(document.getElementById('wc_bandobyul'), {
-  list: [["문화예술", 5], ["이재명", 5], ["정부", 4], ["인사", 4], ["기관장", 3], ["기자회견", 3], ["전면", 3], ["긴급", 2], ["전문성과", 2], ["중단하라", 2], ["공공", 2], ["문화예술기관", 2], ["연명", 2], ["단체", 2], ["이후", 2], ["친정권이지만", 1], ["이건", 1], ["정말", 1], ["잘못하고", 1], ["있는", 1], ["거라", 1], ["서명함", 1], ["6개월", 1], ["넘게", 1], ["공석인", 1], ["기관도", 1], ["있는데", 1], ["에효", 1], ["인사정책", 1], ["규탄", 1], ["정부는", 1], ["문화예술의", 1], ["신뢰를", 1], ["훼손하는", 1], ["일방적", 1], ["인사조치를", 1], ["즉각", 1], ["비판", 1], ["인사의", 1], ["공공성과", 1], ["전문성", 1], ["훼손을", 1], ["기준과", 1], ["원칙을", 1], ["재정립하라", 1], ["신청", 1], ["개인", 1], ["기자회견문", 1], ["참고", 1], ["2026년", 1], ["4월", 1], ["21일", 1], ["오전", 1], ["11시", 1], ["청와대", 1], ["분수대", 1], ["광장", 1], ["인사정책을", 1], ["규탄하는", 1], ["문화예술계", 1]],
-  gridSize: 8,
-  weightFactor: function(s) { return Math.max(10, s / 5 * 60); },
+  list: [["문화예술", 5], ["이재명", 5], ["정부", 4], ["인사", 4], ["기관장", 3], ["기자회견", 3], ["전면", 3], ["긴급", 2], ["전문성과", 2], ["중단하라", 2], ["공공", 2], ["문화예술기관", 2], ["연명", 2], ["단체", 2], ["이후", 2], ["친정권이지만", 1], ["이건", 1], ["정말", 1], ["잘못하고", 1], ["거라", 1], ["서명함", 1], ["6개월", 1], ["넘게", 1], ["공석인", 1], ["기관도", 1], ["있는데", 1], ["에효", 1], ["인사정책", 1], ["규탄", 1], ["정부는", 1], ["문화예술의", 1], ["신뢰를", 1], ["훼손하는", 1], ["일방적", 1], ["인사조치를", 1], ["즉각", 1], ["비판", 1], ["인사의", 1], ["공공성과", 1], ["전문성", 1], ["훼손을", 1], ["기준과", 1], ["원칙을", 1], ["재정립하라", 1], ["신청", 1], ["개인", 1], ["기자회견문", 1], ["참고", 1], ["2026년", 1], ["4월", 1], ["21일", 1], ["오전", 1], ["11시", 1], ["청와대", 1], ["분수대", 1], ["광장", 1], ["인사정책을", 1], ["규탄하는", 1], ["문화예술계", 1], ["일동", 1]],
+  gridSize: 4,
+  weightFactor: function(s) { return 12 + Math.pow(s / 5, 0.55) * 48; },
   fontFamily: 'Noto Sans KR, sans-serif',
-  color: function() {
-    return ['#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2'][
-      Math.floor(Math.random()*6)];
+  color: function(word, weight) {
+    const palette = ['#1e3a8a','#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2','#334155'];
+    return palette[Math.floor(Math.random()*palette.length)];
   },
   backgroundColor: '#f8fafc',
-  rotateRatio: 0.25, minSize: 10,
+  rotateRatio: 0.2, minRotation: 0, maxRotation: 0,
+  minSize: 10, shrinkToFit: true,
+  drawOutOfBound: false,
 });
 </script></div>
   </div>
@@ -577,10 +587,29 @@ new Chart(document.getElementById('donut_kw_전우용'), {
   }
 });
 </script></div>
-    <div class="kw-top flex1">
-      <div class="tag-cloud"><span class="tag">#전우용 <b>42</b></span><span class="tag">#역사학자 <b>13</b></span><span class="tag">#김어준 <b>11</b></span><span class="tag">#뉴스공장 <b>9</b></span><span class="tag">#이재명 <b>7</b></span><span class="tag">#김태형 <b>6</b></span><span class="tag">#검찰개혁 <b>5</b></span><span class="tag">#겸손은힘들다 <b>4</b></span><span class="tag">#대통령 <b>4</b></span><span class="tag">#메아리미디어 <b>4</b></span><span class="tag">#민들레tv <b>3</b></span><span class="tag">#sbs <b>3</b></span></div>
-    </div>
+    <div class="vis-box flex1">
+<div class="wc-container">
+  <div class="section-label">키워드 연관어 워드클라우드</div>
+  <canvas id="wc_kw_전우용" width="720" height="420"></canvas>
+</div>
+<script>
+WordCloud(document.getElementById('wc_kw_전우용'), {
+  list: [["역사학자", 43], ["이재명", 26], ["교수님", 24], ["김어준", 23], ["김건희", 23], ["뉴스공장", 19], ["윤석열", 18], ["김태형", 16], ["말씀", 16], ["조국", 15], ["집안은", 15], ["교수", 14], ["SBS", 11], ["gt", 10], ["칼럼", 10], ["그냥", 10], ["아니라", 10], ["교수의", 10], ["그대로", 10], ["세종학당재단", 9], ["해도", 9], ["없습니다", 9], ["선생님", 9], ["대통령", 9], ["문재인", 9], ["교수가", 9], ["되는", 9], ["lt", 9], ["민심", 9], ["자기", 9], ["얼마나", 8], ["문체부", 8], ["내가", 8], ["모르는", 8], ["맞는", 8], ["이유", 8], ["겸손은힘들다", 8], ["사람이", 8], ["명심", 8], ["유시민", 8], ["검찰개혁", 8], ["김어준의", 8], ["라고", 8], ["그렇군요", 8], ["검찰의", 8], ["이제", 7], ["다른", 7], ["없는", 7], ["무슨", 7], ["사라진", 7], ["어떻게", 7], ["정말", 7], ["via", 7], ["나쁜", 7], ["개혁", 7], ["대만", 7], ["오리", 7], ["인간", 7], ["이사장에", 6], ["류근", 6], ["자리", 6], ["이라고", 6], ["서울대", 6], ["출신", 6], ["민주당", 6], ["이게", 6], ["이번", 6], ["검찰", 6], ["없다는", 6], ["말고", 6], ["윤석열이", 6], ["글을", 6], ["모두", 6], ["중국의", 6], ["침공설", 6], ["사건을", 6], ["탐관", 6], ["사람들을", 6], ["결론을", 6], ["저런", 5]],
+  gridSize: 4,
+  weightFactor: function(s) { return 12 + Math.pow(s / 43, 0.55) * 48; },
+  fontFamily: 'Noto Sans KR, sans-serif',
+  color: function(word, weight) {
+    const palette = ['#1e3a8a','#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2','#334155'];
+    return palette[Math.floor(Math.random()*palette.length)];
+  },
+  backgroundColor: '#f8fafc',
+  rotateRatio: 0.2, minRotation: 0, maxRotation: 0,
+  minSize: 10, shrinkToFit: true,
+  drawOutOfBound: false,
+});
+</script></div>
   </div>
+  <div class="tag-cloud"><span class="tag">#전우용 <b>42</b></span><span class="tag">#역사학자 <b>13</b></span><span class="tag">#김어준 <b>11</b></span><span class="tag">#뉴스공장 <b>9</b></span><span class="tag">#이재명 <b>7</b></span><span class="tag">#김태형 <b>6</b></span><span class="tag">#검찰개혁 <b>5</b></span><span class="tag">#겸손은힘들다 <b>4</b></span><span class="tag">#대통령 <b>4</b></span><span class="tag">#메아리미디어 <b>4</b></span><span class="tag">#민들레tv <b>3</b></span><span class="tag">#sbs <b>3</b></span></div>
   <h3>주요 트윗 TOP6</h3>
   <div class="tweet-grid">
 <div class="tweet-card">
@@ -679,10 +708,29 @@ new Chart(document.getElementById('donut_kw_황교익'), {
   }
 });
 </script></div>
-    <div class="kw-top flex1">
-      <div class="tag-cloud"><span class="tag">#황교익 <b>17</b></span><span class="tag">#뉴스공장 <b>3</b></span><span class="tag">#뉴스1 <b>2</b></span><span class="tag">#이재명 <b>2</b></span><span class="tag">#유시민 <b>2</b></span><span class="tag">#대통령의혀 <b>2</b></span><span class="tag">#정치 <b>2</b></span><span class="tag">#음식이야기 <b>2</b></span><span class="tag">#음식 <b>2</b></span><span class="tag">#정치이야기 <b>2</b></span><span class="tag">#시식기 <b>2</b></span><span class="tag">#foodcolumnist <b>2</b></span></div>
-    </div>
+    <div class="vis-box flex1">
+<div class="wc-container">
+  <div class="section-label">키워드 연관어 워드클라우드</div>
+  <canvas id="wc_kw_황교익" width="720" height="420"></canvas>
+</div>
+<script>
+WordCloud(document.getElementById('wc_kw_황교익'), {
+  list: [["임명", 53], ["떡볶이", 43], ["이재명", 41], ["한국문화관광연구원장", 33], ["먹방", 29], ["음식", 25], ["백종원", 22], ["대순진리회", 18], ["인사", 17], ["칼럼니스트", 16], ["일본", 14], ["문화관광연구원장", 12], ["보은", 12], ["경기관광공사", 11], ["유시민", 11], ["문화관광연구원장에", 10], ["한국", 10], ["자리", 9], ["황교익이", 9], ["문체부", 9], ["많이", 9], ["종교단체", 9], ["아니라", 9], ["한국문화관광연구원", 8], ["이야기", 8], ["그렇게", 8], ["지역", 8], ["이건", 8], ["김재환", 8], ["다음", 7], ["민주당", 7], ["이미", 7], ["떡볶이는", 7], ["축제", 7], ["내란", 7], ["이제", 6], ["대통령", 6], ["같이", 6], ["lt", 6], ["gt", 6], ["음식은", 6], ["선생", 6], ["제대로", 6], ["한자리", 6], ["연결고리는", 6], ["김어준", 6], ["대한민국", 6], ["최강욱", 6], ["윤석열", 6], ["장관", 5], ["쓰레기", 5], ["논란이", 5], ["무슨", 5], ["문화", 5], ["다른", 5], ["사람이", 5], ["사장", 5], ["결국", 5], ["씨는", 5], ["모르는", 5], ["발해농원", 5], ["2021년", 5], ["당시", 5], ["사이비", 5], ["아니", 5], ["위해", 5], ["주는", 5], ["원장에", 5], ["음식이", 5], ["시절", 5], ["나락", 5], ["나는", 5], ["차기", 5], ["정해졌다", 5], ["미국", 5], ["예언가", 5], ["브레슬린", 5], ["네팔이", 5], ["쏘아올린", 5], ["반중", 5]],
+  gridSize: 4,
+  weightFactor: function(s) { return 12 + Math.pow(s / 53, 0.55) * 48; },
+  fontFamily: 'Noto Sans KR, sans-serif',
+  color: function(word, weight) {
+    const palette = ['#1e3a8a','#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2','#334155'];
+    return palette[Math.floor(Math.random()*palette.length)];
+  },
+  backgroundColor: '#f8fafc',
+  rotateRatio: 0.2, minRotation: 0, maxRotation: 0,
+  minSize: 10, shrinkToFit: true,
+  drawOutOfBound: false,
+});
+</script></div>
   </div>
+  <div class="tag-cloud"><span class="tag">#황교익 <b>17</b></span><span class="tag">#뉴스공장 <b>3</b></span><span class="tag">#뉴스1 <b>2</b></span><span class="tag">#이재명 <b>2</b></span><span class="tag">#유시민 <b>2</b></span><span class="tag">#대통령의혀 <b>2</b></span><span class="tag">#정치 <b>2</b></span><span class="tag">#음식이야기 <b>2</b></span><span class="tag">#음식 <b>2</b></span><span class="tag">#정치이야기 <b>2</b></span><span class="tag">#시식기 <b>2</b></span><span class="tag">#foodcolumnist <b>2</b></span></div>
   <h3>주요 트윗 TOP6</h3>
   <div class="tweet-grid">
 <div class="tweet-card">
@@ -781,10 +829,29 @@ new Chart(document.getElementById('donut_kw_서승만'), {
   }
 });
 </script></div>
-    <div class="kw-top flex1">
-      <div class="tag-cloud"><span class="tag">#서승만 <b>10</b></span><span class="tag">#국립정동극장 <b>8</b></span><span class="tag">#뉴스1 <b>4</b></span><span class="tag">#정동극장 <b>3</b></span><span class="tag">#정청래 <b>2</b></span><span class="tag">#정성호 <b>2</b></span><span class="tag">#김민석 <b>2</b></span><span class="tag">#친명 <b>2</b></span><span class="tag">#더불어민주당 <b>2</b></span><span class="tag">#뉴데일리 <b>2</b></span><span class="tag">#네타냐후 <b>1</b></span><span class="tag">#트럼프 <b>1</b></span></div>
-    </div>
+    <div class="vis-box flex1">
+<div class="wc-container">
+  <div class="section-label">키워드 연관어 워드클라우드</div>
+  <canvas id="wc_kw_서승만" width="720" height="420"></canvas>
+</div>
+<script>
+WordCloud(document.getElementById('wc_kw_서승만'), {
+  list: [["국립정동극장", 76], ["대표", 47], ["임명", 44], ["개그맨", 31], ["이재명", 19], ["논란", 17], ["정동극장", 16], ["대장동", 16], ["친명", 16], ["인사", 15], ["대장암", 15], ["씹는", 14], ["애들", 14], ["걸렸으면", 14], ["대표에", 14], ["친여", 13], ["공개지지", 13], ["공개", 12], ["대표이사에", 12], ["장동직", 10], ["기관장", 9], ["보은", 9], ["인사는", 8], ["걸려라", 8], ["극장", 8], ["대통령", 7], ["이사장", 7], ["지지한", 7], ["공연", 6], ["서승만은", 6], ["대장암이나", 6], ["다음", 6], ["대통령을", 6], ["임명에", 6], ["한자리", 6], ["출신", 6], ["씨를", 6], ["문체부", 6], ["대표이사", 5], ["한자리씩", 5], ["뉴스1", 5], ["임명됐다", 5], ["40년", 5], ["digidigi0208", 5], ["정말", 5], ["정치적", 4], ["문화", 4], ["김민석", 4], ["lt", 4], ["막말", 4], ["대표로", 4], ["문화단체", 4], ["인선에", 4], ["지원", 4], ["숫자만", 4], ["웅장", 4], ["우스웠다", 4], ["인사를", 4], ["보은인사", 4], ["열심히", 4], ["코미디언", 4], ["배우", 4], ["전문가", 4], ["대표이사로", 4], ["씨는", 4], ["친이재명", 4], ["유튜버로", 4], ["활동해왔다", 4], ["신임", 4], ["친명이라", 4], ["평가에", 4], ["기록으로", 4], ["말하겠다", 4], ["것은", 4], ["어떤", 4], ["지지", 4], ["서승만이", 4], ["지지해", 4], ["성향", 3], ["운영", 3]],
+  gridSize: 4,
+  weightFactor: function(s) { return 12 + Math.pow(s / 76, 0.55) * 48; },
+  fontFamily: 'Noto Sans KR, sans-serif',
+  color: function(word, weight) {
+    const palette = ['#1e3a8a','#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2','#334155'];
+    return palette[Math.floor(Math.random()*palette.length)];
+  },
+  backgroundColor: '#f8fafc',
+  rotateRatio: 0.2, minRotation: 0, maxRotation: 0,
+  minSize: 10, shrinkToFit: true,
+  drawOutOfBound: false,
+});
+</script></div>
   </div>
+  <div class="tag-cloud"><span class="tag">#서승만 <b>10</b></span><span class="tag">#국립정동극장 <b>8</b></span><span class="tag">#뉴스1 <b>4</b></span><span class="tag">#정동극장 <b>3</b></span><span class="tag">#정청래 <b>2</b></span><span class="tag">#정성호 <b>2</b></span><span class="tag">#김민석 <b>2</b></span><span class="tag">#친명 <b>2</b></span><span class="tag">#더불어민주당 <b>2</b></span><span class="tag">#뉴데일리 <b>2</b></span><span class="tag">#네타냐후 <b>1</b></span><span class="tag">#트럼프 <b>1</b></span></div>
   <h3>주요 트윗 TOP6</h3>
   <div class="tweet-grid">
 <div class="tweet-card">
@@ -883,10 +950,29 @@ new Chart(document.getElementById('donut_kw_장한나'), {
   }
 });
 </script></div>
-    <div class="kw-top flex1">
-      <div class="tag-cloud"><span class="tag">#장한나 <b>16</b></span><span class="tag">#백남준 <b>10</b></span><span class="tag">#백남준아트센터 <b>10</b></span><span class="tag">#namjunepaikartcenter <b>10</b></span><span class="tag">#namjunepaik <b>10</b></span><span class="tag">#랜덤액세스프로젝트 <b>9</b></span><span class="tag">#randomaccessproject <b>9</b></span><span class="tag">#크레이지리치코리안 <b>6</b></span><span class="tag">#뉴스1 <b>3</b></span><span class="tag">#imbc연예 <b>3</b></span><span class="tag">#전시 <b>3</b></span><span class="tag">#예술의전당 <b>2</b></span></div>
-    </div>
+    <div class="vis-box flex1">
+<div class="wc-container">
+  <div class="section-label">키워드 연관어 워드클라우드</div>
+  <canvas id="wc_kw_장한나" width="720" height="420"></canvas>
+</div>
+<script>
+WordCloud(document.getElementById('wc_kw_장한나'), {
+  list: [["예술의전당", 42], ["사장", 29], ["프로젝트", 29], ["June", 29], ["랜덤", 28], ["액세스", 27], ["백남준아트센터", 27], ["고요손", 21], ["Goyoson", 21], ["Chang", 21], ["Hanna", 21], ["여성", 19], ["얀투", 19], ["yang02", 18], ["사장에", 17], ["김호남", 17], ["한우리", 17], ["Nam", 17], ["Paik", 17], ["Art", 17], ["Center", 17], ["음악인", 16], ["정혜선", 16], ["육성민", 16], ["Han", 16], ["사룻", 15], ["수파수티벡", 15], ["Kim", 15], ["출신", 14], ["지휘자", 14], ["Uri", 14], ["크레이지", 13], ["통해", 13], ["Honam", 13], ["Jeong", 13], ["첼로", 12], ["gt", 12], ["코리안", 12], ["제2전시실", 12], ["Hyeseon", 12], ["Yuk", 12], ["백남준", 12], ["새로운", 11], ["리치", 11], ["lt", 11], ["영상", 11], ["February", 11], ["Gallery2", 11], ["Saroot", 11], ["Supasuthivech", 11], ["Seongmin", 11], ["전시", 10], ["NamJunePaikArtCenter", 10], ["NamJunePaik", 10], ["랜덤액세스프로젝트", 9], ["RandomAccessProject", 9], ["다양한", 8], ["보고", 8], ["KBS", 8], ["feat", 8], ["작가의", 8], ["많은", 8], ["devices", 8], ["이번", 7], ["세계적", 7], ["일정", 7], ["사장님", 7], ["임명", 7], ["작가", 7], ["함께", 7], ["an", 7], ["장한나는", 7], ["크레이지리치코리안", 7], ["이야기를", 7], ["artist", 7], ["humans", 7], ["최연근", 7], ["CHOI", 7], ["YEON", 7], ["KEUN", 7]],
+  gridSize: 4,
+  weightFactor: function(s) { return 12 + Math.pow(s / 42, 0.55) * 48; },
+  fontFamily: 'Noto Sans KR, sans-serif',
+  color: function(word, weight) {
+    const palette = ['#1e3a8a','#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2','#334155'];
+    return palette[Math.floor(Math.random()*palette.length)];
+  },
+  backgroundColor: '#f8fafc',
+  rotateRatio: 0.2, minRotation: 0, maxRotation: 0,
+  minSize: 10, shrinkToFit: true,
+  drawOutOfBound: false,
+});
+</script></div>
   </div>
+  <div class="tag-cloud"><span class="tag">#장한나 <b>16</b></span><span class="tag">#백남준 <b>10</b></span><span class="tag">#백남준아트센터 <b>10</b></span><span class="tag">#namjunepaikartcenter <b>10</b></span><span class="tag">#namjunepaik <b>10</b></span><span class="tag">#랜덤액세스프로젝트 <b>9</b></span><span class="tag">#randomaccessproject <b>9</b></span><span class="tag">#크레이지리치코리안 <b>6</b></span><span class="tag">#뉴스1 <b>3</b></span><span class="tag">#imbc연예 <b>3</b></span><span class="tag">#전시 <b>3</b></span><span class="tag">#예술의전당 <b>2</b></span></div>
   <h3>주요 트윗 TOP6</h3>
   <div class="tweet-grid">
 <div class="tweet-card">
@@ -985,10 +1071,29 @@ new Chart(document.getElementById('donut_kw_최휘영'), {
   }
 });
 </script></div>
-    <div class="kw-top flex1">
-      <div class="tag-cloud"><span class="tag">#강동원 <b>27</b></span><span class="tag">#21세기대군부인 <b>26</b></span><span class="tag">#최휘영 <b>14</b></span><span class="tag">#이재명 <b>6</b></span><span class="tag">#문체부 <b>5</b></span><span class="tag">#장관 <b>4</b></span><span class="tag">#뉴스1 <b>4</b></span><span class="tag">#문화체육관광부 <b>3</b></span><span class="tag">#대중문화 <b>3</b></span><span class="tag">#지역화폐 <b>2</b></span><span class="tag">#기타 <b>2</b></span><span class="tag">#네이버 <b>2</b></span></div>
-    </div>
+    <div class="vis-box flex1">
+<div class="wc-container">
+  <div class="section-label">키워드 연관어 워드클라우드</div>
+  <canvas id="wc_kw_최휘영" width="720" height="420"></canvas>
+</div>
+<script>
+WordCloud(document.getElementById('wc_kw_최휘영'), {
+  list: [["장관", 129], ["문체부", 104], ["이재명", 72], ["문화체육관광부", 38], ["방시혁", 32], ["하이브", 30], ["대표", 30], ["장관이", 28], ["강동원", 27], ["공연", 27], ["21세기대군부인", 26], ["Dear", 25], ["욕을", 25], ["안할래야", 24], ["장관은", 24], ["안할수가", 23], ["광화문", 22], ["장관님", 21], ["문화", 19], ["대통령", 19], ["박진영", 19], ["한국", 17], ["BTS", 17], ["장관의", 16], ["정부", 16], ["문체부장관", 15], ["이번", 15], ["KPOP", 15], ["직접", 14], ["보고", 14], ["관련", 14], ["기업", 13], ["유홍준", 13], ["현장", 13], ["김민석", 13], ["대통령이", 12], ["전혀", 12], ["문화를", 12], ["놀유니버스", 12], ["위해", 12], ["지원", 12], ["가장", 11], ["받고", 10], ["없는", 10], ["함께", 10], ["케이팝", 10], ["산업", 10], ["장관과", 10], ["기타", 10], ["특정", 10], ["임명", 9], ["제대로", 9], ["무슨", 9], ["박진영은", 9], ["국가", 9], ["것은", 9], ["위한", 9], ["오세훈", 9], ["현재", 8], ["것을", 8], ["보면", 8], ["정말", 8], ["문화예술", 8], ["최휘영이", 8], ["아니라", 8], ["장관을", 8], ["그게", 8], ["그는", 8], ["있도록", 8], ["많이", 8], ["하지", 8], ["대통령은", 8], ["없이", 8], ["많은", 8], ["대중문화교류위원회", 8], ["인사", 7], ["사람이", 7], ["이미", 7], ["그냥", 7], ["자꾸", 7]],
+  gridSize: 4,
+  weightFactor: function(s) { return 12 + Math.pow(s / 129, 0.55) * 48; },
+  fontFamily: 'Noto Sans KR, sans-serif',
+  color: function(word, weight) {
+    const palette = ['#1e3a8a','#2563eb','#16a34a','#dc2626','#9333ea','#ea580c','#0891b2','#334155'];
+    return palette[Math.floor(Math.random()*palette.length)];
+  },
+  backgroundColor: '#f8fafc',
+  rotateRatio: 0.2, minRotation: 0, maxRotation: 0,
+  minSize: 10, shrinkToFit: true,
+  drawOutOfBound: false,
+});
+</script></div>
   </div>
+  <div class="tag-cloud"><span class="tag">#강동원 <b>27</b></span><span class="tag">#21세기대군부인 <b>26</b></span><span class="tag">#최휘영 <b>14</b></span><span class="tag">#이재명 <b>6</b></span><span class="tag">#문체부 <b>5</b></span><span class="tag">#장관 <b>4</b></span><span class="tag">#뉴스1 <b>4</b></span><span class="tag">#문화체육관광부 <b>3</b></span><span class="tag">#대중문화 <b>3</b></span><span class="tag">#지역화폐 <b>2</b></span><span class="tag">#기타 <b>2</b></span><span class="tag">#네이버 <b>2</b></span></div>
   <h3>주요 트윗 TOP6</h3>
   <div class="tweet-grid">
 <div class="tweet-card">
